@@ -1,0 +1,8 @@
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\bin\Debug\MathGeo.exe.config
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\bin\Debug\MathGeo.exe
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\bin\Debug\MathGeo.pdb
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\obj\Debug\MathGeo.Properties.Resources.resources
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\obj\Debug\MathGeo.csproj.GenerateResource.Cache
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\obj\Debug\MathGeo.exe
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\obj\Debug\MathGeo.pdb
+C:\Users\Denis\Desktop\VisualStudioProjects\Prog_2 Assignments\MathGeo\MathGeo\obj\Debug\MathGeo.Form1.resources
