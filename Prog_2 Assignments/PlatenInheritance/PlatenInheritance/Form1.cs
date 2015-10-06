@@ -14,10 +14,12 @@ namespace PlatenInheritance
     {
         private char _gender;
         private bool _citizen;
+        private List<Person> _personList; 
 
         public Form1()
         {
             InitializeComponent();
+            _personList = new List<Person>();
         }
 
         private void GenderChanged(object sender, EventArgs e)
@@ -47,6 +49,18 @@ namespace PlatenInheritance
             {
                 _citizen = false;
             }
+        }
+
+        private void btnCreatePerson_Click(object sender, EventArgs e)
+        {
+            if (grpPerson.Controls.Cast<TextBox>().Any(txtbox => txtbox.Text == null))
+            {
+                MessageBox.Show(@"Fyll in alla fält!");
+            }
+            Person pers = new Person(
+                txtFirstName.Text, txtLastName.Text, _gender, txtSocialSecurityNumber.Text, txtCity.Text, txtAdress.Text,
+                txtZipCode.Text, _citizen, txtTelephone.Text, txtEmail.Text);
+            _personList.Add(pers);
         }
     }
 }

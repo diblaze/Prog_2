@@ -9,29 +9,38 @@ namespace aspCalcTax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
-        
+
         protected void btnCalc_OnClick(object sender, EventArgs e)
         {
-            if (IsValidPNo(txtPNo.Text) && txtPNo.Text != string.Empty && txtSalary.Text != string.Empty)
+            if (txtPNo.Text == string.Empty || !IsValidPNo(txtPNo.Text))
             {
-                lblPNoErr.Visible = true;
-                lblPNoErr.ForeColor = Color.Green;
-                Session["salary"] = txtSalary.Text;
-                Session["churchRadio"] = rdChruch.SelectedValue;
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "redirect", "window.open('endresult.aspx')", true);
-                //btnCalc.OnClientClick = "window.open('endresult.aspx')";
-                Response.Redirect("~/endresult.aspx");
+                return;
             }
-            else
+
+            if (txtSalary.Text == string.Empty)
             {
-                lblPNoErr.Visible = true;
-                lblPNoErr.ForeColor = Color.Red;
+                return;
             }
+
+            if (ddlProvince.SelectedValue == "0" || ddlProvince.SelectedValue == "1")
+            {
+                return;
+            }
+
+
+
+            lblPNoErr.Visible = false;
+            Salary sal = new Salary
+                         {
+                             BruttoSalary = int.Parse(txtSalary.Text),
+                             ChurchMember = rdChruch.SelectedValue,
+                             Province = Convert.ToInt32(ddlProvince.SelectedValue)
+                         };
+            Session["salary"] = sal;
+            Response.Redirect("~/endresult.aspx");
         }
-
-
 
         private static bool IsValidPNo(string pno)
         {
@@ -112,7 +121,7 @@ namespace aspCalcTax
             {
                 isValid = true;
             }
-
+/*
             string monthString = pno.Substring(2, 2);
             if (Convert.ToInt32(monthString) > 0 && Convert.ToInt32(monthString) < 13)
             {
@@ -136,7 +145,7 @@ namespace aspCalcTax
             }
 
 
-
+    */
 
             return isValid;
         }

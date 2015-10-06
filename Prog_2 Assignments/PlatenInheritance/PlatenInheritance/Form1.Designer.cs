@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.grpPerson = new System.Windows.Forms.GroupBox();
+            this.btnCreatePerson = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtZipCode = new System.Windows.Forms.TextBox();
+            this.txtAdress = new System.Windows.Forms.TextBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtSocialSecurityNumber = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.lblElev = new System.Windows.Forms.Label();
@@ -46,13 +53,6 @@
             this.lblGender = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
-            this.txtSocialSecurityNumber = new System.Windows.Forms.TextBox();
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.txtAdress = new System.Windows.Forms.TextBox();
-            this.txtZipCode = new System.Windows.Forms.TextBox();
-            this.txtTelephone = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.btnCreatePerson = new System.Windows.Forms.Button();
             this.grpPerson.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,58 @@
             this.grpPerson.TabIndex = 0;
             this.grpPerson.TabStop = false;
             this.grpPerson.Text = "New Person";
+            // 
+            // btnCreatePerson
+            // 
+            this.btnCreatePerson.Location = new System.Drawing.Point(177, 482);
+            this.btnCreatePerson.Name = "btnCreatePerson";
+            this.btnCreatePerson.Size = new System.Drawing.Size(170, 34);
+            this.btnCreatePerson.TabIndex = 23;
+            this.btnCreatePerson.Text = "Skapa Person";
+            this.btnCreatePerson.UseVisualStyleBackColor = true;
+            this.btnCreatePerson.Click += new System.EventHandler(this.btnCreatePerson_Click);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(177, 362);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(170, 26);
+            this.txtEmail.TabIndex = 22;
+            // 
+            // txtTelephone
+            // 
+            this.txtTelephone.Location = new System.Drawing.Point(177, 330);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.Size = new System.Drawing.Size(170, 26);
+            this.txtTelephone.TabIndex = 21;
+            // 
+            // txtZipCode
+            // 
+            this.txtZipCode.Location = new System.Drawing.Point(177, 261);
+            this.txtZipCode.Name = "txtZipCode";
+            this.txtZipCode.Size = new System.Drawing.Size(170, 26);
+            this.txtZipCode.TabIndex = 20;
+            // 
+            // txtAdress
+            // 
+            this.txtAdress.Location = new System.Drawing.Point(177, 228);
+            this.txtAdress.Name = "txtAdress";
+            this.txtAdress.Size = new System.Drawing.Size(170, 26);
+            this.txtAdress.TabIndex = 19;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Location = new System.Drawing.Point(177, 195);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(170, 26);
+            this.txtCity.TabIndex = 18;
+            // 
+            // txtSocialSecurityNumber
+            // 
+            this.txtSocialSecurityNumber.Location = new System.Drawing.Point(177, 162);
+            this.txtSocialSecurityNumber.Name = "txtSocialSecurityNumber";
+            this.txtSocialSecurityNumber.Size = new System.Drawing.Size(170, 26);
+            this.txtSocialSecurityNumber.TabIndex = 17;
             // 
             // txtLastName
             // 
@@ -250,57 +302,6 @@
             this.lblFirstName.Size = new System.Drawing.Size(73, 20);
             this.lblFirstName.TabIndex = 0;
             this.lblFirstName.Text = "Förnamn";
-            // 
-            // txtSocialSecurityNumber
-            // 
-            this.txtSocialSecurityNumber.Location = new System.Drawing.Point(177, 162);
-            this.txtSocialSecurityNumber.Name = "txtSocialSecurityNumber";
-            this.txtSocialSecurityNumber.Size = new System.Drawing.Size(170, 26);
-            this.txtSocialSecurityNumber.TabIndex = 17;
-            // 
-            // txtCity
-            // 
-            this.txtCity.Location = new System.Drawing.Point(177, 195);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(170, 26);
-            this.txtCity.TabIndex = 18;
-            // 
-            // txtAdress
-            // 
-            this.txtAdress.Location = new System.Drawing.Point(177, 228);
-            this.txtAdress.Name = "txtAdress";
-            this.txtAdress.Size = new System.Drawing.Size(170, 26);
-            this.txtAdress.TabIndex = 19;
-            // 
-            // txtZipCode
-            // 
-            this.txtZipCode.Location = new System.Drawing.Point(177, 261);
-            this.txtZipCode.Name = "txtZipCode";
-            this.txtZipCode.Size = new System.Drawing.Size(170, 26);
-            this.txtZipCode.TabIndex = 20;
-            // 
-            // txtTelephone
-            // 
-            this.txtTelephone.Location = new System.Drawing.Point(177, 330);
-            this.txtTelephone.Name = "txtTelephone";
-            this.txtTelephone.Size = new System.Drawing.Size(170, 26);
-            this.txtTelephone.TabIndex = 21;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(177, 362);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(170, 26);
-            this.txtEmail.TabIndex = 22;
-            // 
-            // btnCreatePerson
-            // 
-            this.btnCreatePerson.Location = new System.Drawing.Point(177, 482);
-            this.btnCreatePerson.Name = "btnCreatePerson";
-            this.btnCreatePerson.Size = new System.Drawing.Size(170, 34);
-            this.btnCreatePerson.TabIndex = 23;
-            this.btnCreatePerson.Text = "Skapa Person";
-            this.btnCreatePerson.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
