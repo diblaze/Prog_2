@@ -5,12 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpfTestGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1078" Width="1920" ResizeMode="NoResize">
-    <Grid Background="RoyalBlue">
-        <Frame x:Name="ContentFrame" Content="Frame" HorizontalAlignment="Right" Height="975" MinWidth="960" Width="1440" MaxWidth="1440" Margin="0,35,35,0" VerticalAlignment="Top" Background="White"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="975" Margin="35,35,0,0" VerticalAlignment="Top" Width="400">
-            <ListViewItem FontSize="36pt" Foreground="Black" HorizontalAlignment="Center" Margin="0,25,0,0" Padding="10,10,10,10" TouchDown="DagordningTouch">DAGORDNING</ListViewItem>
-        </ListView>
+        Title="MainWindow" Height="1078" Width="1920" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid Background="#074ab9">
+
+        <ListBox Height="1010" Width="450" HorizontalAlignment="Left" Margin="35,0,0,0" Background="#379bf9">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseCaptured" Value="True">
+                            <Setter Property="Background" Value="DarkGray"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DarkGray"></Setter>
+                            <Setter Property="Foreground" Value="DarkGray"></Setter>
+                            <!-- <Setter Property="" Value="DarkGray"></Setter> -->
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+            <ListBoxItem Background="White" Name="lbiInformation" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt" HorizontalAlignment="Center" Padding="30,30,30,30" Margin="0, 35, 0, 0" Content="INFORMATION" FontFamily="Arial" />
+            <ListBoxItem Background="White" Name="lbiTimetable" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt" HorizontalAlignment="Center" Padding="93,30,93,30" Margin="0, 35, 0, 0" Content="SCHEMA" FontFamily="Arial"  />
+            <ListBoxItem Background="White" Name="lbiMap" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt" HorizontalAlignment="Center" Padding="117,30,117,30" Margin="0, 35, 0, 0" Content="KARTA" FontFamily="Arial"  />
+        </ListBox>
+        <Frame x:Name="ContentFrame" HorizontalAlignment="Left" Height="1010" Margin="510,15,0,0" VerticalAlignment="Top" Width="1374"/>
+
+
 
     </Grid>
 </Window>
