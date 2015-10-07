@@ -22,6 +22,15 @@ namespace aspCalcTax {
         protected global::System.Web.UI.WebControls.SqlDataSource dsCities;
         
         /// <summary>
+        /// dsTaxes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsTaxes;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace aspCalcTax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProvince;
+        
+        /// <summary>
+        /// fvTaxData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FormView fvTaxData;
         
         /// <summary>
         /// rdChruch control.

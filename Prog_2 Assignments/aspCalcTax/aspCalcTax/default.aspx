@@ -7,7 +7,13 @@
         <title>Din skatt</title>
     </head>
     <body>
-        <asp:SqlDataSource ID="dsCities" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [City] FROM [Taxes]" ></asp:SqlDataSource>   
+        <asp:SqlDataSource ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ID="dsCities" runat="server" SelectCommand="SELECT [City] FROM [Taxes]"></asp:SqlDataSource>
+        <asp:SqlDataSource ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ID="dsTaxes" runat="server" SelectCommand="SELECT * FROM [Taxes] WHERE City=@city">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="ddlProvince" Name="city" PropertyName="SelectedValue" Type="String"/>
+            </SelectParameters>
+        </asp:SqlDataSource>
+
         <form id="form1" runat="server">
             <div>
                 <h1>Beräkna din skatt</h1>
@@ -28,24 +34,42 @@
 
                         </td>
                         <td>
-                            <asp:RequiredFieldValidator ErrorMessage="*" ForeColor="Red" ControlToValidate="txtSalary"
-                                ID="RequiredFieldValidator1" runat="server" ></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ControlToValidate="txtSalary" ErrorMessage="*" ForeColor="Red" ID="RequiredFieldValidator1" runat="server"></asp:RequiredFieldValidator>
                         </td>
 
                     </tr>
                     <tr>
                         <td>Kommun:</td>
                         <td>
-                            <asp:DropDownList runat="server" ID="ddlProvince">
-                                <asp:ListItem Text="Välj Kommun" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="------" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="Motala" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="Linköping" Value="3"></asp:ListItem>
-                                <asp:ListItem Text="Norrköping" Value="4"></asp:ListItem>
+                            <asp:DropDownList AutoPostBack="True" DataSourceID="dsCities" DataTextField="City" DataValueField="City" ID="ddlProvince" runat="server">
                             </asp:DropDownList>
                         </td>
                     </tr>
                 </table>
+                <asp:FormView DataKeyNames="id" DataSourceID="dsTaxes" ID="fvTaxData" runat="server">
+                    <ItemTemplate>
+                        <asp:Panel ID="pnlTaxData" runat="server">
+                            <h4>Avgifter och skatter</h4>
+                            <table>
+                                <tr>
+                                    <td>Kommunalskatt:</td>
+                                    <td><asp:Label runat="server" id="lblLocalTax" Text='<% #Eval("LocalTax").ToString() %>'></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Kyrkoavgift:</td>
+                                    <td><asp:Label runat="server" id="lblChurchTax" Text='<% #Eval("ChurchTax").ToString() %>'></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Begravningsavgift:</td>
+                                    <td><asp:Label runat="server" id="lblFuneralTax" Text='<% #Eval("FuneralTax").ToString() %>'></asp:Label></td>
+                                </tr>
+                            </table>
+                        </asp:Panel>
+                    </ItemTemplate>
+
+                </asp:FormView>
+                <br/>
+
 
                 Medlem i svenska kyrkan:<br/>
                 <asp:RadioButtonList ID="rdChruch" RepeatDirection="Horizontal" runat="server">
