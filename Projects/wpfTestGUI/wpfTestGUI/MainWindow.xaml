@@ -3,38 +3,75 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:wpfTestGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1078" Width="1920" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="MainWindow" Height="1078" Width="1920" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
     <Grid Background="#074ab9">
 
-        <ListBox Height="1010" Width="450" HorizontalAlignment="Left" Margin="35,0,0,0" Background="#379bf9">
+        <ListBox Height="1010" Margin="35,20,1429,20" Background="#379bf9"
+                 Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Resources>
                         <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"></Setter>
+                            <Setter Property="CornerRadius" Value="0" />
                         </Style>
                     </Style.Resources>
                     <Style.Triggers>
                         <Trigger Property="IsMouseCaptured" Value="True">
-                            <Setter Property="Background" Value="DarkGray"></Setter>
+                            <Setter Property="Background" Value="DarkGray" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="DarkGray"></Setter>
-                            <Setter Property="Foreground" Value="DarkGray"></Setter>
-                            <!-- <Setter Property="" Value="DarkGray"></Setter> -->
+                            <Setter Property="Background" Value="DarkGray" />
+                            <Setter Property="Foreground" Value="DarkGray" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
+
             </ListBox.ItemContainerStyle>
 
-            <ListBoxItem Background="White" Name="lbiInformation" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt" HorizontalAlignment="Center" Padding="30,30,30,30" Margin="0, 35, 0, 0" Content="INFORMATION" FontFamily="Arial" />
-            <ListBoxItem Background="White" Name="lbiTimetable" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt" HorizontalAlignment="Center" Padding="93,30,93,30" Margin="0, 35, 0, 0" Content="SCHEMA" FontFamily="Arial"  />
-            <ListBoxItem Background="White" Name="lbiMap" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt" HorizontalAlignment="Center" Padding="117,30,117,30" Margin="0, 35, 0, 0" Content="KARTA" FontFamily="Arial"  />
-        </ListBox>
-        <Frame x:Name="ContentFrame" HorizontalAlignment="Left" Height="1010" Margin="510,15,0,0" VerticalAlignment="Top" Width="1374"/>
 
+            <ListBoxItem Background="White" Name="lbiInformation" PreviewMouseLeftButtonDown="NavigateToPage"
+                         FontSize="36pt" HorizontalAlignment="Center" Padding="30,30,30,30" Margin="0, 120, 0, 0"
+                         Content="INFORMATION" FontFamily="Arial">
+                <ListBoxItem.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-45" />
+                </ListBoxItem.Effect>
+            </ListBoxItem>
+
+            <ListBoxItem Background="White" Name="lbiTimetable" PreviewMouseLeftButtonDown="NavigateToPage"
+                         FontSize="36pt" HorizontalAlignment="Center" Padding="93,30,93,30" Margin="0, 35, 0, 0"
+                         Content="SCHEMA" FontFamily="Arial">
+                <ListBoxItem.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-45" />
+                </ListBoxItem.Effect>
+            </ListBoxItem>
+            <ListBoxItem Background="White" Name="lbiMap" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt"
+                         HorizontalAlignment="Center" Padding="117,30,117,30" Margin="0, 35, 0, 0" Content="KARTA"
+                         FontFamily="Arial">
+                <ListBoxItem.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-45" />
+                </ListBoxItem.Effect>
+            </ListBoxItem>
+            <ListBoxItem Background="White" Name="lbiFood" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt"
+                         HorizontalAlignment="Center"
+                         Padding="80,30,80,30" Margin="0,35,0,0" Content="MATSEDEL">
+                <ListBoxItem.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-45" />
+                </ListBoxItem.Effect>
+            </ListBoxItem>
+            <ListBoxItem Background="White" Name="lbiAbout" PreviewMouseLeftButtonDown="NavigateToPage" FontSize="36pt"
+                         HorizontalAlignment="Center"
+                         Padding="60,30,60,30" Margin="0,35,0,0" Content="OM DISPLAY">
+                <ListBoxItem.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-45" />
+                </ListBoxItem.Effect>
+            </ListBoxItem>
+
+        </ListBox>
+
+        <Frame x:Name="ContentFrame" HorizontalAlignment="Left" Height="1010" Margin="510,15,0,0"
+               VerticalAlignment="Top" Width="1374" Grid.Row="0" />
 
 
     </Grid>

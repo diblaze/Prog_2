@@ -44,13 +44,11 @@ namespace wpfTestGUI
             switch ( tabSelected.Name )
             {
                 case "lbiInformation":
-                    Information page = new Information();
-
-                    ContentFrame.Navigate( page );
+                    ContentFrame.Navigate( new Information() );
                     _showing = "Information";
                     break;
                 case "lbiTimetable":
-                    ContentFrame.Content = null;
+                    ContentFrame.Navigate( new Timetable() );
                     _showing = "Timetable";
                     break;
                 case "lbiMap":
