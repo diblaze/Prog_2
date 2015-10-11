@@ -19,17 +19,19 @@
                     </Style.Resources>
                     <Style.Triggers>
                         <Trigger Property="IsMouseCaptured" Value="True">
-                            <Setter Property="Background" Value="DarkGray" />
+                            <Setter Property="Background" Value="#074ab9" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="DarkGray" />
-                            <Setter Property="Foreground" Value="DarkGray" />
+                            <Setter Property="Background" Value="#074ab9" />
+                            <Setter Property="Foreground" Value="White" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
 
             </ListBox.ItemContainerStyle>
-
+            <ListBox.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Direction="-45" />
+            </ListBox.Effect>
 
             <ListBoxItem Background="White" Name="lbiInformation" PreviewMouseLeftButtonDown="NavigateToPage"
                          FontSize="36pt" HorizontalAlignment="Center" Padding="30,30,30,30" Margin="0, 120, 0, 0"
