@@ -19,16 +19,47 @@ namespace wpfTestGUI
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+        {
+        private string _showing = "";
         public MainWindow()
         {
+            /*
+            <!-- Header = #379bf9
+            --!>
+            */
+            
             InitializeComponent();
+            ContentFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         }
 
-        public void DagordningTouch(object sender, TouchEventArgs touchEventArgs)
+        private void NavigateToPage( object sender, MouseButtonEventArgs e )
         {
-            //ContentFrame.Source = new Uri("~/dagordning.xaml");
-            MessageBox.Show(@"You touched me");
+            ListBoxItem tabSelected = sender as ListBoxItem;
+
+            if ( tabSelected == null )
+            {
+                return;
+            }
+
+            switch ( tabSelected.Name )
+            {
+                case "lbiInformation":
+                    ContentFrame.Navigate( new Information() );
+                    _showing = "Information";
+                    break;
+                case "lbiTimetable":
+                    ContentFrame.Navigate( new Timetable() );
+                    _showing = "Timetable";
+                    break;
+                case "lbiMap":
+                    ContentFrame.Content = null;
+                    _showing = "Map";
+                    break;
+                default:
+                    ContentFrame.Content = null;
+                    _showing = "";
+                    break;
+            }
         }
     }
 }
