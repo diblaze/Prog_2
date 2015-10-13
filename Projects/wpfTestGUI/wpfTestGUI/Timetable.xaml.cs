@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using Calendar = System.Windows.Controls.Calendar;
+using wpfTestGUI.Properties;
 
 namespace wpfTestGUI
     {
@@ -47,31 +47,26 @@ namespace wpfTestGUI
     public partial class Timetable
         {
         private readonly List<string> classIDlist = new List<string>();
-        private bool mondayDownloaded;
+        private readonly bool mondayInit = Settings.Default.mondayInit;
 
         public Timetable( )
         {
             InitializeComponent();
 
+
             DateTime todayTime = DateTime.Today;
-            if ( todayTime.DayOfWeek != DayOfWeek.Monday )
+            //If today is a monday then set mondayInit to true.
+            if ( todayTime.DayOfWeek == DayOfWeek.Monday )
             {
-                mondayDownloaded = false;
+                Settings.Default.mondayInit = true;
             }
 
-            /*
-            This is a very stupid way to do it, because it can change at anytime 
-            It is the ID to each class. Added in the list according to the enum SchoolClasses
-            */
             PopulateList();
-            /*
-            classIDlist.Add( "9A2C3C57-CC60-4AF2-8F2E-DA599A7F723E" ); //TE13
-            classIDlist.Add( "28834D5E-DC96-4E79-89CB-8E6C3B4CCF0E" ); //TE14
-            classIDlist.Add( "F9AF3DC4-EC71-435A-A5AC-E07416383C62" ); //TE15A
-            classIDlist.Add( "A9832249-8728-4F6A-8078-F4F6917ADD8E" ); //TE15B
-            */
         }
 
+        /// <summary>
+        ///     Populates the classID list by reading a external file.
+        /// </summary>
         private void PopulateList( )
         {
             string path = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location );
@@ -96,11 +91,16 @@ namespace wpfTestGUI
             }
         }
 
+        /// <summary>
+        ///     Changes the imageframe to show the correct timetable choosen by the user.
+        /// </summary>
+        /// <param name="sender"><c>Combobox</c> where the event took place.</param>
+        /// <param name="selectionChangedEventArgs"></param>
         public void ChangeTimetable( object sender, SelectionChangedEventArgs selectionChangedEventArgs )
         {
             //get combobox
             ComboBox comboItem = sender as ComboBox;
-
+            //if null then return
             if ( comboItem == null )
             {
                 return;
@@ -110,9 +110,10 @@ namespace wpfTestGUI
             ComboBoxItem cbi = ( ComboBoxItem ) comboItem.SelectedItem;
 
             //check what class the user selected, download accordingly
-            switch ( cbi.Content.ToString() )
+            switch ( cbi?.Content.ToString() )
             {
-                #region Download ID
+                    #region Download ID
+
                 case "Ek13A":
                     DownloadTimetable( SchoolClasses.Ek13A, "EK13A" );
                     break;
@@ -186,21 +187,21 @@ namespace wpfTestGUI
                     DownloadTimetable( SchoolClasses.Te15B, "TE15B" );
                     break;
 
-                default:
-                    break;
-
                     #endregion
             }
         }
 
-        public static int GetWeekNumber(DateTime dtPassed)
+        /// <summary>
+        ///     Gets the current week number.
+        /// </summary>
+        /// <param name="dtPassed"><c>DateTime</c> for today</param>
+        /// <returns></returns>
+        public static int GetWeekNumber( DateTime dtPassed )
         {
             CultureInfo ciCurr = CultureInfo.CurrentCulture;
-            int weekNum = ciCurr.Calendar.GetWeekOfYear(dtPassed, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            int weekNum = ciCurr.Calendar.GetWeekOfYear( dtPassed, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday );
             return weekNum;
         }
-
-
 
         /// <summary>
         ///     Download the <c>timetable</c> for a specific class id.
@@ -229,16 +230,19 @@ namespace wpfTestGUI
             //get location to .exe to later find downloaded image
             string path = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location );
 
-            if ( File.Exists( path + "/" + "timetables/"+ fileName + ".png" ) )
+            //if the timetable already exists
+            if ( File.Exists( path + "/" + "timetables/" + fileName + ".png" ) )
             {
-                
-
-                if ( todayTime.DayOfWeek == DayOfWeek.Monday && mondayDownloaded == false )
+                //if today is monday and we have to redownload all files
+                if ( todayTime.DayOfWeek == DayOfWeek.Monday && mondayInit )
                 {
-                    ForceDownload( urlToDownload, fileName );
-                    mondayDownloaded = true;
+                    DeleteAllFiles( path ); //remove all timetables
+                    ForceDownload( urlToDownload, fileName, path ); //force a download
+                    Settings.Default.mondayInit = false; //set mondayInit to false because we have init already
+                    Settings.Default.Save(); //save incase of reboot.
                 }
             }
+            //else download new
             else
             {
                 using ( WebClient webClient = new WebClient() )
@@ -249,21 +253,36 @@ namespace wpfTestGUI
             }
 
             //change TimetableImage to downloaded timetable image
-            BitmapImage bitmapImage = new BitmapImage( new Uri( path + "/" + "timetables/" + fileName + ".png" ) );
+            BitmapImage bitmapImage = new BitmapImage( new Uri( path + "/timetables/" + fileName + ".png" ) );
             TimetableImage.Source = bitmapImage;
+        }
+
+        /// <summary>
+        ///     Deletes all folders in a specific path.
+        /// </summary>
+        /// <param name="path">Path to a folder where the <c>deleting</c> will take place.</param>
+        private static void DeleteAllFiles( string path )
+        {
+            DirectoryInfo directory = new DirectoryInfo( path + "/timetables" );
+
+            foreach ( FileInfo file in directory.GetFiles() )
+            {
+                file.Delete();
+            }
         }
 
         /// <summary>
         ///     Used when a force refresh is needed.
         /// </summary>
-        /// <param name="urlToDownload"></param>
-        /// <param name="fileName"></param>
-        private static void ForceDownload( string urlToDownload, string fileName )
+        /// <param name="urlToDownload">URL to download from.</param>
+        /// <param name="fileName">The timetable file name.</param>
+        /// <param name="path">Path to <c>timetable</c> folder.</param>
+        private static void ForceDownload( string urlToDownload, string fileName, string path )
         {
             using ( WebClient webClient = new WebClient() )
             {
                 //Download timetable to image for future use - cuts download requirement
-                webClient.DownloadFile( new Uri( urlToDownload ), fileName + ".png" );
+                webClient.DownloadFile( new Uri( urlToDownload ), path + "/" + "timetables/" + fileName + ".png" );
             }
         }
         }

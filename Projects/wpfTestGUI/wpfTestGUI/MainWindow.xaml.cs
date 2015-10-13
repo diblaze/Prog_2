@@ -18,8 +18,9 @@ namespace wpfTestGUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
         {
+
         private string _showing = "";
         public MainWindow()
         {
@@ -27,6 +28,8 @@ namespace wpfTestGUI
             <!-- Header = #379bf9
             --!>
             */
+
+            
             
             InitializeComponent();
             ContentFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
