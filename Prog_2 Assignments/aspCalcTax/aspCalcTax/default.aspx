@@ -53,15 +53,21 @@
                             <table>
                                 <tr>
                                     <td>Kommunalskatt:</td>
-                                    <td><asp:Label runat="server" id="lblLocalTax" Text='<% #Eval("LocalTax").ToString() %>'></asp:Label></td>
+                                    <td>
+                                        <asp:Label id="lblLocalTax" runat="server" Text='<% #Eval("LocalTax") + "%" %>'></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Kyrkoavgift:</td>
-                                    <td><asp:Label runat="server" id="lblChurchTax" Text='<% #Eval("ChurchTax").ToString() %>'></asp:Label></td>
+                                    <td>
+                                        <asp:Label id="lblChurchTax" runat="server" Text='<% #Eval("ChurchTax") + "%" %>'></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Begravningsavgift:</td>
-                                    <td><asp:Label runat="server" id="lblFuneralTax" Text='<% #Eval("FuneralTax").ToString() %>'></asp:Label></td>
+                                    <td>
+                                        <asp:Label id="lblFuneralTax" runat="server" Text='<% #Eval("FuneralTax") + "%" %>'></asp:Label>
+                                    </td>
                                 </tr>
                             </table>
                         </asp:Panel>

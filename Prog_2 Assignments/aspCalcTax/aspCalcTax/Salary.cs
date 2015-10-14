@@ -1,67 +1,28 @@
-﻿namespace aspCalcTax
+﻿using System.Runtime.InteropServices.ComTypes;
+
+namespace aspCalcTax
 {
     internal class Salary
     {
-        public string ChurchMember { get; set; }
+        public bool ChurchMember { get; set; }
         public int BruttoSalary { get; set; }
-        public int Tax { get; set; }
-        public int NettoSalary { get; set; }
-        public int Province { get; set; }
-        private int ProvinceTax { get; set; }
+        public double ChurchTax { get; set; }
+        public double FuneralTax { get; set; }
+        public double LocalTax { get; set; }
 
-        private double ChurchFee(string tProvince)
+        public double Net => BruttoSalary - Tax;
+
+        public double Tax => BruttoSalary * (LocalTax + Fees());
+
+        private double Fees()
         {
-            if (ChurchMember != "Yes")
+            if (ChurchMember)
             {
-                return (0.0034);
+                return (FuneralTax + ChurchTax);
             }
-
-            switch (tProvince)
+            else
             {
-                case "Motala":
-                    return (0.0034 + 0.0116);
-                case "Linköping":
-                    return (0.0016 + 0.0121);
-                case "Norrköping":
-                    return (0.0025 + 0.0121);
-            }
-            return (0.0034);
-        }
-
-        public void Calculate()
-        {
-            string tempProvince = GetProvince();
-
-            switch (tempProvince)
-            {
-                case "Motala":
-                    //calc tax and net
-                    Tax = (int) (BruttoSalary * (0.3190 + ChurchFee(tempProvince)));
-                    NettoSalary = BruttoSalary - Tax;
-                    break;
-                case "Linköping":
-                    Tax = (int) (BruttoSalary * (0.3090 + ChurchFee(tempProvince)));
-                    NettoSalary = BruttoSalary - Tax;
-                    break;
-                case "Norrköping":
-                    Tax = (int) (BruttoSalary * (0.3195 + ChurchFee(tempProvince)));
-                    NettoSalary = BruttoSalary - Tax;
-                    break;
-            }
-        }
-
-        public string GetProvince()
-        {
-            switch (Province)
-            {
-                case 2:
-                    return "Motala";
-                case 3:
-                    return "Linköping";
-                case 4:
-                    return "Norrköping";
-                default:
-                    return "Error";
+                return FuneralTax;
             }
         }
     }

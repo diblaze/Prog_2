@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Web.Configuration;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace aspCalcTax
 {
@@ -29,14 +31,27 @@ namespace aspCalcTax
                 return;
             }
 
+            DataView dv = dsTaxes.Select(DataSourceSelectArguments.Empty) as DataView;
 
 
             lblPNoErr.Visible = false;
+            if (dv == null)
+                return;
+
             Salary sal = new Salary
                          {
                              BruttoSalary = int.Parse(txtSalary.Text),
-                             ChurchMember = rdChruch.SelectedValue,
-                             Province = Convert.ToInt32(ddlProvince.SelectedValue)
+                             ChurchMember = rdChruch.SelectedValue == "Yes",
+                             /* Ful lösning
+                             ChurchTax = double.Parse(((Label)fvTaxData.FindControl("lblChurchTax")).Text.Replace("%", "").Trim()),
+                             LocalTax = double.Parse(((Label)fvTaxData.FindControl("lblLocalTax")).Text.Replace("%", "").Trim()),
+                             FuneralTax = double.Parse(((Label)fvTaxData.FindControl("lblFuneralTax")).Text.Replace("%", "").Trim())
+                             */
+                             LocalTax = double.Parse(dv[0]["LocalTax"].ToString()) / 100,
+                             ChurchTax = double.Parse(dv[0]["ChurchTax"].ToString()) / 100,
+                             FuneralTax = double.Parse(dv[0]["FuneralTax"].ToString()) / 100
+
+                             
                          };
             Session["salary"] = sal;
             Response.Redirect("~/endresult.aspx");
