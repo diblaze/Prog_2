@@ -47,7 +47,7 @@ namespace wpfTestGUI
     public partial class Timetable
         {
         private readonly List<string> classIDlist = new List<string>();
-        private readonly bool mondayInit = Settings.Default.mondayInit;
+        private readonly bool mondayInit;
 
         public Timetable( )
         {
@@ -59,6 +59,7 @@ namespace wpfTestGUI
             if ( todayTime.DayOfWeek == DayOfWeek.Monday )
             {
                 Settings.Default.mondayInit = true;
+                mondayInit = Settings.Default.mondayInit;
             }
 
             PopulateList();
@@ -81,7 +82,7 @@ namespace wpfTestGUI
                 string line;
                 while ( ( line = sr.ReadLine() ) != null )
                 {
-                    var lineSplit = line.Split( '@' );
+                    string[] lineSplit = line.Split( '@' );
 
                     string classId = lineSplit[1];
                     classId = classId.Trim( ' ' );
