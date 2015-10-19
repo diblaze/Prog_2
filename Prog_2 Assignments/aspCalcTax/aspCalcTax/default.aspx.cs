@@ -136,33 +136,18 @@ namespace aspCalcTax
             {
                 isValid = true;
             }
-/*
-            string monthString = pno.Substring(2, 2);
-            if (Convert.ToInt32(monthString) > 0 && Convert.ToInt32(monthString) < 13)
-            {
-                string dayString = pno.Substring(4, 5);
-                int tempMonth = 0;
-                tempMonth = monthString[0] == '0' ? Convert.ToInt32(monthString[1]) : Convert.ToInt32(monthString);
-
-                if (Convert.ToInt32(dayString) > 0 && Convert.ToInt32(dayString) <= amountOfDaysInMonth[tempMonth - 1])
-                {
-                    isValid = true;
-                }
-                else
-                {
-                    isValid = false;
-                }
-
-            }
-            else
-            {
-                isValid = false;
-            }
-
-
-    */
 
             return isValid;
+        }
+
+        protected void btnAdd_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/addCity.aspx");
+        }
+
+        protected void btnEdit_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/editCity.aspx");
         }
     }
 }

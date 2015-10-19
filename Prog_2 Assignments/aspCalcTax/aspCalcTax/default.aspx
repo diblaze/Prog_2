@@ -85,6 +85,8 @@
                     </asp:ListItem>
                 </asp:RadioButtonList>
                 <asp:Button ID="btnCalc" OnClick="btnCalc_OnClick" runat="server" Text="Beräkna"></asp:Button>
+                <asp:Button ID="btnAdd" OnClick="btnAdd_OnClick" runat="server" Text="Lägg till ny kommun"></asp:Button>
+                <asp:Button ID="btnEdit" OnClick="btnEdit_OnClick" runat="server" Text="Redigera kommun"></asp:Button>
 
 
             </div>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="winHotelBookingSystem.BaseHotelObjects">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAIAhAhAAAKAIAAABAAAAAAAABABAAAAAEA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.BaseRoom">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAACAAAQAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.BasePlace">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.StandardRoom">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.FamilyRoom">
+    <Position X="9.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.Suite">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.ConferenceRoom">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.Spa">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIAAAAgAgAAAAAAAACEAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="winHotelBookingSystem.Gym">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAQAAAAAA=</HashCode>
+      <FileName>HotelClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
