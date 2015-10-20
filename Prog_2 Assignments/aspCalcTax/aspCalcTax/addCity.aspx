@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <asp:SqlDataSource runat="server" ConnectionString="<% %>"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsCities"  runat="server"></asp:SqlDataSource>
     <form id="form1" runat="server">
     <div>
     
