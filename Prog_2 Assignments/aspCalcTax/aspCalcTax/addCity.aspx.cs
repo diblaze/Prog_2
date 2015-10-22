@@ -4,37 +4,64 @@ using System.Data.SqlClient;
 using System.Web.UI;
 
 namespace aspCalcTax
-    {
+{
     public partial class addCity : Page
-        {
-        protected void Page_Load( object sender, EventArgs e )
+    {
+        protected void Page_Load(
+            object sender,
+            EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
 
-        protected void btnBack_OnClick( object sender, EventArgs e )
+        protected void btnBack_OnClick(
+            object sender,
+            EventArgs e)
         {
-            throw new NotImplementedException();
+            Response.Redirect("~/default.aspx");
         }
 
-        protected void btnAdd_OnClick( object sender, EventArgs e )
+        protected void btnAdd_OnClick(
+            object sender,
+            EventArgs e)
         {
             const string cmd = "INSERT INTO Taxes VALUES(@City,@LocalTax,@ChurchTax,@FuneralTax)";
-
+            double doubleLocalTax = double.Parse(
+                                                 txtLocalTax.Text.TrimEnd(
+                                                                          '%',
+                                                                          ' '));
+            double doubleChurchTax = double.Parse(
+                                                  txtChurchTax.Text.TrimEnd(
+                                                                            '%',
+                                                                            ' '));
+            double doubleFuneralTax = double.Parse(
+                                                   txtFuneralTax.Text.TrimEnd(
+                                                                              '%',
+                                                                              ' '));
             using (
                 SqlConnection connection =
-                    new SqlConnection( ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString ) )
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                using ( SqlCommand command = new SqlCommand( cmd, connection ) )
+                using (SqlCommand command = new SqlCommand(
+                    cmd,
+                    connection))
                 {
-                    command.Parameters.AddWithValue( "@City", txtKommun.Text );
-                    command.Parameters.AddWithValue( "@LocalTax", Convert.ToDouble(txtLocalTax.Text) );
-                    command.Parameters.AddWithValue( "@ChurchTax", Convert.ToDouble(txtChurchTax.Text));
-                    command.Parameters.AddWithValue( "@FuneralTax", Convert.ToDouble(txtFuneralTax.Text) );
+                    command.Parameters.AddWithValue(
+                                                    "@City",
+                                                    txtKommun.Text);
+                    command.Parameters.AddWithValue(
+                                                    "@LocalTax",
+                                                    doubleLocalTax);
+                    command.Parameters.AddWithValue(
+                                                    "@ChurchTax",
+                                                    doubleChurchTax);
+                    command.Parameters.AddWithValue(
+                                                    "@FuneralTax",
+                                                    doubleFuneralTax);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
             }
         }
-        }
     }
+}
