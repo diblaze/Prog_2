@@ -34,7 +34,7 @@
 
                         </td>
                         <td>
-                            <asp:RequiredFieldValidator ControlToValidate="txtSalary" ErrorMessage="*" ForeColor="Red" ID="RequiredFieldValidator1" runat="server"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ControlToValidate="txtSalary" ErrorMessage="*" ForeColor="Red" ID="RequiredFieldValidator1" ValidationGroup="taxGroup" runat="server"></asp:RequiredFieldValidator>
                         </td>
 
                     </tr>
@@ -46,7 +46,10 @@
                         </td>
                     </tr>
                 </table>
-                <asp:FormView DataKeyNames="id" DataSourceID="dsTaxes" ID="fvTaxData" runat="server">
+                <asp:FormView DataKeyNames="id" DataSourceID="dsTaxes" ID="fvTaxData" runat="server" CellPadding="4" ForeColor="#333333">
+                    <EditRowStyle BackColor="#999999" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <ItemTemplate>
                         <asp:Panel ID="pnlTaxData" runat="server">
                             <h4>Avgifter och skatter</h4>
@@ -54,24 +57,27 @@
                                 <tr>
                                     <td>Kommunalskatt:</td>
                                     <td>
-                                        <asp:Label id="lblLocalTax" runat="server" Text='<% #Eval("LocalTax") + "%" %>'></asp:Label>
+                                        <asp:Label id="lblLocalTax" runat="server" Text='<%# String.Format("{0:P2}", Eval("LocalTax"))%>'></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Kyrkoavgift:</td>
                                     <td>
-                                        <asp:Label id="lblChurchTax" runat="server" Text='<% #Eval("ChurchTax") + "%" %>'></asp:Label>
+                                        <asp:Label id="lblChurchTax" runat="server" Text='<%# String.Format("{0:P2}", Eval("ChurchTax"))%>'></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Begravningsavgift:</td>
                                     <td>
-                                        <asp:Label id="lblFuneralTax" runat="server" Text='<% #Eval("FuneralTax") + "%" %>'></asp:Label>
+                                        <asp:Label id="lblFuneralTax" runat="server" Text='<%# String.Format("{0:P2}", Eval("FuneralTax")) %>'></asp:Label>
                                     </td>
                                 </tr>
                             </table>
                         </asp:Panel>
                     </ItemTemplate>
+
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
 
                 </asp:FormView>
                 <br/>
@@ -84,7 +90,7 @@
                     <asp:ListItem Selected="False" Text="Nej" value="No">
                     </asp:ListItem>
                 </asp:RadioButtonList>
-                <asp:Button ID="btnCalc" OnClick="btnCalc_OnClick" runat="server" Text="Beräkna"></asp:Button>
+                <asp:Button ID="btnCalc" OnClick="btnCalc_OnClick" runat="server" Text="Beräkna" ValidationGroup="taxGroup"></asp:Button>
                 <asp:Button ID="btnAdd" OnClick="btnAdd_OnClick" runat="server" Text="Lägg till ny kommun"></asp:Button>
                 <asp:Button ID="btnEdit" OnClick="btnEdit_OnClick" runat="server" Text="Redigera kommun"></asp:Button>
 

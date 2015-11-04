@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Globalization;
 using System.Web.UI;
 
 namespace aspCalcTax
@@ -18,7 +20,8 @@ namespace aspCalcTax
             object sender,
             EventArgs e)
         {
-            Response.Redirect("~/default.aspx");
+            Response.Redirect(
+                              "~/default.aspx");
         }
 
         protected void btnAdd_OnClick(
@@ -29,37 +32,52 @@ namespace aspCalcTax
             double doubleLocalTax = double.Parse(
                                                  txtLocalTax.Text.TrimEnd(
                                                                           '%',
-                                                                          ' '));
+                                                                          ' '), NumberStyles.AllowDecimalPoint) / 100;
             double doubleChurchTax = double.Parse(
                                                   txtChurchTax.Text.TrimEnd(
                                                                             '%',
-                                                                            ' '));
+                                                                            ' '), NumberStyles.AllowDecimalPoint) / 100;
             double doubleFuneralTax = double.Parse(
                                                    txtFuneralTax.Text.TrimEnd(
                                                                               '%',
-                                                                              ' '));
-            using (
-                SqlConnection connection =
-                    new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                                                                              ' '), NumberStyles.AllowDecimalPoint) / 100;
+            try
             {
-                using (SqlCommand command = new SqlCommand(
-                    cmd,
-                    connection))
+                lblCityError.Text = "";
+                using (
+                    SqlConnection connection =
+                        new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 {
-                    command.Parameters.AddWithValue(
-                                                    "@City",
-                                                    txtKommun.Text);
-                    command.Parameters.AddWithValue(
-                                                    "@LocalTax",
-                                                    doubleLocalTax);
-                    command.Parameters.AddWithValue(
-                                                    "@ChurchTax",
-                                                    doubleChurchTax);
-                    command.Parameters.AddWithValue(
-                                                    "@FuneralTax",
-                                                    doubleFuneralTax);
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(
+                        cmd,
+                        connection))
+                    {
+                        command.Parameters.AddWithValue(
+                                                        "@City",
+                                                        txtCity.Text);
+                        command.Parameters.AddWithValue(
+                                                        "@LocalTax",
+                                                        doubleLocalTax);
+                        command.Parameters.AddWithValue(
+                                                        "@ChurchTax",
+                                                        doubleChurchTax);
+                        command.Parameters.AddWithValue(
+                                                        "@FuneralTax",
+                                                        doubleFuneralTax);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        Response.Redirect(
+                                          "~/default.aspx");
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    txtCity.ForeColor = Color.Red;
+                    lblCityError.Text = "Kommunen finns redan!";
                 }
             }
         }
