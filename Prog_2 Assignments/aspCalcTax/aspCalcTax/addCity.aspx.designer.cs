@@ -10,7 +10,7 @@
 namespace aspCalcTax {
     
     
-    public partial class addCity {
+    public partial class AddCity {
         
         /// <summary>
         /// dsCities control.
@@ -65,6 +65,15 @@ namespace aspCalcTax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLocalTax;
+        
+        /// <summary>
+        /// revNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNumber;
         
         /// <summary>
         /// rqValidator2 control.

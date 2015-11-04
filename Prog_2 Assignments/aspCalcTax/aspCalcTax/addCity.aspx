@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="addCity.aspx.cs" Inherits="aspCalcTax.addCity" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="addCity.aspx.cs" Inherits="aspCalcTax.AddCity" %>
 
 <!DOCTYPE html>
 
@@ -28,7 +28,7 @@
                             <asp:RequiredFieldValidator ControlToValidate="txtCity"
                                                         ForeColor="Red"
                                                         ID="rqValidator1"
-                                                        runat="server"
+                                                        runat="server"  
                                                         Text="*"
                                                         ValidationGroup="addGroup">
 
@@ -49,6 +49,15 @@
                             </asp:TextBox>
                         </td>
                         <td>
+                            <asp:RegularExpressionValidator runat="server"
+                                                            ID="revNumber"
+                                                            ErrorMessage="*"
+                                                            ForeColor="Red"
+                                                            ControlToValidate="txtLocalTax"
+                                                            ValidationExpression="^\d*(\,|\.)?\d*[%]{0,1}$">
+                                
+                            </asp:RegularExpressionValidator>
+
                             <asp:RequiredFieldValidator ControlToValidate="txtLocalTax"
                                                         ErrorMessage="*"
                                                         ForeColor="Red"
@@ -56,6 +65,7 @@
                                                         runat="server"
                                                         ValidationGroup="addGroup">
                             </asp:RequiredFieldValidator>
+
                         </td>
 
                     </tr>
@@ -67,7 +77,14 @@
                             </asp:TextBox>
                         </td>
                         <td>
-
+                            <asp:RegularExpressionValidator runat="server"
+                                                            ID="revChurchTax"
+                                                            ErrorMessage="*"
+                                                            ForeColor="Red"
+                                                            ControlToValidate="txtChurchTax"
+                                                            ValidationExpression="^\d*(\,|\.)?\d*[%]{0,1}$">
+                                
+                            </asp:RegularExpressionValidator>
                             <asp:RequiredFieldValidator ControlToValidate="txtChurchTax"
                                                         ErrorMessage="*"
                                                         ForeColor="Red"
@@ -86,6 +103,14 @@
                             </asp:TextBox>
                         </td>
                         <td>
+                            <asp:RegularExpressionValidator runat="server"
+                                                            ID="revFuneralTax"
+                                                            ErrorMessage="*"
+                                                            ForeColor="Red"
+                                                            ControlToValidate="txtFuneralTax"
+                                                            ValidationExpression="^\d*(\,|\.)?\d*[%]{0,1}$">
+                                
+                            </asp:RegularExpressionValidator>
                             <asp:RequiredFieldValidator ControlToValidate="txtFuneralTax"
                                                         ErrorMessage="*"
                                                         ForeColor="Red"

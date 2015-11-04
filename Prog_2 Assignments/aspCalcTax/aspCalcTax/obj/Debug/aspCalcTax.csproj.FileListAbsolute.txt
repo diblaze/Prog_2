@@ -35,7 +35,6 @@ C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\bi
 C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\bin\aspCalcTax.pdb
 C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\obj\Debug\aspCalcTax.csprojResolveAssemblyReference.cache
 C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\obj\Debug\aspCalcTax.dll
 C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\obj\Debug\aspCalcTax.pdb
 C:\Users\DeniCevap\GitHub\Prog_2\Prog_2 Assignments\aspCalcTax\aspCalcTax\bin\roslyn\csc.exe
