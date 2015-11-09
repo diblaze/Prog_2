@@ -94,6 +94,15 @@ namespace aspCalcTax {
         protected global::System.Web.UI.WebControls.TextBox txtChurchTax;
         
         /// <summary>
+        /// revChurchTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revChurchTax;
+        
+        /// <summary>
         /// rqValidator3 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace aspCalcTax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFuneralTax;
+        
+        /// <summary>
+        /// revFuneralTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revFuneralTax;
         
         /// <summary>
         /// rqValidator4 control.
