@@ -11,7 +11,7 @@ namespace winMasterMind
         public Peg[] CorrectPegs;
         public Peg[] GuessedPegs;
         public PlaceablePeg[] PlaceablePegs;
-        public Row[] RowArray;
+        private Row[] RowArray;
 
         public GameBoard()
         {
