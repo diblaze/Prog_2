@@ -89,7 +89,7 @@ namespace winMasterMind
 
             int i = gameBoard.GuessedPegs.Count(peg => peg != null);
             var correct = 0;
-            if (i >= 0)
+            if (i == 4)
             {
                 correct = gameBoard.CheckGuess(gameBoard.GuessedPegs);
             }

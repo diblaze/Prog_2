@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
+using System.Windows.Forms;
 
 namespace winMasterMind
 {
@@ -26,11 +25,10 @@ namespace winMasterMind
 
             CreateRows(10);
             GetRandomPegs();
-
         }
 
         /// <summary>
-        /// Reinits the <c>GameBoard</c> - restarting.
+        ///     Reinits the <c>GameBoard</c> - restarting.
         /// </summary>
         public void RestartGame()
         {
@@ -41,7 +39,7 @@ namespace winMasterMind
             RowArray = new Row[11];
 
             CreateRows(10);
-        //    GetRandomPegs();
+            //    GetRandomPegs();
         }
 
         public void CreatePlaceablePegs()
@@ -77,43 +75,49 @@ namespace winMasterMind
         /// <returns>How many pegs were correctly guessed.</returns>
         public int CheckGuess(Peg[] guess)
         {
-            int count = 0;
-            int correctCell = 0;
-            int cell = -1;
-            //if user has guessed more or less pegs than asked for
-            //return guess.Length != CorrectPegs.Length ? 0 : guess.Where((t, i) => t == CorrectPegs[i]).Count();
-            foreach (Peg peg1 in GuessedPegs)
+            Row rw = GetActiveRow();
+            var count = 0;
+            int[] pegsTop = {-1, -1, -1, -1};
+            int[] pegsBot = {-1, -1, -1, -1};
+            var blacks = 0;
+            for (var i = 0; i < 4; i++)
             {
-                cell++;
-                if(peg1 == null)
+                if (GuessedPegs[i].Colour != CorrectPegs[i].Colour)
                     continue;
-                foreach (Peg peg2 in CorrectPegs)
-                {
-                    if (peg1.Colour == peg2.Colour)
-                    {
-                        count++;
-                    }
-                    if (CorrectPegs[cell].Colour == GuessedPegs[cell].Colour)
-                    {
-                        correctCell++;
-                    }
-                }
-            }
-            foreach (Row rw in RowArray)
-            {
-                if (rw.Active)
-                {
-                    for (int i = 0; i < correctCell; i++)
-                    {
-                        rw.CheckingCells[i].SetColour(true);
-                    }
 
-                    if (count > correctCell)
+                //TODO: Add black peg.
+                Peg peg = new Peg(0);
+                rw.CheckingPegs.Add(peg);
+                count++;
+                blacks++;
+                pegsTop[i] = 1;
+                pegsBot[i] = 1;
+            }
+
+            var white = 0;
+            for (var i = 0; i < 4; i++)
+            {
+                for (var j = 0; j < 4; j++)
+                {
+                    if ((i != j) && (pegsTop[i] != 1) && (pegsBot[j] != 1))
                     {
-                        rw.CheckingCells[3].SetColour(false);
+                        if (GuessedPegs[i].Colour != CorrectPegs[j].Colour)
+                            continue;
+
+                        //TODO: Add white peg
+                        Peg peg = new Peg(7);
+                        rw.CheckingPegs.Add(peg);
+                        pegsTop[i] = 1;
+                        pegsBot[j] = 1;
+                        white++;
+                        break;
                     }
                 }
             }
+
+            MessageBox.Show(white + @" white pegs");
+            MessageBox.Show(blacks + @" black pegs");
+
             return count;
         }
 
@@ -157,7 +161,7 @@ namespace winMasterMind
         }
 
         /// <summary>
-        /// Disables the current <c>row</c> and activates a new <c>row</c>.
+        ///     Disables the current <c>row</c> and activates a new <c>row</c>.
         /// </summary>
         public void FinishRow()
         {
@@ -166,7 +170,7 @@ namespace winMasterMind
             //finds the current active row.
             foreach (Row rw in RowArray.Where(rw => rw.Active))
             {
-                rowId = rw.RowId; 
+                rowId = rw.RowId;
                 rw.Active = false; //disable
             }
             //find the next row to activate.
@@ -175,6 +179,11 @@ namespace winMasterMind
             {
                 rowToActivate.Active = true; //activate row.
             }
+        }
+
+        public Row GetActiveRow()
+        {
+            return RowArray.FirstOrDefault(rw => rw.Active);
         }
     }
 }

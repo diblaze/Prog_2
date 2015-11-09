@@ -1,11 +1,12 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace winMasterMind
 {
     public class Row
     {
         public Cell[] Cells;
-        public CheckingCell[] CheckingCells;
+        public List<Peg> CheckingPegs;
         public bool Active;
 
         public int RowId { get; private set; }
@@ -14,7 +15,7 @@ namespace winMasterMind
         {
             RowId = rowId;
             Cells = new Cell[4];
-            CheckingCells = new CheckingCell[4];
+            CheckingPegs = new List<Peg>();
             //set the first row to active
             if (RowId == 0)
             {
@@ -24,10 +25,10 @@ namespace winMasterMind
             {
                 Cells[i] = new Cell();
             }
-            for (var i = 0; i < 4; i++)
-            {
-                CheckingCells[i] = new CheckingCell();
-            }
+            //for (var i = 0; i < 4; i++)
+            //{
+            //    CheckingCells[i] = new CheckingCell();
+            //}
         }
 
 
