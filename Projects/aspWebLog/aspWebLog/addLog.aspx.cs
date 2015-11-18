@@ -4,35 +4,33 @@ using System.Globalization;
 using System.Web.UI;
 
 namespace aspWebLog
-{
-    public partial class AddLog : Page
     {
-        private string dt;
-
-        protected void Page_Load(object sender, EventArgs e)
+    public partial class AddLog : Page
         {
-            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+        private DateTime dt;
+
+        protected void Page_Load( object sender, EventArgs e )
+        {
+            dt = DateTime.Now;
             currentDate.Text = "Entry Date: " + dt;
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
 
-        protected void btnBack_OnClick(object sender, EventArgs e)
+        protected void btnBack_OnClick( object sender, EventArgs e )
         {
-            Response.Redirect("~/default.aspx");
+            Response.Redirect( "~/default.aspx" );
         }
 
-        protected void btnSave_OnClick(object sender, EventArgs e)
+        protected void btnSave_OnClick( object sender, EventArgs e )
         {
-            const string sqlQuery = "INSERT INTO Logs (Logged, Time) VALUES('@message','@date')";
+            const string sqlQuery = "INSERT INTO Logs (Logged, Time) VALUES(@message,@date)";
+                //felet var att jag använde mig utan ' ' ...
 
             sqlLog.InsertCommand = sqlQuery;
-            sqlLog.InsertParameters.Add("message", txtMessage.Text);
-            string s = string.Format("{dd/MM/yyyy HH:mm}",dt);
-            
-            sqlLog.InsertParameters.Add("date", DbType.DateTime2, dt.ToString(new CultureInfo("en-GB")));
+            sqlLog.InsertParameters.Add( "message", txtMessage.Text );
+            sqlLog.InsertParameters.Add( "date", DbType.DateTime2, dt.ToString( CultureInfo.CurrentCulture ) );
             sqlLog.Insert();
-            Response.Redirect("~/default.aspx");
+            Response.Redirect( "~/default.aspx" );
+        }
         }
     }
-}

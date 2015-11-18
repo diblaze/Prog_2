@@ -46,11 +46,6 @@
                     <asp:Repeater DataSourceID="sqlLog"
                                   ID="rLogs"
                                   runat="server">
-                        <HeaderTemplate>
-                            <div class="detail">
-                                
-                            </div>
-                        </HeaderTemplate>
                         <ItemTemplate>
                             <div class="detail">
                                 <p>
