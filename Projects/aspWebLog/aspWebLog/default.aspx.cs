@@ -13,5 +13,10 @@ namespace aspWebLog
         {
 
         }
+
+        protected void btnAddLog_OnClick(object sender, EventArgs e)
+        {
+                Response.Redirect("~/addLog.aspx");
+        }
     }
 }

@@ -35,20 +35,27 @@
         <form id="form1"
               runat="server">
             <div id="body">
-                <h1>My logs</h1>
+                <h1>
+                    My logging service - my logs
+                </h1>
+                <asp:Button ID="btnAddLog"
+                            OnClick="btnAddLog_OnClick"
+                            runat="server"
+                            Text="Add new log" />
                 <div id="divLog">
                     <asp:Repeater DataSourceID="sqlLog"
                                   ID="rLogs"
                                   runat="server">
                         <HeaderTemplate>
                             <div class="detail">
-                                <p>
-                                    Date: <strong><%# Eval("Time")%></strong>
-                                </p>
+                                
                             </div>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <div class="detail">
+                                <p>
+                                    Date: <strong><%# Eval("Time", "{0:yyyy-MM-dd HH:mm}") %></strong>
+                                </p>
                                 <p>
                                     <%# Eval("Logged") %>
                                 </p>
