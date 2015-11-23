@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,8 +15,50 @@ namespace winMasterMind
             InitializeComponent();
             //GameBoard gameBoard = new GameBoard();
 
-            gameBoard.
+            PopulatePanel(gameBoard.TotalRows());
 
+
+        }
+
+        private void PopulatePanel(int rowsAmount)
+        {
+            var rowPanels = new Panel[rowsAmount+1];
+            for (var i = 0; i < rowsAmount+1; i++)
+            {
+                FlowLayoutPanel pnl = new FlowLayoutPanel
+                            {
+                                BackColor = Color.Blue,
+                                Width = 850,
+                                Height = 50,
+                                Name = "row" + i
+                            };
+             
+                for (int j = 0; j < 4; j++)
+                {
+                    PictureBox pegEmpty = new PictureBox
+                                          {
+                                              Name = "pegEmpty" + j,
+                                              BackColor = Color.Red,
+                                              Width = 40,
+                                              Height = 40,
+                                              Margin = new Padding(20, 5,10,5)};
+                    pnl.Controls.Add(pegEmpty);
+         
+                }
+                PictureBox pegCheckBox = new PictureBox
+                                         {
+                                             Name = "checkBox",
+                                             Width = 40,
+                                             Height = 40,
+                                             Margin = new Padding(60, 5, 20, 5),
+                                             BackColor = Color.Green
+                                         };
+                pnl.Controls.Add(pegCheckBox);
+                rowPanels[i] = pnl;
+
+            }
+            foreach(Panel c in rowPanels)
+            flpRowDock.Controls.Add(c);
         }
 
         private void PegClicked(object sender, EventArgs e)
