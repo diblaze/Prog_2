@@ -5,37 +5,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <title>ASP.NET: Add Todo item</title>
-<style type="text/css">
-    body
+    <style type="text/css">
+        body
         {
-        margin: 0 auto;
-        width: 50%;
+            margin: 0 auto;
+            width: 50%;
         }
 
-    #headerAddBox
+        #headerAddBox
         {
-        text-align: center;
+            text-align: center;
         }
 
-    #addSettings
+        #addSettings
         {
-        border-bottom: dashed 1px #0066cc;
+            border-bottom: dashed 1px #0066cc;
         }
-    #addButtons
+        #addButtons
         {
-        /*width: 50%;*/
-        text-align: center
+            /*width: 50%;*/
+            text-align: center
 
-        
-        }
-    .Buttons
-        {
-        margin-right: 20px;
-        
-        }
-    
 
-</style>
+        }
+        .Buttons
+        {
+            margin-right: 20px;
+
+        }
+
+
+    </style>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
 <asp:SqlDataSource ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
@@ -45,12 +46,12 @@
 </asp:SqlDataSource>
 <form id="form1"
       runat="server">
-    <div>
-        <div id="headerAddBox">
+    <div class="center-block">
+        <div id="headerAddBox" class="page-header">
             <h1>Add Todo-item</h1>
         </div>
 
-        <div id="addBox">
+        <div id="addBox" class="col-lg-6">
             <div id="addSettings">
                 Title: <asp:TextBox ID="tbTitle"
                                     placeholder="Enter the title here - 50 characters max"
