@@ -5,38 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <title>ASP.NET: ToDo Main Page</title>
+<link href="Content/bootstrap.css"
+      rel="stylesheet"/>
+<script src="Scripts/bootstrap.js"></script>
+<script src="Scripts/jquery-2.1.4.js"></script>
+
 <style type="text/css">
-    body
+    .col-centered
         {
-        font-family: Arial, Verdana, Sans-Serif;
+        float: none;
         margin: 0 auto;
-        width: 50%;
-        }
-
-    #headerBox
-        {
-        border-bottom: dashed 1px #0066cc;
-        text-align: center;
-        }
-
-    #contentTitle
-        {
-        /*font-family: Arial, Verdana, Sans-Serif;*/
-        font-size: 18px;
-        /*padding: 10px;*/
-        }
-    #message
-        {
-        border-top: dashed 1px;
-        border-bottom: dashed 1px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        }
-    #borderStuff
-        {
-        border-bottom: dashed 1px;
-        padding-top: 10px;
-        padding-bottom: 10px;
         }
 </style>
 </head>
@@ -44,44 +22,56 @@
 <asp:SqlDataSource ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
                    ID="sdsTodo"
                    runat="server"
-                   SelectCommand="SELECT * FROM [Todo] ORDER BY [Priority] DESC, [Enddate] ASC">
+                   SelectCommand="SELECT * FROM [Todo] WHERE ([Finished] = @Finished) ORDER BY [Priority] DESC, [Enddate]"
+                   UpdateCommand="UPDATE [Todo] SET [Finished] = @FinishedTick WHERE [Id] = @Id">
+    <SelectParameters>
+        <asp:Parameter DefaultValue="False"
+                       Name="Finished"
+                       Type="Boolean"/>
+    </SelectParameters>
 </asp:SqlDataSource>
 
 <form id="form1"
       runat="server">
-    <div>
-        <div id="headerBox">
-            <h1>ToDo-list</h1>
-            <br/>
+    <div class="col-centered col-lg-6">
+        <div class="page-header text-center">
+            <h1>ASP.NET: ToDo-list</h1>
             <asp:Button ID="btnAddTodo"
                         OnClick="btnAddTodo_OnClick"
-                        runat="server"/>
+                        runat="server"
+                        Text="Add new post"/>
         </div>
 
-        <div id="contentBox">
+        <div class=" col-centered col-lg-4">
             <asp:Repeater DataSourceID="sdsTodo"
                           ID="rContent"
                           runat="server">
                 <ItemTemplate>
-                    <div id="contentItem">
-                        <p id="contentTitle">
-                            Title: <strong><%# Eval( "Title" ) %></strong>
+                    <div class="panel panel-primary">
+                        <p class="panel-heading">
+                            <asp:CheckBox AutoPostBack="True"
+                                          ID="cbFinished"
+                                          OnCheckedChanged="cbFinished_OnCheckedChanged"
+                                          runat="server"/>
+                            <strong><%# Eval( "Title" ) %></strong>
                             <br/>
+                            <!-- If no end date is not inputted for current item, then do not show any text -->
+                            <strong>
+                                <%# Eval( "Enddate", "{0:yyyy-MM-dd}" ) == string.Empty ? "" : "Due: " + Eval( "Enddate", "{0:yyyy-MM-dd}" ) %>
+                            </strong>
                         </p>
-                        <%--<p style="color: <%# CheckEndDate( Eval( "Enddate" )%>;">--%>
-                        End date: <strong><%# Eval( "Enddate", "{0:yyyy-MM-dd}") %></strong>
-                        <%--</p>--%>
-                        <p id="message">
-                            <%# Eval( "Text" ) %>
-                        </p>
-                        <span id="borderStuff">
-                        Finished?: <asp:CheckBox ID="cbFinished"
-                                                 OnCheckedChanged="cbFinished_OnCheckedChanged"
-                                                 runat="server"/>
-                            </span>
+                        <div class="panel-body">
+                            <asp:Literal ID="postedText"
+                                         runat="server"
+                                         Text='<%# Eval( "Text" ) %>'/>
+                            <asp:Literal ID="lId"
+                                         runat="server"
+                                         Text='<%# Eval( "Id" ) %>'
+                                         Visible="False"/>
+
+                        </div>
                     </div>
                 </ItemTemplate>
-
             </asp:Repeater>
         </div>
     </div>

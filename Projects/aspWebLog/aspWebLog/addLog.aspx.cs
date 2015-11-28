@@ -24,7 +24,7 @@ namespace aspWebLog
         protected void btnSave_OnClick( object sender, EventArgs e )
         {
             const string sqlQuery = "INSERT INTO Logs (Logged, Time) VALUES(@message,@date)";
-                //felet var att jag använde mig utan ' ' ...
+                //felet var att jag använde mig utav ' ' i query ...
 
             sqlLog.InsertCommand = sqlQuery;
             sqlLog.InsertParameters.Add( "message", txtMessage.Text );
