@@ -78,7 +78,7 @@ namespace winMasterMind
         /// </summary>
         /// <param name="guess">User guess array</param>
         /// <returns>How many pegs were correctly guessed.</returns>
-        public void CheckGuess(Peg[] guess)
+        public void CheckGuess()
         {
             Row rw = GetActiveRow(); //Get active row to add checking pegs
             //int count = 0; //how many correct pegs we got
@@ -139,6 +139,8 @@ namespace winMasterMind
                 }
             }
 
+            FinishRow();
+
             //PopulateCheckingBox( rw, blackPegs, whitePegs);
 
             MessageBox.Show(whitePegs + @" white pegs");
@@ -162,13 +164,33 @@ namespace winMasterMind
         /// </summary>
         /// <param name="position">Which <c>cell</c>? Spanning from 0 to 3, left to right.</param>
         /// <param name="peg"><c>Peg</c> which is placed by <c>user</c>.</param>
-        public void PlacePeg(int position, Peg peg)
+        public bool PlacePeg(int position, Peg peg)
         {
             foreach (Row rw in _rowArray.Where(rw => rw.Active && rw.Cells[position].IsEmpty))
             {
                 rw.Cells[position].SetPeg(peg);
                 GuessedPegs[position] = peg;
             }
+            foreach (Row rw in _rowArray.Where(rw => rw.Active))
+
+            {
+                bool check = false;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (rw.Cells[i].IsEmpty)
+                    {
+                        check = false;
+                        break;
+                    }
+                    check = true;
+                }
+                if (check)
+                {
+                    CheckGuess();
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
