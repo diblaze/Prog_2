@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace winMasterMind
 {
-    internal class GameBoard
+    internal class Logic
     {
         private readonly PlaceablePeg[] _placeablePegs;
         private int _guesses;
@@ -13,7 +13,7 @@ namespace winMasterMind
         public Peg[] CorrectPegs;
         public Peg[] GuessedPegs;
 
-        public GameBoard()
+        public Logic()
         {
             _guesses = 0;
             _score = 0;
@@ -121,6 +121,7 @@ namespace winMasterMind
                     //if pegsTop == 1 or pegsBot == 1 then we have already checked them in the black checking
                     if ((i == j) || (pegsTop[i] == 1) || (pegsBot[j] == 1))
                     {
+                        continue;
                     }
 
                     //if user guessed peg colour is not equal to correct peg colour, then continue to next 
@@ -141,10 +142,15 @@ namespace winMasterMind
 
             FinishRow();
 
-            //PopulateCheckingBox( rw, blackPegs, whitePegs);
+            PopulateCheckingBox(rw, blackPegs, whitePegs);
 
             MessageBox.Show(whitePegs + @" white pegs");
             MessageBox.Show(blackPegs + @" black pegs");
+        }
+
+        private void PopulateCheckingBox(Row rw, int blackPegs, int whitePegs)
+        {
+            //TODO: Add checking box image
         }
 
         /// <summary>
@@ -174,8 +180,8 @@ namespace winMasterMind
             foreach (Row rw in _rowArray.Where(rw => rw.Active))
 
             {
-                bool check = false;
-                for (int i = 0; i < 4; i++)
+                var check = false;
+                for (var i = 0; i < 4; i++)
                 {
                     if (rw.Cells[i].IsEmpty)
                     {
@@ -212,18 +218,39 @@ namespace winMasterMind
         public void FinishRow()
         {
             var rowId = 0; //next row id to activate.
+            var blacks = 0;
 
             //finds the current active row.
             foreach (Row rw in _rowArray.Where(rw => rw.Active))
             {
                 rowId = rw.RowId;
                 rw.Active = false; //disable
-            }
-            //find the next row to activate.
-            Row rowToActivate = _rowArray.FirstOrDefault(row => row.RowId == rowId + 1);
-            if (rowToActivate != null)
-            {
-                rowToActivate.Active = true; //activate row.
+                for (var i = 0; i < 4; i++)
+                {
+                    if (rw.CheckingPegs.Count == 0)
+                    {
+                        break;
+                    }
+                    if (rw.CheckingPegs[i].Colour == PegColours.Black)
+                    {
+                        blacks++;
+                    }
+                }
+                if (blacks == 4)
+                {
+                    MessageBox.Show("You won!");
+                }
+                else if (blacks != 4)
+                {
+                    //find the next row to activate.
+                    Row rowToActivate = _rowArray.FirstOrDefault(row => row.RowId == rowId + 1);
+                    if (rowToActivate != null)
+                    {
+                        rowToActivate.Active = true; //activate row.
+                    }
+                }
+
+                break;
             }
         }
 

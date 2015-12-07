@@ -2,27 +2,31 @@
 using System.Drawing;
 
 namespace winMasterMind
-    {
+{
     public class Row
-        {
+    {
         public bool Active;
         public Cell[] Cells;
         public List<Peg> CheckingPegs;
 
-        public Row( int rowId )
+        public Row(int rowId)
         {
             RowId = rowId;
             Cells = new Cell[4];
             CheckingPegs = new List<Peg>();
             //set the first row to active
-            if ( RowId == 0 )
+            if (RowId == 0)
             {
                 Active = true;
             }
-            for ( int i = 0; i < 4; i++ )
+            for (var i = 0; i < 4; i++)
             {
                 Cells[i] = new Cell();
             }
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    CheckingPegs.Add(new Peg((int)PegColours.None));
+            //}
             //for (var i = 0; i < 4; i++)
             //{
             //    CheckingCells[i] = new CheckingCell();
@@ -32,7 +36,7 @@ namespace winMasterMind
         public int RowId { get; }
 
         public class Cell
-            {
+        {
             private Color _colour; // colour of the cell
             public bool IsEmpty { get; private set; } = true;
 
@@ -40,10 +44,10 @@ namespace winMasterMind
             ///     Colour the cell to peg colour.
             /// </summary>
             /// <param name="peg"><c>Peg</c> that is placed in cell.</param>
-            public void SetPeg( Peg peg )
+            public void SetPeg(Peg peg)
             {
                 //set GUI cell colour
-                switch ( peg.Colour )
+                switch (peg.Colour)
                 {
                     case PegColours.Black:
                         _colour = Color.Black;
@@ -80,21 +84,21 @@ namespace winMasterMind
             /// <summary>
             ///     Sets cell to empty.
             /// </summary>
-            public void RemovePeg( )
+            public void RemovePeg()
             {
                 _colour = Color.Empty;
                 IsEmpty = true;
             }
-            }
+        }
 
         public class CheckingCell
-            {
+        {
             private Color _colour;
 
-            public void SetColour( bool isCorrect )
+            public void SetColour(bool isCorrect)
             {
                 _colour = isCorrect ? Color.White : Color.Black;
             }
-            }
         }
     }
+}

@@ -10,26 +10,27 @@
         Orange,
         Brown,
         White,
-        Purple
+        Purple,
+        None
     }
 
     public class Peg
     {
-        public PegColours Colour { get; }
         public Peg(int colourNumber)
         {
             Colour = (PegColours) colourNumber;
         }
+
+        public PegColours Colour { get; }
     }
 
     public class PlaceablePeg : Peg
     {
-        public new PegColours Colour { get; }
         public PlaceablePeg(int colourNumber) : base(colourNumber)
         {
             Colour = (PegColours) colourNumber;
         }
+
+        public new PegColours Colour { get; }
     }
-
-
 }

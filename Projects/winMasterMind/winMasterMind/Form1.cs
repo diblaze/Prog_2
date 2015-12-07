@@ -7,18 +7,18 @@ namespace winMasterMind
 {
     public partial class Form1 : Form
     {
-        private readonly GameBoard gameBoard = new GameBoard();
+        private readonly Logic _logic = new Logic();
         public Peg PegToPlace;
         private Peg[] pegGuess = new Peg[4];
-        private Row currentActiveRow;
-        private bool newRow = false;
+        private string _currentRowId = "row1";
+        private bool _newRow;
         public Form1()
         {
             InitializeComponent();
             //GameBoard gameBoard = new GameBoard();
 
-            PopulatePanel(gameBoard.TotalRows());
-
+            PopulatePanel(_logic.TotalRows());
+            
 
         }
 
@@ -82,20 +82,44 @@ namespace winMasterMind
                 {
                     pegBox.BackColor = Color.FromName(PegToPlace?.Colour.ToString());
                     //pegGuess[Convert.ToInt32(pegBox.Name.Substring(8))] = new Peg((int) PegToPlace.Colour);
-                    newRow = gameBoard.PlacePeg(Convert.ToInt32(pegBox.Name.Substring(8)), PegToPlace);
+                    _newRow = _logic.PlacePeg(Convert.ToInt32(pegBox.Name.Substring(8)), PegToPlace);
                 }
 
             }
-
+            UpdateStatus(_newRow);
             ResumeLayout();
             Refresh();
         }
 
-        private void UpdateStatus()
+        private void UpdateStatus(bool activateNewRow)
         {
+            if (activateNewRow)
+            {
+                _newRow = false;
+                string tempRowId = _currentRowId.Substring(3);
+                int tempCurrentRowId = int.Parse(tempRowId);
 
+                foreach (Panel pnl in flpRowDock.Controls.Cast<Panel>().Where(pnl => pnl.Name == _currentRowId))
+                {
+                    pnl.Enabled = false;
+                }
 
-           
+                foreach (Panel pnlToActivate in flpRowDock.Controls)
+                {
+                    string substringId = pnlToActivate.Name.Substring(3);
+                    int idParsed = int.Parse(substringId);
+
+                    if (idParsed != tempCurrentRowId + 1)
+                        continue;
+
+                    pnlToActivate.Enabled = true;
+                    pnlToActivate.Visible = true;
+
+                    _currentRowId = "row" + idParsed;
+                    break;
+                }
+
+            }
 
         }
 
