@@ -46,6 +46,7 @@ namespace winMasterMind
         public void RestartGame(int howManyRows)
         {
             HowManyRows = howManyRows;
+            UserHasWon = false;
             //_score = 0;
             CorrectPegs = new Peg[4];
             GuessedPegs = new Peg[4];
@@ -61,11 +62,22 @@ namespace winMasterMind
         private void GetRandomPegs()
         {
             var rnd = new Random();
+
+            //init a black peg to differ out all black, white and none colours.
+            Peg peg = new Peg(0); //black peg init
+
             for (var i = 0; i < 4; i++)
             {
-                var peg = new Peg(rnd.Next(0, 9));
-                CorrectPegs[i] = peg;
+                //if we get a random peg that is still black, white or none - loop until we get a different color.
+                while (peg.Colour == PegColours.Black || peg.Colour == PegColours.None || peg.Colour == PegColours.White) 
+                {
+                    peg = new Peg(rnd.Next(0, 11));
+                    CorrectPegs[i] = peg;                  
+                }
+                peg = new Peg(0);
             }
+            MessageBox.Show(CorrectPegs[0].Colour.ToString() + " " + CorrectPegs[1].Colour.ToString() + " " +
+                            CorrectPegs[2].Colour + " " + CorrectPegs[3].Colour);
         }
 
         /// <summary>
@@ -138,11 +150,6 @@ namespace winMasterMind
             UpdateRow(rw);
 
             UserHasWon = FinishRow();
-
-            //PopulateCheckingBox(rw, blackPegs, whitePegs);
-
-            //MessageBox.Show(whitePegs + @" white pegs");
-            //MessageBox.Show(blackPegs + @" black pegs");
         }
 
         /// <summary>
@@ -236,7 +243,6 @@ namespace winMasterMind
 
                 if (tempBlackCount == 4)
                 {
-                    MessageBox.Show(@"You won!");
                     return true;
                 }
 
@@ -270,12 +276,16 @@ namespace winMasterMind
         public void UpdateRow(Row updatedRow)
         {
 
+            //BUG: Colours get black - why?
+
             for (int i = 0; i < _rowArray.Length; i++)
             {
-                if (!_rowArray[i].Active) continue;
+                if (_rowArray[i].Active)
+                {
 
-                _rowArray[i] = updatedRow;
-                break;
+                    _rowArray[i] = updatedRow;
+                    break;
+                }
             }
 
 

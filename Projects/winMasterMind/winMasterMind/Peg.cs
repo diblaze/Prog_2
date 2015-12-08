@@ -11,6 +11,7 @@
         Brown,
         White,
         Purple,
+        Aqua,
         None
     }
 

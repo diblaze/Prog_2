@@ -49,8 +49,14 @@ namespace winMasterMind
                 //set GUI cell colour
                 switch (peg.Colour)
                 {
+                    case PegColours.Aqua:
+                        _colour = Color.Aqua;
+                        break;
                     case PegColours.Black:
                         _colour = Color.Black;
+                        break;
+                    case PegColours.None:
+                        _colour = Color.Empty;
                         break;
                     case PegColours.Blue:
                         _colour = Color.Blue;

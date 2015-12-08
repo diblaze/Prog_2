@@ -11,6 +11,7 @@ namespace winMasterMind
         private string _currentRowId = "row1"; //current active row in GUI
         private string _previousRowId = "row0"; //current active row in GUI
         private bool _newRow; //if true - enable new row in GUI
+        private bool noMoreRowsLeft;
         public Peg PegToPlace; //what peg used is putting in a box.
 
         public Form1()
@@ -139,14 +140,15 @@ namespace winMasterMind
             //If user has run out of guesses
             if (_logic.HowManyRows == 0)
             {
-                UpdateStatus(false, true);
+                noMoreRowsLeft = true;
+                UpdateStatus(false);
                 UpdateCheckBoxImage();
             }
             //If user still has guesses left
             else
             {
-                
-                UpdateStatus(_newRow, false);
+                noMoreRowsLeft = false;
+                UpdateStatus(_newRow);
             }
 
             //resume the drawing
@@ -258,8 +260,7 @@ namespace winMasterMind
         ///     Checks and updates the GUI according to the game logic.
         /// </summary>
         /// <param name="activateNewRow">Is a new <c>row</c> needed?</param>
-        /// <param name="noMoreRowsLeft">Has the user run out of guesses?</param>
-        private void UpdateStatus(bool activateNewRow, bool noMoreRowsLeft)
+        private void UpdateStatus(bool activateNewRow)
         {
             if (activateNewRow)
             {
@@ -314,14 +315,14 @@ namespace winMasterMind
                 }
                 //TODO: Add better game over alert box.
                 var result = MessageBox.Show(
-                    @"You have won! ""\n"" Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this message.",
+                    @"You have won! 
+Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this message.",
                     @"Game Over!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation,
                     MessageBoxDefaultButton.Button1);
                 switch (result)
                 {
                     case DialogResult.Yes:
                         RestartGame(_logic.TotalRows());
-                        noMoreRowsLeft = false;
                         break;
                     case DialogResult.No:
                         Application.Exit();
@@ -369,6 +370,7 @@ namespace winMasterMind
                 control.Dispose();
             }
             //Tell the game logic to restart the game.
+            noMoreRowsLeft = false;
             _logic.RestartGame(totalRows);
 
             //Repopulate the GUI accordingly to the game logic.
@@ -385,9 +387,7 @@ namespace winMasterMind
 
             switch (color?.Name)
             {
-                case "btnBlack":
-                    PegToPlace = new Peg(0);
-                    break;
+                
                 case "btnRed":
                     PegToPlace = new Peg(1);
                     break;
@@ -406,11 +406,11 @@ namespace winMasterMind
                 case "btnBrown":
                     PegToPlace = new Peg(6);
                     break;
-                case "btnWhite":
-                    PegToPlace = new Peg(7);
-                    break;
                 case "btnPurple":
                     PegToPlace = new Peg(8);
+                    break;
+                case "btnAqua":
+                    PegToPlace = new Peg(9);
                     break;
             }
         }

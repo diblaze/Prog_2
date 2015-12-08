@@ -30,14 +30,13 @@
         {
             this.btnPurple = new System.Windows.Forms.Button();
             this.flpRowDock = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnWhite = new System.Windows.Forms.Button();
+            this.btnAqua = new System.Windows.Forms.Button();
             this.btnBrown = new System.Windows.Forms.Button();
             this.btnOrange = new System.Windows.Forms.Button();
             this.btnBlue = new System.Windows.Forms.Button();
             this.btnYellow = new System.Windows.Forms.Button();
             this.btnGreen = new System.Windows.Forms.Button();
             this.btnRed = new System.Windows.Forms.Button();
-            this.btnBlack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPurple
@@ -45,7 +44,7 @@
             this.btnPurple.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnPurple.BackColor = System.Drawing.Color.Purple;
             this.btnPurple.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPurple.Location = new System.Drawing.Point(229, 667);
+            this.btnPurple.Location = new System.Drawing.Point(25, 625);
             this.btnPurple.Margin = new System.Windows.Forms.Padding(2);
             this.btnPurple.MaximumSize = new System.Drawing.Size(50, 35);
             this.btnPurple.MinimumSize = new System.Drawing.Size(50, 35);
@@ -64,19 +63,19 @@
             this.flpRowDock.Size = new System.Drawing.Size(469, 587);
             this.flpRowDock.TabIndex = 10;
             // 
-            // btnWhite
+            // btnAqua
             // 
-            this.btnWhite.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnWhite.BackColor = System.Drawing.Color.White;
-            this.btnWhite.Location = new System.Drawing.Point(439, 625);
-            this.btnWhite.Margin = new System.Windows.Forms.Padding(2);
-            this.btnWhite.MaximumSize = new System.Drawing.Size(50, 35);
-            this.btnWhite.MinimumSize = new System.Drawing.Size(50, 35);
-            this.btnWhite.Name = "btnWhite";
-            this.btnWhite.Size = new System.Drawing.Size(50, 35);
-            this.btnWhite.TabIndex = 18;
-            this.btnWhite.UseVisualStyleBackColor = false;
-            this.btnWhite.Click += new System.EventHandler(this.PegClicked);
+            this.btnAqua.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAqua.BackColor = System.Drawing.Color.Aqua;
+            this.btnAqua.Location = new System.Drawing.Point(439, 625);
+            this.btnAqua.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAqua.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnAqua.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnAqua.Name = "btnAqua";
+            this.btnAqua.Size = new System.Drawing.Size(50, 35);
+            this.btnAqua.TabIndex = 18;
+            this.btnAqua.UseVisualStyleBackColor = false;
+            this.btnAqua.Click += new System.EventHandler(this.PegClicked);
             // 
             // btnBrown
             // 
@@ -163,34 +162,18 @@
             this.btnRed.UseVisualStyleBackColor = false;
             this.btnRed.Click += new System.EventHandler(this.PegClicked);
             // 
-            // btnBlack
-            // 
-            this.btnBlack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnBlack.BackColor = System.Drawing.Color.Black;
-            this.btnBlack.Location = new System.Drawing.Point(25, 625);
-            this.btnBlack.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBlack.MaximumSize = new System.Drawing.Size(50, 35);
-            this.btnBlack.MinimumSize = new System.Drawing.Size(50, 35);
-            this.btnBlack.Name = "btnBlack";
-            this.btnBlack.Size = new System.Drawing.Size(50, 35);
-            this.btnBlack.TabIndex = 11;
-            this.btnBlack.Text = "Black";
-            this.btnBlack.UseVisualStyleBackColor = false;
-            this.btnBlack.Click += new System.EventHandler(this.PegClicked);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 706);
-            this.Controls.Add(this.btnWhite);
+            this.Controls.Add(this.btnAqua);
             this.Controls.Add(this.btnBrown);
             this.Controls.Add(this.btnOrange);
             this.Controls.Add(this.btnBlue);
             this.Controls.Add(this.btnYellow);
             this.Controls.Add(this.btnGreen);
             this.Controls.Add(this.btnRed);
-            this.Controls.Add(this.btnBlack);
             this.Controls.Add(this.flpRowDock);
             this.Controls.Add(this.btnPurple);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -209,14 +192,13 @@
         #endregion
         private System.Windows.Forms.Button btnPurple;
         private System.Windows.Forms.FlowLayoutPanel flpRowDock;
-        private System.Windows.Forms.Button btnWhite;
+        private System.Windows.Forms.Button btnAqua;
         private System.Windows.Forms.Button btnBrown;
         private System.Windows.Forms.Button btnOrange;
         private System.Windows.Forms.Button btnBlue;
         private System.Windows.Forms.Button btnYellow;
         private System.Windows.Forms.Button btnGreen;
         private System.Windows.Forms.Button btnRed;
-        private System.Windows.Forms.Button btnBlack;
     }
 }
 
