@@ -7,3 +7,17 @@ C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\De
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.csproj.GenerateResource.Cache
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.exe
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.pdb
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black1white1none2.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black1white2none1.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black1white3.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black2white1none1.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black2white2.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black3white1.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlyblack\black1.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlyblack\black2.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlyblack\black3.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlyblack\black4.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlywhite\white1.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlywhite\white2.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlywhite\white3.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlywhite\white4.png

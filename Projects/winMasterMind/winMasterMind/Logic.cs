@@ -11,6 +11,7 @@ namespace winMasterMind
         private Row[] _rowArray;
         public Peg[] CorrectPegs;
         public Peg[] GuessedPegs;
+        private int previousRowId;
 
         public Logic(int howManyRows)
         {
@@ -134,12 +135,14 @@ namespace winMasterMind
                 }
             }
 
+            UpdateRow(rw);
+
             UserHasWon = FinishRow();
 
             //PopulateCheckingBox(rw, blackPegs, whitePegs);
 
-            MessageBox.Show(whitePegs + @" white pegs");
-            MessageBox.Show(blackPegs + @" black pegs");
+            //MessageBox.Show(whitePegs + @" white pegs");
+            //MessageBox.Show(blackPegs + @" black pegs");
         }
 
         /// <summary>
@@ -215,6 +218,7 @@ namespace winMasterMind
             foreach (var rw in _rowArray.Where(rw => rw.Active))
             {
                 rowId = rw.RowId;
+                previousRowId = rw.RowId;
                 rw.Active = false; //disable row
 
                 //check if user has filled the checking row
@@ -253,6 +257,42 @@ namespace winMasterMind
         public Row GetActiveRow()
         {
             return _rowArray.FirstOrDefault(rw => rw.Active);
+        }
+
+        public Row GetPreviousRow()
+        {
+            //find the previous row 
+            var previousRow = _rowArray.FirstOrDefault(row => row.RowId == previousRowId);
+
+            return previousRow;
+        }
+
+        public void UpdateRow(Row updatedRow)
+        {
+
+            for (int i = 0; i < _rowArray.Length; i++)
+            {
+                if (!_rowArray[i].Active) continue;
+
+                _rowArray[i] = updatedRow;
+                break;
+            }
+
+
+        }
+
+        public int GetWhitePegs()
+        {
+            var row = GetPreviousRow();
+
+            return row.CheckingPegs.Count(whitePeg => whitePeg.Colour == PegColours.White);
+            
+        }
+
+        public int GetBlackPegs()
+        {
+            var row = GetPreviousRow();
+            return row.CheckingPegs.Count(blackPeg => blackPeg.Colour == PegColours.Black);
         }
     }
 }

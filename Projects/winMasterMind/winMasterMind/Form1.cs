@@ -9,6 +9,7 @@ namespace winMasterMind
     {
         private readonly Logic _logic = new Logic(10); //init game logic
         private string _currentRowId = "row1"; //current active row in GUI
+        private string _previousRowId = "row0"; //current active row in GUI
         private bool _newRow; //if true - enable new row in GUI
         public Peg PegToPlace; //what peg used is putting in a box.
 
@@ -90,7 +91,8 @@ namespace winMasterMind
                     Height = 40,
                     Margin = new Padding(60, 5, 20, 5),
                     Anchor = AnchorStyles.Right,
-                    BackColor = Color.Green
+                    BorderStyle = BorderStyle.Fixed3D,
+                    BackColor = Color.DarkGray
                 };
 
 
@@ -138,10 +140,12 @@ namespace winMasterMind
             if (_logic.HowManyRows == 0)
             {
                 UpdateStatus(false, true);
+                UpdateCheckBoxImage();
             }
             //If user still has guesses left
             else
             {
+                
                 UpdateStatus(_newRow, false);
             }
 
@@ -149,6 +153,105 @@ namespace winMasterMind
             ResumeLayout();
             //refresh GUI
             Refresh();
+        }
+
+        private void UpdateCheckBoxImage()
+        {
+            foreach (
+                var panel in
+                    flpRowDock.Controls.Cast<Panel>().Where(panel => panel.Name == _previousRowId && !panel.Enabled))
+            {
+                foreach (var box in panel.Controls.Cast<PictureBox>().Where(box => box.Name == "checkBox"))
+                {
+                    var whitePegs = _logic.GetWhitePegs();
+                    var blackPegs = _logic.GetBlackPegs();
+
+                    #region Mixed Checking Pegs
+
+                    if (whitePegs == 3 && blackPegs == 1)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white3.png");
+                        break;
+                    }
+                    if (whitePegs == 2 && blackPegs == 2)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black2white2.png");
+                        break;
+                    }
+                    if (whitePegs == 1 && blackPegs == 3)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black3white1.png");
+                        break;
+                    }
+                    if (whitePegs == 2 && blackPegs == 1)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white2none1.png");
+                        break;
+                    }
+                    if (whitePegs == 1 && blackPegs == 2)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black2white1none1.png");
+                        break;
+                    }
+                    if (whitePegs == 1 && blackPegs == 1)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white1none2.png");
+                        break;
+                    }
+
+                    #endregion
+
+                    #region Only White Checking Pegs
+
+                    if (whitePegs == 4)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlywhite/white4.png");
+                        break;
+                    }
+                    if (whitePegs == 3)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlywhite/white3.png");
+                        break;
+                    }
+                    if (whitePegs == 2)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlywhite/white2.png");
+                        break;
+                    }
+                    if (whitePegs == 1)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlywhite/white1.png");
+                        break;
+                    }
+
+                    #endregion
+
+                    #region #region Only Black Checking Pegs
+
+                    if (blackPegs == 4)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlyblack/black4.png");
+                        break;
+                    }
+                    if (blackPegs == 3)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlyblack/black3.png");
+                        break;
+                    }
+                    if (blackPegs == 2)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlyblack/black2.png");
+                        break;
+                    }
+                    if (blackPegs == 1)
+                    {
+                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/onlyblack/black1.png");
+                        break;
+                    }
+
+                    #endregion
+                }
+            }
         }
 
         /// <summary>
@@ -163,16 +266,20 @@ namespace winMasterMind
                 //reset new row variable.
                 _newRow = false;
 
+                
+
                 //find current active row and disable it.
                 foreach (var pnl in flpRowDock.Controls.Cast<Panel>().Where(pnl => pnl.Name == _currentRowId))
                 {
                     pnl.Enabled = false;
+                    
                 }
 
                 foreach (var pnlToActivate in flpRowDock.Controls.Cast<Panel>())
                 {
                     //Find the current row
                     var tempCurrentRowId = int.Parse(_currentRowId.Substring(3));
+                    
 
                     //Find the next row
                     var idParsed = int.Parse(pnlToActivate.Name.Substring(3));
@@ -181,13 +288,20 @@ namespace winMasterMind
                     if (idParsed != tempCurrentRowId + 1)
                         continue;
 
+                    
+
                     //enable the panel and its visiblity.
                     pnlToActivate.Enabled = true;
                     pnlToActivate.Visible = true;
 
+                    //set previous rowid to make updating checkbox easier.
+                    _previousRowId = _currentRowId;
                     //update current rowid variable for next time.
                     _currentRowId = "row" + idParsed;
+
+                    UpdateCheckBoxImage();
                     break;
+                    
                 }
             }
             //if user has won
@@ -256,7 +370,7 @@ namespace winMasterMind
             }
             //Tell the game logic to restart the game.
             _logic.RestartGame(totalRows);
-            
+
             //Repopulate the GUI accordingly to the game logic.
             PopulateGui(totalRows);
         }
