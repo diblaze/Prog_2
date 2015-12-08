@@ -7,25 +7,32 @@ namespace winMasterMind
     internal class Logic
     {
         private readonly PlaceablePeg[] _placeablePegs;
-        private int _guesses;
+
         private Row[] _rowArray;
-        private int _score;
         public Peg[] CorrectPegs;
         public Peg[] GuessedPegs;
 
-        public Logic()
+        public Logic(int howManyRows)
         {
-            _guesses = 0;
-            _score = 0;
+            HowManyRows = howManyRows;
+            //_guesses = 0;
+            //_score = 0;
             CorrectPegs = new Peg[4];
             GuessedPegs = new Peg[4];
             _placeablePegs = new PlaceablePeg[10];
             //TODO: Add diffuculty setting
-            _rowArray = new Row[10];
+            _rowArray = new Row[howManyRows];
 
             CreateRows(10);
             GetRandomPegs();
         }
+
+        //TODO: Add score system.
+        //private int _score;
+
+
+        public int HowManyRows { get; private set; } //how many rows the user can guess until game over
+        public bool UserHasWon { get; private set; }
 
         public int TotalRows()
         {
@@ -35,29 +42,16 @@ namespace winMasterMind
         /// <summary>
         ///     Reinits the <c>GameBoard</c> - restarting.
         /// </summary>
-        public void RestartGame()
+        public void RestartGame(int howManyRows)
         {
-            _guesses = 4;
-            _score = 0;
+            HowManyRows = howManyRows;
+            //_score = 0;
             CorrectPegs = new Peg[4];
             GuessedPegs = new Peg[4];
-            _rowArray = new Row[10];
+            _rowArray = new Row[howManyRows];
 
             CreateRows(10);
             GetRandomPegs();
-        }
-
-        public void CreatePlaceablePegs()
-        {
-            _placeablePegs[0] = new PlaceablePeg(0);
-            _placeablePegs[1] = new PlaceablePeg(1);
-            _placeablePegs[2] = new PlaceablePeg(2);
-            _placeablePegs[3] = new PlaceablePeg(3);
-            _placeablePegs[4] = new PlaceablePeg(4);
-            _placeablePegs[5] = new PlaceablePeg(5);
-            _placeablePegs[6] = new PlaceablePeg(6);
-            _placeablePegs[7] = new PlaceablePeg(7);
-            _placeablePegs[8] = new PlaceablePeg(8);
         }
 
         /// <summary>
@@ -65,22 +59,22 @@ namespace winMasterMind
         /// </summary>
         private void GetRandomPegs()
         {
-            Random rnd = new Random();
+            var rnd = new Random();
             for (var i = 0; i < 4; i++)
             {
-                Peg peg = new Peg(rnd.Next(0, 9));
+                var peg = new Peg(rnd.Next(0, 9));
                 CorrectPegs[i] = peg;
             }
         }
 
         /// <summary>
         ///     Checks and returns how many pegs were correctly guessed.
+        ///     Finishes active row.
         /// </summary>
-        /// <param name="guess">User guess array</param>
         /// <returns>How many pegs were correctly guessed.</returns>
         public void CheckGuess()
         {
-            Row rw = GetActiveRow(); //Get active row to add checking pegs
+            var rw = GetActiveRow(); //Get active row to add checking pegs
             //int count = 0; //how many correct pegs we got
 
             //the logic
@@ -102,7 +96,7 @@ namespace winMasterMind
                 }
 
                 //TODO: Add black peg display.
-                Peg peg = new Peg(0); //create a new peg to be added to the checking box to the current row
+                var peg = new Peg(0); //create a new peg to be added to the checking box to the current row
                 rw.CheckingPegs.Add(peg); //add to checking box of current row
                 //count++; //debug - how many black pegs
                 blackPegs++; //how many black pegs?
@@ -131,7 +125,7 @@ namespace winMasterMind
                     }
 
                     //TODO: Add white peg display
-                    Peg peg = new Peg(7); // new peg with white colour
+                    var peg = new Peg(7); // new peg with white colour
                     rw.CheckingPegs.Add(peg); // add to checking box of current row
                     pegsTop[i] = 1; //set to 1 so we don't check it again
                     pegsBot[j] = 1; //set to 1 so we don't check it again
@@ -140,17 +134,12 @@ namespace winMasterMind
                 }
             }
 
-            FinishRow();
+            UserHasWon = FinishRow();
 
-            PopulateCheckingBox(rw, blackPegs, whitePegs);
+            //PopulateCheckingBox(rw, blackPegs, whitePegs);
 
             MessageBox.Show(whitePegs + @" white pegs");
             MessageBox.Show(blackPegs + @" black pegs");
-        }
-
-        private void PopulateCheckingBox(Row rw, int blackPegs, int whitePegs)
-        {
-            //TODO: Add checking box image
         }
 
         /// <summary>
@@ -172,12 +161,12 @@ namespace winMasterMind
         /// <param name="peg"><c>Peg</c> which is placed by <c>user</c>.</param>
         public bool PlacePeg(int position, Peg peg)
         {
-            foreach (Row rw in _rowArray.Where(rw => rw.Active && rw.Cells[position].IsEmpty))
+            foreach (var rw in _rowArray.Where(rw => rw.Active && rw.Cells[position].IsEmpty))
             {
                 rw.Cells[position].SetPeg(peg);
                 GuessedPegs[position] = peg;
             }
-            foreach (Row rw in _rowArray.Where(rw => rw.Active))
+            foreach (var rw in _rowArray.Where(rw => rw.Active))
 
             {
                 var check = false;
@@ -192,6 +181,7 @@ namespace winMasterMind
                 }
                 if (check)
                 {
+                    HowManyRows--;
                     CheckGuess();
                     return true;
                 }
@@ -205,7 +195,7 @@ namespace winMasterMind
         /// <param name="position"></param>
         public void RemovePeg(int position)
         {
-            foreach (Row rw in _rowArray.Where(rw => rw.Active && !rw.Cells[position].IsEmpty))
+            foreach (var rw in _rowArray.Where(rw => rw.Active && !rw.Cells[position].IsEmpty))
             {
                 rw.Cells[position].RemovePeg();
                 GuessedPegs[position] = null;
@@ -215,43 +205,49 @@ namespace winMasterMind
         /// <summary>
         ///     Disables the current <c>row</c> and activates a new <c>row</c>.
         /// </summary>
-        public void FinishRow()
+        /// <returns><c>True</c> if user has won. <c>False</c> if user has not yet won.</returns>
+        public bool FinishRow()
         {
-            var rowId = 0; //next row id to activate.
-            var blacks = 0;
+            int rowId; //next row id to activate.
+            var tempBlackCount = 0;
 
             //finds the current active row.
-            foreach (Row rw in _rowArray.Where(rw => rw.Active))
+            foreach (var rw in _rowArray.Where(rw => rw.Active))
             {
                 rowId = rw.RowId;
-                rw.Active = false; //disable
-                for (var i = 0; i < 4; i++)
+                rw.Active = false; //disable row
+
+                //check if user has filled the checking row
+                if (rw.CheckingPegs.Count == 4)
                 {
-                    if (rw.CheckingPegs.Count == 0)
+                    for (var i = 0; i < 4; i++)
                     {
-                        break;
-                    }
-                    if (rw.CheckingPegs[i].Colour == PegColours.Black)
-                    {
-                        blacks++;
+                        //if user has guessed a peg right, add to temp int.
+                        if (rw.CheckingPegs[i].Colour == PegColours.Black)
+                        {
+                            tempBlackCount++;
+                        }
                     }
                 }
-                if (blacks == 4)
+
+                if (tempBlackCount == 4)
                 {
-                    MessageBox.Show("You won!");
+                    MessageBox.Show(@"You won!");
+                    return true;
                 }
-                else if (blacks != 4)
+
+                if (tempBlackCount != 4)
                 {
                     //find the next row to activate.
-                    Row rowToActivate = _rowArray.FirstOrDefault(row => row.RowId == rowId + 1);
+                    var rowToActivate = _rowArray.FirstOrDefault(row => row.RowId == rowId + 1);
                     if (rowToActivate != null)
                     {
                         rowToActivate.Active = true; //activate row.
+                        return false;
                     }
                 }
-
-                break;
             }
+            return false;
         }
 
         public Row GetActiveRow()

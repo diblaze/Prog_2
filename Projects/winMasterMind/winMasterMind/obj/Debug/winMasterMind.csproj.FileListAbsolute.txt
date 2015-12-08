@@ -1,0 +1,9 @@
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.exe.config
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.pdb
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.csprojResolveAssemblyReference.cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.Form1.resources
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.Properties.Resources.resources
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.csproj.GenerateResource.Cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.pdb

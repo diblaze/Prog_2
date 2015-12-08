@@ -28,144 +28,195 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnPurple = new System.Windows.Forms.Button();
             this.flpRowDock = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnWhite = new System.Windows.Forms.Button();
+            this.btnBrown = new System.Windows.Forms.Button();
+            this.btnOrange = new System.Windows.Forms.Button();
+            this.btnBlue = new System.Windows.Forms.Button();
+            this.btnYellow = new System.Windows.Forms.Button();
+            this.btnGreen = new System.Windows.Forms.Button();
+            this.btnRed = new System.Windows.Forms.Button();
+            this.btnBlack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnPurple
             // 
-            this.button1.Location = new System.Drawing.Point(46, 1047);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 46);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Black";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.PegClicked);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(156, 1047);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 46);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Blue";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.PegClicked);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(266, 1047);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 46);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Red";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.PegClicked);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(376, 1047);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(90, 46);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Yellow";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.PegClicked);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(486, 1047);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(90, 46);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Green";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.PegClicked);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(596, 1047);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(90, 46);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "White";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.PegClicked);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(706, 1047);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(90, 46);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "Orange";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.PegClicked);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(816, 1047);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(90, 46);
-            this.button8.TabIndex = 8;
-            this.button8.Text = "Purple";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.PegClicked);
+            this.btnPurple.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPurple.BackColor = System.Drawing.Color.Purple;
+            this.btnPurple.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPurple.Location = new System.Drawing.Point(229, 667);
+            this.btnPurple.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPurple.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnPurple.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnPurple.Name = "btnPurple";
+            this.btnPurple.Size = new System.Drawing.Size(50, 35);
+            this.btnPurple.TabIndex = 1;
+            this.btnPurple.UseVisualStyleBackColor = false;
+            this.btnPurple.Click += new System.EventHandler(this.PegClicked);
             // 
             // flpRowDock
             // 
             this.flpRowDock.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flpRowDock.Location = new System.Drawing.Point(46, 40);
+            this.flpRowDock.Location = new System.Drawing.Point(25, 22);
+            this.flpRowDock.Margin = new System.Windows.Forms.Padding(2);
             this.flpRowDock.Name = "flpRowDock";
-            this.flpRowDock.Size = new System.Drawing.Size(860, 950);
+            this.flpRowDock.Size = new System.Drawing.Size(469, 587);
             this.flpRowDock.TabIndex = 10;
+            // 
+            // btnWhite
+            // 
+            this.btnWhite.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnWhite.BackColor = System.Drawing.Color.White;
+            this.btnWhite.Location = new System.Drawing.Point(439, 625);
+            this.btnWhite.Margin = new System.Windows.Forms.Padding(2);
+            this.btnWhite.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnWhite.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnWhite.Name = "btnWhite";
+            this.btnWhite.Size = new System.Drawing.Size(50, 35);
+            this.btnWhite.TabIndex = 18;
+            this.btnWhite.UseVisualStyleBackColor = false;
+            this.btnWhite.Click += new System.EventHandler(this.PegClicked);
+            // 
+            // btnBrown
+            // 
+            this.btnBrown.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnBrown.BackColor = System.Drawing.Color.Brown;
+            this.btnBrown.Location = new System.Drawing.Point(379, 625);
+            this.btnBrown.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBrown.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnBrown.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnBrown.Name = "btnBrown";
+            this.btnBrown.Size = new System.Drawing.Size(50, 35);
+            this.btnBrown.TabIndex = 17;
+            this.btnBrown.UseVisualStyleBackColor = false;
+            this.btnBrown.Click += new System.EventHandler(this.PegClicked);
+            // 
+            // btnOrange
+            // 
+            this.btnOrange.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnOrange.BackColor = System.Drawing.Color.Orange;
+            this.btnOrange.Location = new System.Drawing.Point(319, 625);
+            this.btnOrange.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrange.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnOrange.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnOrange.Name = "btnOrange";
+            this.btnOrange.Size = new System.Drawing.Size(50, 35);
+            this.btnOrange.TabIndex = 16;
+            this.btnOrange.UseVisualStyleBackColor = false;
+            this.btnOrange.Click += new System.EventHandler(this.PegClicked);
+            // 
+            // btnBlue
+            // 
+            this.btnBlue.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnBlue.BackColor = System.Drawing.Color.Blue;
+            this.btnBlue.Location = new System.Drawing.Point(259, 625);
+            this.btnBlue.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBlue.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnBlue.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnBlue.Name = "btnBlue";
+            this.btnBlue.Size = new System.Drawing.Size(50, 35);
+            this.btnBlue.TabIndex = 15;
+            this.btnBlue.UseVisualStyleBackColor = false;
+            this.btnBlue.Click += new System.EventHandler(this.PegClicked);
+            // 
+            // btnYellow
+            // 
+            this.btnYellow.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnYellow.BackColor = System.Drawing.Color.Yellow;
+            this.btnYellow.Location = new System.Drawing.Point(199, 625);
+            this.btnYellow.Margin = new System.Windows.Forms.Padding(2);
+            this.btnYellow.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnYellow.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnYellow.Name = "btnYellow";
+            this.btnYellow.Size = new System.Drawing.Size(50, 35);
+            this.btnYellow.TabIndex = 14;
+            this.btnYellow.UseVisualStyleBackColor = false;
+            this.btnYellow.Click += new System.EventHandler(this.PegClicked);
+            // 
+            // btnGreen
+            // 
+            this.btnGreen.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnGreen.BackColor = System.Drawing.Color.Green;
+            this.btnGreen.Location = new System.Drawing.Point(139, 625);
+            this.btnGreen.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGreen.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnGreen.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnGreen.Name = "btnGreen";
+            this.btnGreen.Size = new System.Drawing.Size(50, 35);
+            this.btnGreen.TabIndex = 13;
+            this.btnGreen.UseVisualStyleBackColor = false;
+            this.btnGreen.Click += new System.EventHandler(this.PegClicked);
+            // 
+            // btnRed
+            // 
+            this.btnRed.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnRed.BackColor = System.Drawing.Color.Red;
+            this.btnRed.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnRed.Location = new System.Drawing.Point(79, 625);
+            this.btnRed.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRed.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnRed.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnRed.Name = "btnRed";
+            this.btnRed.Size = new System.Drawing.Size(50, 35);
+            this.btnRed.TabIndex = 12;
+            this.btnRed.UseVisualStyleBackColor = false;
+            this.btnRed.Click += new System.EventHandler(this.PegClicked);
+            // 
+            // btnBlack
+            // 
+            this.btnBlack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnBlack.BackColor = System.Drawing.Color.Black;
+            this.btnBlack.Location = new System.Drawing.Point(25, 625);
+            this.btnBlack.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBlack.MaximumSize = new System.Drawing.Size(50, 35);
+            this.btnBlack.MinimumSize = new System.Drawing.Size(50, 35);
+            this.btnBlack.Name = "btnBlack";
+            this.btnBlack.Size = new System.Drawing.Size(50, 35);
+            this.btnBlack.TabIndex = 11;
+            this.btnBlack.Text = "Black";
+            this.btnBlack.UseVisualStyleBackColor = false;
+            this.btnBlack.Click += new System.EventHandler(this.PegClicked);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 1113);
+            this.ClientSize = new System.Drawing.Size(519, 706);
+            this.Controls.Add(this.btnWhite);
+            this.Controls.Add(this.btnBrown);
+            this.Controls.Add(this.btnOrange);
+            this.Controls.Add(this.btnBlue);
+            this.Controls.Add(this.btnYellow);
+            this.Controls.Add(this.btnGreen);
+            this.Controls.Add(this.btnRed);
+            this.Controls.Add(this.btnBlack);
             this.Controls.Add(this.flpRowDock);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Controls.Add(this.btnPurple);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(535, 745);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(535, 745);
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MasterMind C#";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnPurple;
         private System.Windows.Forms.FlowLayoutPanel flpRowDock;
+        private System.Windows.Forms.Button btnWhite;
+        private System.Windows.Forms.Button btnBrown;
+        private System.Windows.Forms.Button btnOrange;
+        private System.Windows.Forms.Button btnBlue;
+        private System.Windows.Forms.Button btnYellow;
+        private System.Windows.Forms.Button btnGreen;
+        private System.Windows.Forms.Button btnRed;
+        private System.Windows.Forms.Button btnBlack;
     }
 }
 
