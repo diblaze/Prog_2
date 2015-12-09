@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 namespace aspLogin.Account
 {
-    public partial class Register : System.Web.UI.Page
+    public partial class Register : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void CreateUser_OnClick(object sender, EventArgs e)
@@ -21,13 +18,20 @@ namespace aspLogin.Account
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
 
-            IdentityUser user = new IdentityUser()
-                       {
-                           UserName = UserName.Text
-                       };
-            IdentityResult result = manager.Create(user, Password.Text);
+            var user = new IdentityUser
+            {
+                UserName = UserName.Text
+            };
+            var result = manager.Create(user, Password.Text);
 
-            StatusMessage.Text = result.Succeeded ? $"User {user.UserName} was created successfully!" : result.Errors.FirstOrDefault();
+            if (result.Succeeded)
+            {
+                //StatusMessage.Text = result.Succeeded ? $"User {user.UserName} was created successfully!" : result.Errors.FirstOrDefault();
+                var authManager = HttpContext.Current.GetOwinContext().Authentication;
+                var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authManager.SignIn(new AuthenticationProperties(), userIdentity);
+                Response.Redirect("~/Account/Login.aspx");
+            }
         }
     }
 }
