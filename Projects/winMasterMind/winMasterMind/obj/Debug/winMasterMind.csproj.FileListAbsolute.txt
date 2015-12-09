@@ -1,12 +1,4 @@
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.exe.config
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.exe
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.pdb
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.csprojResolveAssemblyReference.cache
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.Form1.resources
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.Properties.Resources.resources
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.csproj.GenerateResource.Cache
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.exe
-C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.pdb
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black1white1none2.png
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black1white2none1.png
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\mixed\black1white3.png
@@ -21,3 +13,11 @@ C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\De
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlywhite\white2.png
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlywhite\white3.png
 C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\images\onlywhite\white4.png
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\bin\Debug\winMasterMind.pdb
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.csprojResolveAssemblyReference.cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.Form1.resources
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.Properties.Resources.resources
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.csproj.GenerateResource.Cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\winMasterMind\winMasterMind\obj\Debug\winMasterMind.pdb

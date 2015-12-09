@@ -1,0 +1,8 @@
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\bin\Debug\testHotell.exe.config
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\bin\Debug\testHotell.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\bin\Debug\testHotell.pdb
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\obj\Debug\testHotell.csprojResolveAssemblyReference.cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\obj\Debug\testHotell.Properties.Resources.resources
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\obj\Debug\testHotell.csproj.GenerateResource.Cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\obj\Debug\testHotell.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Projects\testHotell\testHotell\obj\Debug\testHotell.pdb

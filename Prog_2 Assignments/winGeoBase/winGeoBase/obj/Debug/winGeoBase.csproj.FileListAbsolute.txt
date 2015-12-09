@@ -1,0 +1,9 @@
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\bin\Debug\winGeoBase.exe.config
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\bin\Debug\winGeoBase.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\bin\Debug\winGeoBase.pdb
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\obj\Debug\winGeoBase.csprojResolveAssemblyReference.cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\obj\Debug\winGeoBase.Form1.resources
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\obj\Debug\winGeoBase.Properties.Resources.resources
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\obj\Debug\winGeoBase.csproj.GenerateResource.Cache
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\obj\Debug\winGeoBase.exe
+C:\Users\mali_\Desktop\GitHub\Prog_2\Prog_2 Assignments\winGeoBase\winGeoBase\obj\Debug\winGeoBase.pdb
