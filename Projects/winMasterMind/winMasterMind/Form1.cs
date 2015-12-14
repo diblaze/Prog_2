@@ -9,9 +9,9 @@ namespace winMasterMind
     {
         private readonly Logic _logic = new Logic(10); //init game logic
         private string _currentRowId = "row1"; //current active row in GUI
+        private string _previousRowId = "row0"; //previous active row in GUI
         private bool _newRow; //if true - enable new row in GUI
-        private string _previousRowId = "row0"; //current active row in GUI
-        private bool noMoreRowsLeft;
+        private bool _noMoreRowsLeft;
         public Peg PegToPlace; //what peg used is putting in a box.
 
         public Form1()
@@ -115,6 +115,7 @@ namespace winMasterMind
         ///     Handle the picturebox clicks.
         /// </summary>
         /// <param name="sender">Control that was clicked on.</param>
+        /// <param name="e">Mouse event args</param>
         private void HandleMouseClick(object sender, MouseEventArgs e)
         {
             //retreive sender as picturebox to be able to modify.
@@ -139,14 +140,14 @@ namespace winMasterMind
             //If user has run out of guesses
             if (_logic.HowManyRows == 0)
             {
-                noMoreRowsLeft = true;
+                _noMoreRowsLeft = true;
                 UpdateStatus(false);
                 UpdateCheckBoxImage();
                 //If user still has guesses left
             }
             else
             {
-                noMoreRowsLeft = false;
+                _noMoreRowsLeft = false;
                 UpdateStatus(_newRow);
             }
 
@@ -329,7 +330,7 @@ Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this
                 }
             }
             //if user has not won and has run out of rows to guess on.
-            else if (!_logic.UserHasWon && noMoreRowsLeft)
+            else if (!_logic.UserHasWon && _noMoreRowsLeft)
             {
                 //disable every panel and its buttons
                 foreach (Panel panel in flpRowDock.Controls.Cast<Panel>())
@@ -370,7 +371,7 @@ Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this
                 control.Dispose();
             }
             //Tell the game logic to restart the game.
-            noMoreRowsLeft = false;
+            _noMoreRowsLeft = false;
             _logic.RestartGame(totalRows);
 
             //Repopulate the GUI accordingly to the game logic.
@@ -381,6 +382,7 @@ Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this
         ///     Get the <c>Peg</c> user wants to place.
         /// </summary>
         /// <param name="sender">Which peg button was pressed.</param>
+        /// <param name="e"></param>
         private void PegClicked(object sender, EventArgs e)
         {
             Button color = sender as Button;

@@ -23,21 +23,13 @@ namespace winMasterMind
             {
                 Cells[i] = new Cell();
             }
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    CheckingPegs.Add(new Peg((int)PegColours.None));
-            //}
-            //for (var i = 0; i < 4; i++)
-            //{
-            //    CheckingCells[i] = new CheckingCell();
-            //}
         }
 
         public int RowId { get; }
 
         public class Cell
         {
-            private Color _colour; // colour of the cell
+            public Color Colour { get; private set; }
             public bool IsEmpty { get; private set; } = true;
 
             /// <summary>
@@ -50,37 +42,37 @@ namespace winMasterMind
                 switch (peg.Colour)
                 {
                     case PegColours.Aqua:
-                        _colour = Color.Aqua;
+                        Colour = Color.Aqua;
                         break;
                     case PegColours.Black:
-                        _colour = Color.Black;
+                        Colour = Color.Black;
                         break;
                     case PegColours.None:
-                        _colour = Color.Empty;
+                        Colour = Color.Empty;
                         break;
                     case PegColours.Blue:
-                        _colour = Color.Blue;
+                        Colour = Color.Blue;
                         break;
                     case PegColours.Brown:
-                        _colour = Color.Brown;
+                        Colour = Color.Brown;
                         break;
                     case PegColours.Green:
-                        _colour = Color.Green;
+                        Colour = Color.Green;
                         break;
                     case PegColours.Orange:
-                        _colour = Color.Orange;
+                        Colour = Color.Orange;
                         break;
                     case PegColours.Purple:
-                        _colour = Color.Purple;
+                        Colour = Color.Purple;
                         break;
                     case PegColours.Red:
-                        _colour = Color.Red;
+                        Colour = Color.Red;
                         break;
                     case PegColours.White:
-                        _colour = Color.White;
+                        Colour = Color.White;
                         break;
                     case PegColours.Yellow:
-                        _colour = Color.Yellow;
+                        Colour = Color.Yellow;
                         break;
                 }
 
@@ -92,18 +84,8 @@ namespace winMasterMind
             /// </summary>
             public void RemovePeg()
             {
-                _colour = Color.Empty;
+                Colour = Color.Empty;
                 IsEmpty = true;
-            }
-        }
-
-        public class CheckingCell
-        {
-            private Color _colour;
-
-            public void SetColour(bool isCorrect)
-            {
-                _colour = isCorrect ? Color.White : Color.Black;
             }
         }
     }

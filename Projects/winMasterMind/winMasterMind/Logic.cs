@@ -5,11 +5,11 @@ namespace winMasterMind
 {
     internal class Logic
     {
-        private readonly PlaceablePeg[] _placeablePegs;
+        public PlaceablePeg[] PlaceablePegs { get; }
         private Row[] _rowArray;
         public Peg[] CorrectPegs;
         public Peg[] GuessedPegs;
-        private int previousRowId;
+        private int _previousRowId;
 
         public Logic(int howManyRows)
         {
@@ -18,7 +18,7 @@ namespace winMasterMind
             //_score = 0;
             CorrectPegs = new Peg[4];
             GuessedPegs = new Peg[4];
-            _placeablePegs = new PlaceablePeg[10];
+            PlaceablePegs = new PlaceablePeg[10];
             //TODO: Add diffuculty setting
             _rowArray = new Row[howManyRows];
 
@@ -222,7 +222,7 @@ namespace winMasterMind
             foreach (Row rw in _rowArray.Where(rw => rw.Active))
             {
                 rowId = rw.RowId;
-                previousRowId = rw.RowId;
+                _previousRowId = rw.RowId;
                 rw.Active = false; //disable row
 
                 //check if user has filled the checking row
@@ -265,7 +265,7 @@ namespace winMasterMind
         public Row GetPreviousRow()
         {
             //find the previous row 
-            Row previousRow = _rowArray.FirstOrDefault(row => row.RowId == previousRowId);
+            Row previousRow = _rowArray.FirstOrDefault(row => row.RowId == _previousRowId);
 
             return previousRow;
         }
