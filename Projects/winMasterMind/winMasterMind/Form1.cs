@@ -9,8 +9,8 @@ namespace winMasterMind
     {
         private readonly Logic _logic = new Logic(10); //init game logic
         private string _currentRowId = "row1"; //current active row in GUI
-        private string _previousRowId = "row0"; //current active row in GUI
         private bool _newRow; //if true - enable new row in GUI
+        private string _previousRowId = "row0"; //current active row in GUI
         private bool noMoreRowsLeft;
         public Peg PegToPlace; //what peg used is putting in a box.
 
@@ -43,15 +43,15 @@ namespace winMasterMind
             {
                 #region rowPanels
 
-                var pnl = new FlowLayoutPanel
-                {
-                    BackColor = Color.DarkGray,
-                    Width = 443,
-                    Height = 50,
-                    BorderStyle = BorderStyle.FixedSingle,
-                    Anchor = AnchorStyles.Bottom,
-                    Name = "row" + i
-                };
+                FlowLayoutPanel pnl = new FlowLayoutPanel
+                                      {
+                                          BackColor = Color.DarkGray,
+                                          Width = 443,
+                                          Height = 50,
+                                          BorderStyle = BorderStyle.FixedSingle,
+                                          Anchor = AnchorStyles.Bottom,
+                                          Name = "row" + i
+                                      };
 
                 //if first panel is created, set all other panels to non visible and disabled.
                 if (i >= 2)
@@ -67,15 +67,15 @@ namespace winMasterMind
                 //four pictureboxes
                 for (var j = 0; j < 4; j++)
                 {
-                    var pegClickable = new PictureBox
-                    {
-                        Name = "pegClickable" + j,
-                        BackColor = Color.White,
-                        Width = 40,
-                        Height = 40,
-                        Margin = new Padding(20, 5, 10, 5),
-                        BorderStyle = BorderStyle.Fixed3D
-                    };
+                    PictureBox pegClickable = new PictureBox
+                                              {
+                                                  Name = "pegClickable" + j,
+                                                  BackColor = Color.White,
+                                                  Width = 40,
+                                                  Height = 40,
+                                                  Margin = new Padding(20, 5, 10, 5),
+                                                  BorderStyle = BorderStyle.Fixed3D
+                                              };
                     pegClickable.MouseClick += HandleMouseClick;
 
                     pnl.Controls.Add(pegClickable);
@@ -85,17 +85,16 @@ namespace winMasterMind
 
                 #region pegCheckBoxes
 
-                var pegCheckBox = new PictureBox
-                {
-                    Name = "checkBox",
-                    Width = 40,
-                    Height = 40,
-                    Margin = new Padding(60, 5, 20, 5),
-                    Anchor = AnchorStyles.Right,
-                    BorderStyle = BorderStyle.Fixed3D,
-                    BackColor = Color.DarkGray
-                };
-
+                PictureBox pegCheckBox = new PictureBox
+                                         {
+                                             Name = "checkBox",
+                                             Width = 40,
+                                             Height = 40,
+                                             Margin = new Padding(60, 5, 20, 5),
+                                             Anchor = AnchorStyles.Right,
+                                             BorderStyle = BorderStyle.Fixed3D,
+                                             BackColor = Color.DarkGray
+                                         };
 
                 pnl.Controls.Add(pegCheckBox);
 
@@ -106,7 +105,7 @@ namespace winMasterMind
             }
 
             //for each panel in rowPanels array - add it to the main panel dock.
-            foreach (var c in rowPanels)
+            foreach (Panel c in rowPanels)
                 flpRowDock.Controls.Add(c);
 
             #endregion
@@ -119,7 +118,7 @@ namespace winMasterMind
         private void HandleMouseClick(object sender, MouseEventArgs e)
         {
             //retreive sender as picturebox to be able to modify.
-            var pegBox = sender as PictureBox;
+            PictureBox pegBox = sender as PictureBox;
 
             //Suspend the layout while CPU does the checking.
             SuspendLayout();
@@ -143,8 +142,8 @@ namespace winMasterMind
                 noMoreRowsLeft = true;
                 UpdateStatus(false);
                 UpdateCheckBoxImage();
+                //If user still has guesses left
             }
-            //If user still has guesses left
             else
             {
                 noMoreRowsLeft = false;
@@ -159,45 +158,50 @@ namespace winMasterMind
 
         private void UpdateCheckBoxImage()
         {
-            foreach (
-                var panel in
-                    flpRowDock.Controls.Cast<Panel>().Where(panel => panel.Name == _previousRowId && !panel.Enabled))
+            foreach (Panel panel in
+                flpRowDock.Controls.Cast<Panel>().Where(panel => panel.Name == _previousRowId && !panel.Enabled))
             {
-                foreach (var box in panel.Controls.Cast<PictureBox>().Where(box => box.Name == "checkBox"))
+                foreach (PictureBox box in panel.Controls.Cast<PictureBox>().Where(box => box.Name == "checkBox"))
                 {
-                    var whitePegs = _logic.GetWhitePegs();
-                    var blackPegs = _logic.GetBlackPegs();
+                    int whitePegs = _logic.GetWhitePegs();
+                    int blackPegs = _logic.GetBlackPegs();
 
                     #region Mixed Checking Pegs
 
                     if (whitePegs == 3 && blackPegs == 1)
                     {
-                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white3.png");
+                        box.Image =
+                            Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white3.png");
                         break;
                     }
                     if (whitePegs == 2 && blackPegs == 2)
                     {
-                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black2white2.png");
+                        box.Image =
+                            Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black2white2.png");
                         break;
                     }
                     if (whitePegs == 1 && blackPegs == 3)
                     {
-                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black3white1.png");
+                        box.Image =
+                            Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black3white1.png");
                         break;
                     }
                     if (whitePegs == 2 && blackPegs == 1)
                     {
-                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white2none1.png");
+                        box.Image =
+                            Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white2none1.png");
                         break;
                     }
                     if (whitePegs == 1 && blackPegs == 2)
                     {
-                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black2white1none1.png");
+                        box.Image =
+                            Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black2white1none1.png");
                         break;
                     }
                     if (whitePegs == 1 && blackPegs == 1)
                     {
-                        box.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white1none2.png");
+                        box.Image =
+                            Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "images/mixed/black1white1none2.png");
                         break;
                     }
 
@@ -267,29 +271,23 @@ namespace winMasterMind
                 //reset new row variable.
                 _newRow = false;
 
-                
-
                 //find current active row and disable it.
-                foreach (var pnl in flpRowDock.Controls.Cast<Panel>().Where(pnl => pnl.Name == _currentRowId))
+                foreach (Panel pnl in flpRowDock.Controls.Cast<Panel>().Where(pnl => pnl.Name == _currentRowId))
                 {
                     pnl.Enabled = false;
-                    
                 }
 
-                foreach (var pnlToActivate in flpRowDock.Controls.Cast<Panel>())
+                foreach (Panel pnlToActivate in flpRowDock.Controls.Cast<Panel>())
                 {
                     //Find the current row
-                    var tempCurrentRowId = int.Parse(_currentRowId.Substring(3));
-                    
+                    int tempCurrentRowId = int.Parse(_currentRowId.Substring(3));
 
                     //Find the next row
-                    var idParsed = int.Parse(pnlToActivate.Name.Substring(3));
+                    int idParsed = int.Parse(pnlToActivate.Name.Substring(3));
 
                     //if we found wrong next row, continue
                     if (idParsed != tempCurrentRowId + 1)
                         continue;
-
-                    
 
                     //enable the panel and its visiblity.
                     pnlToActivate.Enabled = true;
@@ -302,23 +300,22 @@ namespace winMasterMind
 
                     UpdateCheckBoxImage();
                     break;
-                    
                 }
             }
             //if user has won
             if (_logic.UserHasWon)
             {
                 //disable every panel and its buttons
-                foreach (var panel in flpRowDock.Controls.Cast<Panel>())
+                foreach (Panel panel in flpRowDock.Controls.Cast<Panel>())
                 {
                     panel.Enabled = false;
                 }
                 //TODO: Add better game over alert box.
-                var result = MessageBox.Show(
-                    @"You have won! 
-Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this message.",
-                    @"Game Over!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
+                DialogResult result = MessageBox.Show(@"You have won! 
+Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this message.", @"Game Over!", MessageBoxButtons
+                                                                                                                                                                                       .YesNoCancel,
+                                                      MessageBoxIcon.Exclamation,
+                                                      MessageBoxDefaultButton.Button1);
                 switch (result)
                 {
                     case DialogResult.Yes:
@@ -335,15 +332,18 @@ Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this
             else if (!_logic.UserHasWon && noMoreRowsLeft)
             {
                 //disable every panel and its buttons
-                foreach (var panel in flpRowDock.Controls.Cast<Panel>())
+                foreach (Panel panel in flpRowDock.Controls.Cast<Panel>())
                 {
                     panel.Enabled = false;
                 }
                 //TODO: Add better game over alert box.
-                var result = MessageBox.Show(
-                    @"You have lost! ""\n"" Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this message.",
-                    @"Game Over!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
+                DialogResult result =
+                    MessageBox.Show(
+                                    @"You have lost! ""\n"" Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this message.",
+                                    @"Game Over!",
+                                    MessageBoxButtons.YesNoCancel,
+                                    MessageBoxIcon.Exclamation,
+                                    MessageBoxDefaultButton.Button1);
                 switch (result)
                 {
                     case DialogResult.Yes:
@@ -365,7 +365,7 @@ Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this
         private void RestartGame(int totalRows)
         {
             //Cast all controls in the main panel dock to an array and dispose of them.
-            foreach (var control in flpRowDock.Controls.Cast<Panel>().ToArray())
+            foreach (Panel control in flpRowDock.Controls.Cast<Panel>().ToArray())
             {
                 control.Dispose();
             }
@@ -383,11 +383,10 @@ Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this
         /// <param name="sender">Which peg button was pressed.</param>
         private void PegClicked(object sender, EventArgs e)
         {
-            var color = sender as Button;
+            Button color = sender as Button;
 
             switch (color?.Name)
             {
-                
                 case "btnRed":
                     PegToPlace = new Peg(1);
                     break;
