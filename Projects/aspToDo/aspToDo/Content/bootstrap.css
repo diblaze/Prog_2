@@ -1341,7 +1341,7 @@ a.text-success:focus {
   color: #2b542c;
 }
 .text-info {
-  color: #31708f;
+  color: #FFF;
 }
 a.text-info:hover,
 a.text-info:focus {
@@ -1401,6 +1401,10 @@ a.bg-danger:focus {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee;
+    color: #fff;
+}
+.page-header #btnAddTodo {
+    color:black;
 }
 ul,
 ol {
@@ -5473,6 +5477,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-body {
   padding: 15px;
+    color: #fff;
 }
 .panel-heading {
   padding: 10px 15px;
@@ -5754,6 +5759,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-info {
   border-color: #bce8f1;
+    color: black;
 }
 .panel-info > .panel-heading {
   color: #31708f;
