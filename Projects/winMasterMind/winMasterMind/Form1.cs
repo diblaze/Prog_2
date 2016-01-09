@@ -373,6 +373,9 @@ Press Yes to play again. Press No to quit the game. Press Cancel to dismiss this
             //Tell the game logic to restart the game.
             _noMoreRowsLeft = false;
             _logic.RestartGame(totalRows);
+            _currentRowId = "row1"; //current active row in GUI
+            _previousRowId = "row0"; //previous active row in GUI
+
 
             //Repopulate the GUI accordingly to the game logic.
             PopulateGui(totalRows);

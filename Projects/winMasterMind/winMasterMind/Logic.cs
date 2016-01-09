@@ -49,6 +49,7 @@ namespace winMasterMind
             GuessedPegs = new Peg[4];
             _rowArray = new Row[howManyRows];
 
+
             CreateRows(10);
             GetRandomPegs();
         }
