@@ -25,6 +25,7 @@
                    runat="server"
                    SelectCommand="SELECT * FROM [Todo]">
 </asp:SqlDataSource>
+
 <form id="form1"
       runat="server">
     <div class="col-centered col-lg-3">
@@ -36,12 +37,15 @@
         <div class="panel panel-info">
             <div class="panel-body">
                 <span class="text-info">Title:</span> 
+                
+
                 <asp:TextBox ID="tbTitle"
                              placeholder="Enter the title here - 50 characters max"
                              runat="server"
                              ValidationGroup="addGroup"
                              Width="230px">
                 </asp:TextBox>
+
                 <asp:RequiredFieldValidator runat="server"
                                             Text="*"
                     ErrorMessage="You have to input a title."
