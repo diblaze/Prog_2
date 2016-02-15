@@ -1,19 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace winKryptering
 {
     public partial class Form1 : Form
     {
-        public string FileName { get; private set; }
+        private readonly char[] _vowelsToCheckFor =
+        {
+            'a',
+            'A',
+            'o',
+            'O',
+            'u',
+            'U',
+            'å',
+            'Å',
+            'e',
+            'E',
+            'i',
+            'I',
+            'y',
+            'Y',
+            'ä',
+            'Ä',
+            'ö',
+            'Ö'
+        };
 
         public Form1()
         {
@@ -23,7 +38,6 @@ namespace winKryptering
             FormBorderStyle = FormBorderStyle.Fixed3D;
             btnOpenFileDialog.Text = @"...";
             btnOpenFileDialog.Size = new Size(40, 22);
-            
 
             //Label texts
             lblFile.Text = @"File:";
@@ -37,69 +51,55 @@ namespace winKryptering
             btnRovar.Text = @"Rövarspråket";
             btnILang.Text = @"I-språket";
             btnFikon.Text = @"Fikonspråket";
+        }
 
+        public string FileName
+        {
+            get;
+            private set;
         }
 
         private void btnOpenFileDialog_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog();
 
-            if (dlg.ShowDialog() != DialogResult.OK)
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
                 return;
+            }
 
-            FileName = dlg.FileName;
+            FileName = openFileDialog.FileName;
             tbFileLocation.Text = FileName;
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
             if (FileName == null)
+            {
                 return;
+            }
 
-            StreamReader streamReader = new StreamReader(FileName);
-            tbEncrypt.Text = streamReader.ReadToEnd();
-
+            var streamReader = new StreamReader(FileName);
+            tbTextToEncrypt.Text = streamReader.ReadToEnd();
         }
 
         private void btnRovar_Click(object sender, EventArgs e)
         {
-
-            if (tbEncrypt.Text == string.Empty)
-                return;
-
-            string textToEncrypt = tbEncrypt.Text;
-            var convertedText = "";
-
-            char[] charsToCheckFor =
+            if (tbTextToEncrypt.Text == string.Empty)
             {
-                'a',
-                'A',
-                'o',
-                'O',
-                'u',
-                'U',
-                'å',
-                'Å',
-                'e',
-                'E',
-                'i',
-                'I',
-                'y',
-                'Y',
-                'ä',
-                'Ä',
-                'ö',
-                'Ö'
-            };
+                return;
+            }
+
+            string textToEncrypt = tbTextToEncrypt.Text;
+            string convertedText = "";
 
             foreach (char t in textToEncrypt)
             {
                 if (char.IsWhiteSpace(t))
                 {
-                    continue;
-                    
+                    convertedText += t;
                 }
-                if (charsToCheckFor.Contains(t))
+                else if (_vowelsToCheckFor.Contains(t))
                 {
                     convertedText += t;
                 }
@@ -107,16 +107,59 @@ namespace winKryptering
                 {
                     convertedText += t;
                     convertedText += 'o';
-                    convertedText += t;
+                    convertedText += t.ToString().ToLower();
                 }
             }
 
-            tbDecrypt.Text = convertedText;
+            tbEncryptedText.Text = convertedText;
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            using (var sw = new StreamWriter(saveFileDialog.FileName))
+            {
+                sw.WriteLine(tbEncryptedText.Text);
+            }
+        }
+
+        private void btnILang_Click(object sender, EventArgs e)
+        {
+            if (tbTextToEncrypt.Text == string.Empty)
+            {
+                return;
+            }
+
+            string textToEncrypt = tbTextToEncrypt.Text;
+            string convertedText = "";
+
+            foreach (char t in textToEncrypt)
+            {
+                if (char.IsWhiteSpace(t))
+                {
+                    convertedText += t;
+                }
+                else if (_vowelsToCheckFor.Contains(t))
+                {
+                    convertedText += 'i';
+                }
+                else
+                {
+                    convertedText += t;
+                }
+            }
+
+            tbEncryptedText.Text = convertedText;
         }
     }
 }
