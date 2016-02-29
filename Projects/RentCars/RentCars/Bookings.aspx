@@ -33,13 +33,22 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                Från: <asp:TextBox runat="server" ID="startDate" TextMode="DateTime"></asp:TextBox>
-                Till: <asp:TextBox runat="server" ID="endDate" TextMode="DateTime"></asp:TextBox>
+                Från: <asp:Calendar runat="server"
+                                    ID="startDate"
+                                     />
+                <%--<asp:TextBox runat="server" ID="startDate" TextMode="DateTime"></asp:TextBox>--%>
+                Till: <asp:Calendar runat="server"
+                                    ID="endDate"
+                                    />
+                <%--<asp:TextBox runat="server" ID="endDate" TextMode="DateTime"></asp:TextBox>--%>
                 <!-- TODO: Add seek button -->
+                <asp:Button runat="server"
+                            ID="btnSearch"
+                            Text="Sök bilar" OnClick="btnSearch_OnClick"/>
             </div>
         </div>
     </div>
-    <asp:Repeater runat="server" DataSourceID="dsVehicles" >
+    <asp:Repeater runat="server" DataSourceID="dsVehicles" ID="vehiclesRepeater" >
         <ItemTemplate>
             <div class="panel panel-default col-md-6">
                 <div class ="panel-heading">
