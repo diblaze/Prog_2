@@ -35,8 +35,8 @@
                         <li><a href="dummy.aspx">Om oss</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrera</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Inlogg</a></li>
+                        <li><a href="Account/Register.aspx"><span class="glyphicon glyphicon-user"></span> Registrera</a></li>
+                        <li><a href="Account/Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Logga in</a></li>
                     </ul>
                 </div>
             </div>
