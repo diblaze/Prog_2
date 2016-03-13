@@ -1,165 +1,239 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
-using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace winKryptering
 {
     public partial class Form1 : Form
     {
-        private readonly char[] _vowelsToCheckFor =
-        {
-            'a',
-            'A',
-            'o',
-            'O',
-            'u',
-            'U',
-            'å',
-            'Å',
-            'e',
-            'E',
-            'i',
-            'I',
-            'y',
-            'Y',
-            'ä',
-            'Ä',
-            'ö',
-            'Ö'
-        };
-
         public Form1()
         {
             InitializeComponent();
-
-            //Form settings
-            FormBorderStyle = FormBorderStyle.Fixed3D;
-            btnOpenFileDialog.Text = @"...";
-            btnOpenFileDialog.Size = new Size(40, 22);
-
-            //Label texts
-            lblFile.Text = @"File:";
-            lblEncryptText.Text = @"Text att kryptera";
-            lblDecryptedText.Text = @"Krypterad text";
-
-            //button texts
-            btnOpen.Text = @"Öppna";
-            btnSave.Text = @"Spara";
-            btnQuit.Text = @"Avsluta";
-            btnRovar.Text = @"Rövarspråket";
-            btnILang.Text = @"I-språket";
-            btnFikon.Text = @"Fikonspråket";
         }
 
-        public string FileName
+        /// <value>
+        ///     The name of the file.
+        /// </value>
+        public string EncryptedFileName
+        {
+            get;
+            private set;
+        }
+        public string UncryptedFileName
         {
             get;
             private set;
         }
 
-        private void btnOpenFileDialog_Click(object sender, EventArgs e)
+        /// <summary>
+        ///     Handles the Click event of the btnOpenFileDialog control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void btnEncryptedFileDialog_Click(object sender, EventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
-
-            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            //open a OpenFileDialog and ask the user to pick a file.
+            using (var openFileDialog = new OpenFileDialog())
             {
-                return;
-            }
+                openFileDialog.Filter = @"Data files | *.dat";
+                openFileDialog.DefaultExt = "dat";
 
-            FileName = openFileDialog.FileName;
-            tbFileLocation.Text = FileName;
+                //if user pressed any other button except "OK" then assume user probably canceled the dialog.
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    //do not do anything
+                    return;
+                }
+
+                //if user pressed "OK", then assume this is the file the user wants to use.
+                //set the public EncryptedFileName to current filename so we can access it from every method.
+                EncryptedFileName = openFileDialog.FileName;
+                //set the FileLocation text to current filename - provides visual hint to the user.
+                tbFileLocation.Text = EncryptedFileName;
+            }
         }
 
+        /// <summary>
+        ///     Handles the Click event of the btnSaveFileDialog control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void btnSaveFileDialog_Click(object sender, EventArgs e)
+        {
+            //open a SaveFileDialog and ask the user for a location/file to write to.
+            using (var saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = @"Data files | *.dat";
+                saveFileDialog.DefaultExt = "dat";
+
+                //if user pressed something else than "OK" then assume user canceled.
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                //save the encrypted text to the user picked file.
+                using (var streamWriter = new StreamWriter(saveFileDialog.FileName, false, Encoding.Default))
+                {
+                    streamWriter.WriteLine(tbEncryptedText.Text);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Opens and reads a file, then putting it in the encrypt textbox.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            if (FileName == null)
+            //if user has not picked a file to open, show error message.
+            if (EncryptedFileName == null)
             {
+                MessageBox.Show(@"Välj först en fil att öppna!", @"Varning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var streamReader = new StreamReader(FileName);
-            tbTextToEncrypt.Text = streamReader.ReadToEnd();
+            //if user picked a file to open, open the file and input the text to the encrypt textbox.            
+            using (var reader = new StreamReader(EncryptedFileName, Encoding.Default))
+            {
+                tbEncryptedText.Text = reader.ReadToEnd();
+            }
         }
 
+        /// <summary>
+        ///     Encrypt text to Rövarspråk.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnRovar_Click(object sender, EventArgs e)
         {
+            //if text is empty, show error message.
             if (tbTextToEncrypt.Text == string.Empty)
             {
+                MessageBox.Show(@"Var vänlig och lägg till en text att enkryptera!",
+                    @"Varning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
-            string textToEncrypt = tbTextToEncrypt.Text;
-            string convertedText = "";
-
-            foreach (char t in textToEncrypt)
-            {
-                if (char.IsWhiteSpace(t))
-                {
-                    convertedText += t;
-                }
-                else if (_vowelsToCheckFor.Contains(t))
-                {
-                    convertedText += t;
-                }
-                else
-                {
-                    convertedText += t;
-                    convertedText += 'o';
-                    convertedText += t.ToString().ToLower();
-                }
-            }
-
-            tbEncryptedText.Text = convertedText;
+            //Encrypt and set the encrypted textbox text.
+            tbEncryptedText.Text = Encrypt.EncryptToRovar(tbTextToEncrypt.Text);
         }
 
+        /// <summary>
+        ///     Exit the program on user click.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        /// <summary>
+        ///     Encrypt the text to I-språk.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void btnILang_Click(object sender, EventArgs e)
         {
-            var saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            //if text is empty, show error message.
+            if (tbTextToEncrypt.Text == string.Empty)
             {
+                MessageBox.Show(@"Var vänlig och lägg till en text att enkryptera!",
+                    @"Varning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
-            using (var sw = new StreamWriter(saveFileDialog.FileName))
+            //Encrypt and set the encrypted textbox text.
+            tbEncryptedText.Text = Encrypt.EncryptToILang(tbTextToEncrypt.Text);
+        }
+
+        /// <summary>
+        ///     Removes all text from the encrypt and encrypted boxes.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+            tbEncryptedText.Text = "";
+            tbTextToEncrypt.Text = "";
+        }
+
+        /// <summary>
+        /// Encrypt the text to Fikonspråk.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnFikon_Click(object sender, EventArgs e)
+        {
+            //if text is empty, show error message.
+            if (tbTextToEncrypt.Text == string.Empty)
             {
-                sw.WriteLine(tbEncryptedText.Text);
+                MessageBox.Show(@"Var vänlig och lägg till en text att enkryptera!",
+                    @"Varning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            //Encrypt and set the encrypted textbox text.
+            tbEncryptedText.Text = Encrypt.EncryptToFikon(tbTextToEncrypt.Text);
+
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnUncryptedOpenFileDialog control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnUncryptedOpenFileDialog_Click(object sender, EventArgs e)
+        {
+            //open a OpenFileDialog and ask the user to pick a file.
+            using (var openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = @"Text Files | *.txt";
+                openFileDialog.DefaultExt = "txt";
+
+                //if user pressed any other button except "OK" then assume user probably canceled the dialog.
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    //do not do anything
+                    return;
+                }
+
+                //if user pressed "OK", then assume this is the file the user wants to use.
+                //set the public EncryptedFileName to current filename so we can access it from every method.
+                UncryptedFileName = openFileDialog.FileName;
+                //set the FileLocation text to current filename - provides visual hint to the user.
+                tbUncryptedFileLocation.Text = UncryptedFileName;
             }
         }
 
-        private void btnILang_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the btnOpenDecrypt control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnOpenUncrypted_Click(object sender, EventArgs e)
         {
-            if (tbTextToEncrypt.Text == string.Empty)
+            //if user has not picked a file to open, show error message.
+            if (UncryptedFileName == null)
             {
+                MessageBox.Show(@"Välj först en fil att öppna!", @"Varning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string textToEncrypt = tbTextToEncrypt.Text;
-            string convertedText = "";
-
-            foreach (char t in textToEncrypt)
+            //if user picked a file to open, open the file and input the text to the encrypt textbox.            
+            using (var reader = new StreamReader(UncryptedFileName, Encoding.Default))
             {
-                if (char.IsWhiteSpace(t))
-                {
-                    convertedText += t;
-                }
-                else if (_vowelsToCheckFor.Contains(t))
-                {
-                    convertedText += 'i';
-                }
-                else
-                {
-                    convertedText += t;
-                }
+                tbTextToEncrypt.Text = reader.ReadToEnd();
             }
-
-            tbEncryptedText.Text = convertedText;
         }
     }
 }
