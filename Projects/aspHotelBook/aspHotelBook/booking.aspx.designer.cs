@@ -10,51 +10,33 @@
 namespace aspHotelBook {
     
     
-    public partial class _default {
+    public partial class booking {
         
         /// <summary>
-        /// checkInDate control.
+        /// sqlHotels control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar checkInDate;
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlHotels;
         
         /// <summary>
-        /// checkOutDate control.
+        /// sqlBookings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar checkOutDate;
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlBookings;
         
         /// <summary>
-        /// ddlGrownUps control.
+        /// lvStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrownUps;
-        
-        /// <summary>
-        /// ddlChildren control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChildren;
-        
-        /// <summary>
-        /// btnSearchForHotels control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchForHotels;
+        protected global::System.Web.UI.WebControls.LoginView lvStatus;
     }
 }

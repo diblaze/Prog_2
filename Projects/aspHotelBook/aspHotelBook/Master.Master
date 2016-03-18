@@ -73,7 +73,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <div class="navbar-brand">
-                                <a href="./pages/default.aspx">
+                                <a href="./default.aspx">
                                     <h1>
                                         <span id="blueBrand">Atlantic</span> Hotels
                                     </h1>
@@ -87,16 +87,16 @@
                                 <ul class="nav nav-tabs"
                                     role="tablist">
                                     <li role="presentation">
-                                        <a href="~/pages/default.aspx">Home</a>
+                                        <a href="./default.aspx">Home</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="~/pages/default.aspx#about">About</a>
+                                        <a href="./default.aspx#about">About</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="~/pages/default.aspx#services">Services</a>
+                                        <a href="./default.aspx#services">Services</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="~/pages/default.aspx#contact">Contact</a>
+                                        <a href="./default.aspx#contact">Contact</a>
                                     </li>
 
                                     <asp:LoginView EnableViewState="False"
@@ -104,10 +104,10 @@
                                                    runat="server">
                                         <AnonymousTemplate>
                                             <li role="presentation">
-                                                <a href="./pages/account/register.aspx">Register</a>
+                                                <a href="./account/register.aspx">Register</a>
                                             </li>
                                             <li role="presentation">
-                                                <a href="./pages/account/login.aspx">Login</a>
+                                                <a href="./account/login.aspx">Login</a>
                                             </li>
                                         </AnonymousTemplate>
                                         <LoggedInTemplate>
@@ -116,7 +116,7 @@
                                                                                runat="server"/>!
                                             </li>
                                             <li role="presentation">
-                                                <a href="./pages/account/logout.aspx">Log out</a>
+                                                <a href="./account/logout.aspx">Log out</a>
                                             </li>
                                         </LoggedInTemplate>
                                         <RoleGroups>
@@ -127,10 +127,10 @@
                                                                                        runat="server"/>!
                                                     </li>
                                                     <li role="presentation">
-                                                        <a href="./pages/adminPages/manage.aspx">Manage hotel</a>
+                                                        <a href="./adminPages/manage.aspx">Manage hotel</a>
                                                     </li>
                                                     <li role="presentation">
-                                                        <a href="./pages/account/logout.aspx">Log out</a>
+                                                        <a href="./account/logout.aspx">Log out</a>
                                                     </li>
                                                 </ContentTemplate>
                                             </asp:RoleGroup>
@@ -141,10 +141,10 @@
                                                                                        runat="server"/>!
                                                     </li>
                                                     <li role="presentation">
-                                                        <a href="./pages/employeePages/manage.aspx">Create or remove bookings</a>
+                                                        <a href="./employeePages/manage.aspx">Create or remove bookings</a>
                                                     </li>
                                                     <li role="presentation">
-                                                        <a href="./pages/account/logout.aspx">Log out</a>
+                                                        <a href="./account/logout.aspx">Log out</a>
                                                     </li>
                                                 </ContentTemplate>
                                             </asp:RoleGroup>
@@ -164,6 +164,17 @@
 
             </asp:ContentPlaceHolder>
         </div>
+
+        <footer>
+            <div class="footer">
+                <div class="container">
+                    
+                        <div class="copyright">
+                            &copy; <%:DateTime.Now.Year%> - Atlantic Hotels
+                        </div>
+                </div>
+            </div>
+        </footer>
 
         <div>
 

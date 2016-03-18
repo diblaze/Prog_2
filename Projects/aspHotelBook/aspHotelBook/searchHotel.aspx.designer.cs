@@ -10,51 +10,60 @@
 namespace aspHotelBook {
     
     
-    public partial class _default {
+    public partial class searchHotel {
         
         /// <summary>
-        /// checkInDate control.
+        /// sqlHotels control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar checkInDate;
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlHotels;
         
         /// <summary>
-        /// checkOutDate control.
+        /// sqlBookings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar checkOutDate;
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlBookings;
         
         /// <summary>
-        /// ddlGrownUps control.
+        /// btnAllRoomTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrownUps;
+        protected global::System.Web.UI.WebControls.Button btnAllRoomTypes;
         
         /// <summary>
-        /// ddlChildren control.
+        /// btnStandardRoomType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChildren;
+        protected global::System.Web.UI.WebControls.Button btnStandardRoomType;
         
         /// <summary>
-        /// btnSearchForHotels control.
+        /// btnHighEndRoomType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchForHotels;
+        protected global::System.Web.UI.WebControls.Button btnHighEndRoomType;
+        
+        /// <summary>
+        /// btnLuxuaryRoomType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLuxuaryRoomType;
     }
 }
