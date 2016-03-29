@@ -7,63 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace aspHotelBook.account {
+namespace aspHotelBook.adminPages {
     
     
-    public partial class register {
+    public partial class manage {
         
         /// <summary>
-        /// tbUsername control.
+        /// sqlRoles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUsername;
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlRoles;
         
         /// <summary>
-        /// tbEmail control.
+        /// tbNewRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail;
+        protected global::System.Web.UI.WebControls.TextBox tbNewRole;
         
         /// <summary>
-        /// tbPassword control.
+        /// btnAddNewRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPassword;
+        protected global::System.Web.UI.WebControls.Button btnAddNewRole;
         
         /// <summary>
-        /// tbPasswordConfirm control.
+        /// lblRoleManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPasswordConfirm;
+        protected global::System.Web.UI.WebControls.Label lblRoleManager;
         
         /// <summary>
-        /// ComparePassword control.
+        /// listBoxAllRoles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator ComparePassword;
-        
-        /// <summary>
-        /// lblConfirmationText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblConfirmationText;
+        protected global::System.Web.UI.WebControls.ListBox listBoxAllRoles;
     }
 }

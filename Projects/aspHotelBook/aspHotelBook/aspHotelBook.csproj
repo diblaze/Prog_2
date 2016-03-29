@@ -115,7 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="account\login.aspx" />
+    <Content Include="account\logout.aspx" />
     <Content Include="account\register.aspx" />
+    <Content Include="adminPages\manage.aspx" />
     <Content Include="App_Data\dbHotels.mdf" />
     <Content Include="App_Data\dbHotels_log.ldf">
       <DependentUpon>dbHotels.mdf</DependentUpon>
@@ -326,12 +328,26 @@
     <Compile Include="account\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="account\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="account\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="account\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="account\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminPages\manage.aspx.cs">
+      <DependentUpon>manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminPages\manage.aspx.designer.cs">
+      <DependentUpon>manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="booking.aspx.cs">
       <DependentUpon>booking.aspx</DependentUpon>
@@ -363,6 +379,9 @@
       <DependentUpon>searchHotel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="employeePages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

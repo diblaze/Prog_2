@@ -29,7 +29,9 @@
                 <div class="controls">
                     <asp:TextBox CssClass="input-xlarge"
                                  ID="tbUsername"
-                                 runat="server" ForeColor="Black"/>
+                                 runat="server"
+                                 ForeColor="Black"/>
+                    <asp:RequiredFieldValidator runat="server" ForeColor="Red" Text="*" ValidationGroup="validationGroup" ControlToValidate="tbUsername"></asp:RequiredFieldValidator>
                     <p class="help-block">Username can contain any letters or numbers, without spaces</p>
                 </div>
             </div>
@@ -43,7 +45,10 @@
                 <div class="controls">
                     <asp:TextBox CssClass="input-xlarge"
                                  ID="tbEmail"
-                                 runat="server" ForeColor="Black" TextMode="Email"/>
+                                 runat="server"
+                                 ForeColor="Black"
+                                 TextMode="Email"/>
+                    <asp:RequiredFieldValidator runat="server" ForeColor="Red" Text="*" ValidationGroup="validationGroup" ControlToValidate="tbEmail"></asp:RequiredFieldValidator>
                     <p class="help-block">Please provide your E-mail</p>
                 </div>
             </div>
@@ -59,7 +64,7 @@
                                  ID="tbPassword"
                                  runat="server"
                                  TextMode="Password" ForeColor="Black"/>
-
+                    <asp:RequiredFieldValidator runat="server" ForeColor="Red" Text="*" ValidationGroup="validationGroup" ControlToValidate="tbPassword"></asp:RequiredFieldValidator>
                     <p class="help-block">Password should be at least 7 characters and have at least one non-alphanumeric character!</p>
                 </div>
             </div>
@@ -76,20 +81,18 @@
                                  runat="server"
                                  TextMode="Password"
                                  ForeColor="Black"/>
+                    <asp:RequiredFieldValidator runat="server" ForeColor="Red" Text="*" ValidationGroup="validationGroup" ControlToValidate="tbPasswordConfirm"></asp:RequiredFieldValidator>
                     <p class="help-block">Please confirm password</p>
+                    <asp:CompareValidator runat="server"
+                                          ID="ComparePassword"
+                                          ControlToCompare="tbPassword"
+                                          ControlToValidate="tbPasswordConfirm"
+                                          CssClass="has-error"
+                                          ErrorMessage="Passwords do not match!"
+                                          ForeColor="Red"
+                                          ToolTip="Passwords must be the same."/>
+                    
                 </div>
-            </div>
-
-            <div class="control-group">
-                <!-- Security Question -->
-                <label class="control-label"
-                       for="tbSecurityAnswer">What is your favourite color?</label>
-                <div class="controls">
-                    <asp:TextBox runat="server"
-                                 CssClass="input-xlarge"
-                                 ID="tbSecurityAnswer"
-                                 ForeColor="Black"/>
-                    </div>
             </div>
 
             <div class="control-group">
@@ -98,7 +101,8 @@
                     <asp:Button CssClass="btn btn-success"
                                 OnClick="RegisterUser"
                                 runat="server"
-                                Text="Register"/>
+                                Text="Register"
+                        ValidationGroup="validationGroup"/>
                 </div>
             </div>
 
