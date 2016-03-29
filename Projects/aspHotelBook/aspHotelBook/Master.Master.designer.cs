@@ -31,13 +31,31 @@ namespace aspHotelBook {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lvStatus control.
+        /// lvAdminContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginView lvStatus;
+        protected global::System.Web.UI.WebControls.LoginView lvAdminContent;
+        
+        /// <summary>
+        /// lvEmployeeContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginView lvEmployeeContent;
+        
+        /// <summary>
+        /// lvUserStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginView lvUserStatus;
         
         /// <summary>
         /// BodyContent control.

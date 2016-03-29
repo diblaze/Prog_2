@@ -192,7 +192,8 @@
                                       ID="ddlChildren"
                                       runat="server"
                                       Width="200px">
-                        <asp:ListItem Enabled="True"
+                        <asp:ListItem Enabled="True" Text="0" Value="0"></asp:ListItem>
+                        <asp:ListItem
                                       Text="1"
                                       Value="1">
                         </asp:ListItem>

@@ -37,7 +37,6 @@
             type="text/javascript"></script>
     <script src="/js/functions.js"
             type="text/javascript"></script>
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,11 +72,13 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <div class="navbar-brand">
-                                <a href="./default.aspx">
+
+                                <asp:HyperLink NavigateUrl="~/default.aspx"
+                                               runat="server">
                                     <h1>
                                         <span id="blueBrand">Atlantic</span> Hotels
                                     </h1>
-                                </a>
+                                </asp:HyperLink>
                             </div>
                         </div>
 
@@ -87,28 +88,97 @@
                                 <ul class="nav nav-tabs"
                                     role="tablist">
                                     <li role="presentation">
-                                        <a href="./default.aspx">Home</a>
+                                        <asp:HyperLink NavigateUrl="~/default.aspx"
+                                                       runat="server">
+                                            Home
+                                        </asp:HyperLink>
+
                                     </li>
                                     <li role="presentation">
-                                        <a href="./default.aspx#about">About</a>
+                                        <asp:HyperLink NavigateUrl="~/default.aspx#about"
+                                                       runat="server">
+                                            About
+                                        </asp:HyperLink>
                                     </li>
                                     <li role="presentation">
-                                        <a href="./default.aspx#services">Services</a>
+                                        <asp:HyperLink NavigateUrl="~/default.aspx#services"
+                                                       runat="server">
+                                            Services
+                                        </asp:HyperLink>
+
                                     </li>
                                     <li role="presentation">
-                                        <a href="./default.aspx#contact">Contact</a>
+                                        <asp:HyperLink NavigateUrl="~/default.aspx#contact"
+                                                       runat="server">
+                                            Contact
+                                        </asp:HyperLink>
+
                                     </li>
 
+                                    <asp:LoginView ID="lvAdminContent"
+                                                   runat="server"
+                                                   Visible="False">
+                                        <LoggedInTemplate>
+                                            <li role="presentation">
+                                                <i>Welcome,</i> <asp:LoginName ID="lnNormalUser"
+                                                                               runat="server"/>!
+
+                                            </li>
+                                            <li role="presentation">
+                                                <asp:HyperLink NavigateUrl="~/adminPages/manage.aspx"
+                                                               runat="server">
+                                                    Manage hotel
+                                                </asp:HyperLink>
+                                            </li>
+                                            <li role="presentation">
+                                                <asp:HyperLink NavigateUrl="~/account/logout.aspx"
+                                                               runat="server">
+                                                    Log out
+                                                </asp:HyperLink>
+                                            </li>
+                                        </LoggedInTemplate>
+                                    </asp:LoginView>
+                                    <asp:LoginView ID="lvEmployeeContent"
+                                                   runat="server"
+                                                   Visible="False">
+                                        <LoggedInTemplate>
+                                            <li role="presentation">
+                                                <i>Welcome,</i> <asp:LoginName ID="lnNormalUser"
+                                                                               runat="server"/>!
+                                            </li>
+
+                                            <li role="presentation">
+                                                <asp:HyperLink NavigateUrl="~/employeePages/manage.aspx"
+                                                               runat="server">
+                                                    Create or remove bookings
+                                                </asp:HyperLink>
+                                            </li>
+
+                                            <li role="presentation">
+                                                <asp:HyperLink NavigateUrl="~/account/logout.aspx"
+                                                               runat="server">
+                                                    Log out
+                                                </asp:HyperLink>
+                                            </li>
+                                        </LoggedInTemplate>
+                                    </asp:LoginView>
+
                                     <asp:LoginView EnableViewState="False"
-                                                   ID="lvStatus"
+                                                   ID="lvUserStatus"
                                                    runat="server">
                                         <AnonymousTemplate>
                                             <li role="presentation">
-                                                <a href="./account/register.aspx">Register</a>
+                                                <asp:HyperLink NavigateUrl="~/account/register.aspx"
+                                                               runat="server">
+                                                    Register
+                                                </asp:HyperLink>
                                             </li>
                                             <li role="presentation">
-                                                <a href="./account/login.aspx">Login</a>
-                                                
+                                                <asp:HyperLink NavigateUrl="~/account/login.aspx"
+                                                               runat="server">
+                                                    Login
+                                                </asp:HyperLink>
+
                                             </li>
                                         </AnonymousTemplate>
                                         <LoggedInTemplate>
@@ -116,42 +186,18 @@
                                                 <i>Welcome,</i> <asp:LoginName ID="lnNormalUser"
                                                                                runat="server"/>!
                                             </li>
+
                                             <li role="presentation">
-                                                <a href="./account/logout.aspx">Log out</a>
+                                                <asp:HyperLink NavigateUrl="~/account/logout.aspx"
+                                                               runat="server">
+                                                    Log out
+                                                </asp:HyperLink>
+
                                             </li>
                                         </LoggedInTemplate>
-                                        <RoleGroups>
-                                            <asp:RoleGroup Roles="Admin">
-                                                <ContentTemplate>
-                                                    <li role="presentation">
-                                                        <i>Welcome,</i> <asp:LoginName ID="lnAdminUser"
-                                                                                       runat="server"/>!
-                                                    </li>
-                                                    <li role="presentation">
-                                                        <a href="./adminPages/manage.aspx">Manage hotel</a>
-                                                    </li>
-                                                    <li role="presentation">
-                                                        <a href="./account/logout.aspx">Log out</a>
-                                                    </li>
-                                                </ContentTemplate>
-                                            </asp:RoleGroup>
-                                            <asp:RoleGroup Roles="Employee">
-                                                <ContentTemplate>
-                                                    <li role="presentation">
-                                                        <i>Welcome,</i> <asp:LoginName ID="lnEmployeeUser"
-                                                                                       runat="server"/>!
-                                                    </li>
-                                                    <li role="presentation">
-                                                        <a href="./employeePages/manage.aspx">Create or remove bookings</a>
-                                                    </li>
-                                                    <li role="presentation">
-                                                        <a href="./account/logout.aspx">Log out</a>
-                                                    </li>
-                                                </ContentTemplate>
-                                            </asp:RoleGroup>
-                                        </RoleGroups>
 
                                     </asp:LoginView>
+
                                 </ul>
                             </div>
                         </div>
@@ -169,10 +215,10 @@
         <footer>
             <div class="footer">
                 <div class="container">
-                    
-                        <div class="copyright">
-                            &copy; <%:DateTime.Now.Year%> - Atlantic Hotels
-                        </div>
+
+                    <div class="copyright">
+                        &copy; <%: DateTime.Now.Year %> - Atlantic Hotels
+                    </div>
                 </div>
             </div>
         </footer>
