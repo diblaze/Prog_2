@@ -89,6 +89,8 @@ namespace aspHotelBook.account
                 ClaimsIdentity userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 //login user
                 authManager.SignIn(new AuthenticationProperties {IsPersistent = false}, userIdentity);
+                userManager.AddToRole(user.Id, "Customer");
+
 
                 //send back to default page
                 Response.Redirect("~/default.aspx");

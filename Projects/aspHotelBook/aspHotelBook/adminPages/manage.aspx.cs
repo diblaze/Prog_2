@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,7 +11,7 @@ namespace aspHotelBook.adminPages
 {
     public partial class manage : Page
     {
-        //TODO: Need to add a way to add more rooms to the hotel.
+        //TODO: Add a way to show all rooms in the hotel
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,10 +21,10 @@ namespace aspHotelBook.adminPages
         }
 
         /// <summary>
-        /// Adds new role OnClick.
+        ///     Adds new role OnClick.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void btnAddNewRole_OnClick(object sender, EventArgs e)
         {
             //Rolemanager
@@ -47,25 +48,53 @@ namespace aspHotelBook.adminPages
             }
         }
 
+        /// <summary>
+        ///     Adds a new room to the hotel OnClick.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void btnAddRoom_OnClick(object sender, EventArgs e)
         {
-            sqlBookings.InsertParameters.Add("HotelName", "Sandy Beach");
-            sqlBookings.InsertParameters.Add("RoomNr", DbType.Int32, tbRoomNumber.Text);
-            sqlBookings.InsertParameters.Add("Adults",DbType.Int32, tbAdults.Text);
-            sqlBookings.InsertParameters.Add("Children", DbType.Int32, tbChildren.Text);
-            sqlBookings.InsertParameters.Add("TV", DbType.Boolean, cbTv.Checked.ToString());
-            sqlBookings.InsertParameters.Add("AC", DbType.Boolean, cbAc.Checked.ToString());
-            sqlBookings.InsertParameters.Add("RoomService", DbType.Boolean, cbRoomService.Checked.ToString());
-            sqlBookings.InsertParameters.Add("SuiteType", DbType.Int32, ddlSuiteType.SelectedValue);
-            sqlBookings.InsertParameters.Add("PricePerDay", DbType.Int32, tbRate.Text);
-            sqlBookings.InsertParameters.Add("Image", "");
+            //TODO: Fix images to be added according to suite type.
+            try
+            {
+                sqlRooms.InsertParameters["HotelName"].DefaultValue = "Sandy Beach";
+                sqlRooms.InsertParameters["RoomNr"].DefaultValue = tbRoomNumber.Text;
+                sqlRooms.InsertParameters["Adults"].DefaultValue = tbAdults.Text;
+                sqlRooms.InsertParameters["Children"].DefaultValue = tbChildren.Text;
+                sqlRooms.InsertParameters["TV"].DefaultValue = cbTv.Checked.ToString();
+                sqlRooms.InsertParameters["AC"].DefaultValue = cbAc.Checked.ToString();
+                sqlRooms.InsertParameters["RoomService"].DefaultValue = cbRoomService.Checked.ToString();
+                sqlRooms.InsertParameters["SuiteType"].DefaultValue = ddlSuiteType.SelectedValue;
+                sqlRooms.InsertParameters["PricePerDay"].DefaultValue = tbRate.Text;
+                sqlRooms.InsertParameters["Image"].DefaultValue = "";
+
+                sqlRooms.Insert();
+
+                lblAddRoomConfirmationText.ForeColor = Color.Green;
+
+                lblAddRoomConfirmationText.Text = $"The room {tbRoomNumber.Text} has been added to the database!";
+            }
+            catch (SqlException ex)
+            {
+                lblAddRoomConfirmationText.ForeColor = Color.Red;
+
+                if (ex.Message.StartsWith("Violation of PRIMARY KEY"))
+                {
+                    lblAddRoomConfirmationText.Text = $"The room number {tbRoomNumber.Text} already exists in the database!";
+                }
+                else
+                {
+                    lblAddRoomConfirmationText.Text = ex.Message;
+                }
+            }
         }
 
         /// <summary>
-        /// Adds user to role OnClick.
+        ///     Adds user to role OnClick.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void btnAddUserToRole_OnClick(object sender, EventArgs e)
         {
             //Usermanager
@@ -77,7 +106,7 @@ namespace aspHotelBook.adminPages
                 lblConfirmationText.Text = "Please select an user and a role!";
                 return;
             }
-            if(listBoxAllUsers.SelectedValue == null)
+            if (listBoxAllUsers.SelectedValue == null)
             {
                 lblConfirmationText.Text = "Please select an user!";
                 return;
@@ -94,23 +123,34 @@ namespace aspHotelBook.adminPages
             {
                 return;
             }
-            //If user is not in the specific role, add
-            if (!userManager.IsInRole(user.Id, listBoxAllRoles2.SelectedValue))
+
+            //If user is already in a role, remove from role. Because if user is demoted from Admin to Employee or vice versa,
+            //no more needed actions are requried.
+            //Only ONE role per user.
+
+            if (userManager.IsInRole(user.Id, "Customer"))
             {
-                IdentityResult userResult = userManager.AddToRole(user.Id, listBoxAllRoles2.SelectedValue);
-                lblConfirmationText.Text = !userResult.Succeeded
-                                               ? $"Could not add user to role - {userResult.Errors.FirstOrDefault()}"
-                                               : $"{user.UserName} was added to role {listBoxAllRoles2.SelectedValue}!";
+                userManager.RemoveFromRole(user.Id, "Customer");
             }
-            //If user already is in the specific role, show error message.
-            else
+            if (userManager.IsInRole(user.Id, "Employee"))
             {
-                lblConfirmationText.Text = $"{user.UserName} is already in role {listBoxAllRoles2.SelectedValue}!";
+                userManager.RemoveFromRole(user.Id, "Employee");
             }
+            if (userManager.IsInRole(user.Id, "Admin"))
+            {
+                userManager.RemoveFromRole(user.Id, "Admin");
+            }
+
+            //Add the user to the spcific role
+
+            IdentityResult userResult = userManager.AddToRole(user.Id, listBoxAllRoles2.SelectedValue);
+            lblConfirmationText.Text = !userResult.Succeeded
+                                           ? $"Could not add user to role - {userResult.Errors.FirstOrDefault()}"
+                                           : $"{user.UserName} was added to role {listBoxAllRoles2.SelectedValue}!";
         }
 
         /// <summary>
-        /// Fixes the navbar login view.
+        ///     Fixes the navbar login view.
         /// </summary>
         private void FixNavbarLoginView()
         {
@@ -118,9 +158,9 @@ namespace aspHotelBook.adminPages
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
 
             //find controls from master page
-            var adminView = (LoginView)Master.FindControl("lvAdminContent");
-            var employeeView = (LoginView)Master.FindControl("lvEmployeeContent");
-            var userStatus = (LoginView)Master.FindControl("lvUserStatus");
+            var adminView = (LoginView) Master.FindControl("lvAdminContent");
+            var employeeView = (LoginView) Master.FindControl("lvEmployeeContent");
+            var userStatus = (LoginView) Master.FindControl("lvUserStatus");
 
             //find user from list
             //IdentityUser user = userManager.FindByName(listBoxAllUsers.SelectedValue);
