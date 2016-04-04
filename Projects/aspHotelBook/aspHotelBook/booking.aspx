@@ -2,6 +2,13 @@
 <asp:Content ContentPlaceHolderID="HeadContent"
              ID="Content1"
              runat="server">
+
+    
+    <style>
+        label {
+            color: Grey;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="BodyContent"
@@ -21,19 +28,19 @@
                        UpdateCommand="UPDATE [Bookings] SET [HotelName] = @HotelName, [RoomNr] = @RoomNr, [CheckedIn] = @CheckedIn, [CheckingOut] = @CheckingOut, [NameOfBook] = @NameOfBook, [Telephone] = @Telephone, [Account] = @Account WHERE [Id] = @Id">
         <InsertParameters>
             <asp:Parameter Name="HotelName"
-                           Type="String"/>
+                           Type="String" />
             <asp:Parameter Name="RoomNr"
-                           Type="Int32"/>
+                           Type="Int32" />
             <asp:Parameter Name="CheckedIn"
-                           Type="DateTime"/>
+                           Type="DateTime" />
             <asp:Parameter Name="CheckingOut"
-                           Type="DateTime"/>
+                           Type="DateTime" />
             <asp:Parameter Name="NameOfBook"
-                           Type="String"/>
+                           Type="String" />
             <asp:Parameter Name="Telephone"
-                           Type="String"/>
+                           Type="String" />
             <asp:Parameter Name="Account"
-                           Type="String"/>
+                           Type="String" />
         </InsertParameters>
     </asp:SqlDataSource>
 </asp:Content>
@@ -50,34 +57,143 @@
                     <a href="./account/register.aspx">
                         <span class="fa fa-pencil">Register an account</span>
                     </a>
-                          <a href="./account/login.aspx">
+                    <a href="./account/login.aspx">
                         <span class="fa fa-user"/>Login
                     </a>
                 </p>
                 <p>
-              
+
                 </p>
 
             </AnonymousTemplate>
-            <LoggedInTemplate>
-                <h1>
-                    To finalize this order, please fill out the information below!
-                </h1>
-                <p>Payment occurs at arrival.</p>
 
-                <ul>
-                    <li>
-                        <label for="tbName"><span class="glyphicon-user"></span>Name of booker</label>
-                        <asp:TextBox ID="tbName"
-                                     runat="server"/>
-                    </li>
-                    <li>
-                        <label for="tbTele"><span class="glyphicon-phone"></span>Telephone number</label>
-                        <asp:TextBox ID="tbTele"
-                                     runat="server"/>
-                    </li>
-                </ul>
-            </LoggedInTemplate>
         </asp:LoginView>
+
+        <asp:LoginView ID="lvManage" 
+                               runat="server" Visible="False">
+                    <LoggedInTemplate>
+                        <div class="col-md-12 panel panel-default">
+                            <div class="panel-heading">To book this for a customer, fill in the requried info below</div>
+                            <div class="panel-body">
+                                <fieldset>
+                                <div id="legend">
+                                    <legend>Book</legend>
+                                </div>
+                                <div class="control-group">
+                                    <!-- Name -->
+                                    <label class="control-label"
+                                           for="tbName" >
+                                        Full name of booker
+                                    </label>
+                                    <div class="controls">
+                                        <asp:TextBox CssClass="input-xlarge"
+                                                     ForeColor="Black"
+                                                     ID="tbName"
+                                                     runat="server" />
+                                        <asp:RequiredFieldValidator ControlToValidate="tbName"
+                                                                    ForeColor="Red"
+                                                                    runat="server"
+                                                                    Text="*"
+                                                                    ValidationGroup="validationGroup">
+                                        </asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <!-- Username -->
+                                    <label class="control-label"
+                                           for="tbUsername">
+                                        Username of booker
+                                    </label>
+                                    <div class="controls">
+                                        <asp:TextBox CssClass="input-xlarge"
+                                                     ForeColor="Black"
+                                                     ID="tbUsername"
+                                                     runat="server" />
+                                        <asp:RequiredFieldValidator ControlToValidate="tbUsername"
+                                                                    ForeColor="Red"
+                                                                    runat="server"
+                                                                    Text="*"
+                                                                    ValidationGroup="validationGroup">
+                                        </asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <!-- Button -->
+                                    <div class="controls"
+                                         style="margin-top: 10px">
+                                        <asp:Button CssClass="btn btn-success"
+                                                    OnClick="BookRoomForUser"
+                                                    runat="server"
+                                                    Text="Book this room for user"
+                                                    ValidationGroup="validationGroup" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            </fieldset>
+                        </div>
+                    </LoggedInTemplate>
+
+                    
+
+                </asp:LoginView>
+
+                <asp:LoginView ID="lvCustomer" 
+                               runat="server" Visible="False">
+                    <LoggedInTemplate>
+                        <div class="col-md-12 panel panel-default">
+                            <div class="panel-heading">
+                                To finalize this booking, fill in the full name of the one who's going to stay at the hotel
+                            </div>
+                            <div class="panel-body">
+                                <fieldset>
+                                <div id="legend">
+                                    <legend>Book</legend>
+                                </div>
+                                <div class="control-group">
+                                    <!-- Name -->
+                                    <label class="control-label"
+                                           for="tbName" >
+                                        Full name of booker
+                                    </label>
+                                    <div class="controls">
+                                        <asp:TextBox CssClass="input-xlarge"
+                                                     ForeColor="Black"
+                                                     ID="tbName"
+                                                     runat="server" />
+                                        <asp:RequiredFieldValidator ControlToValidate="tbName"
+                                                                    ForeColor="Red"
+                                                                    runat="server"
+                                                                    Text="*"
+                                                                    ValidationGroup="validationGroup">
+                                        </asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="control-group">
+                                    <!-- Button -->
+                                    <div class="controls"
+                                         style="margin-top: 10px">
+                                        <asp:Button CssClass="btn btn-success"
+                                                    OnClick="BookRoom"
+                                                    runat="server"
+                                                    Text="Book this room for user"
+                                                    ValidationGroup="validationGroup" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            </fieldset>
+                        </div>
+                    </LoggedInTemplate>
+
+                    
+
+                </asp:LoginView>
+
+
     </div>
 </asp:Content>

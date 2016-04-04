@@ -7,55 +7,27 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace aspHotelBook
+namespace aspHotelBook.employeePages
 {
-
-    //TODO: Add way for employees and admins to book for a customer!
-
-        //TODO: Update NavBar fix
-    public partial class booking : System.Web.UI.Page
+    public partial class manage : System.Web.UI.Page
     {
-        //Response.Redirect("booking.aspx?checkIn=" + _checkInDate + "&checkOut=" + _checkOutDate + "&room=" + buttonPressed.CommandArgument);
-
-        private string _checkInDate;
-        private string _checkOutDate;
-        private string _roomId;
+        //TODO: Add a way to show all rooms in the hotel
 
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
             FixNavbarLoginView();
-
-
-            if (User.Identity.IsAuthenticated)
-            {
-                if (User.IsInRole("Admin") || User.IsInRole("Employee"))
-                {
-
-                    lvManage.Visible = true;
-                }
-                else
-                {
-                    lvCustomer.Visible = true;
-                }
-            }
-
-
-            _checkInDate = Request.QueryString["checkIn"];
-            _checkOutDate = Request.QueryString["checkOut"];
-            _roomId = Request.QueryString["room"];
-
-            if (_checkInDate == null || _checkOutDate == null || _roomId == null)
-            {
-                Response.Redirect("default.aspx");
-            }
         }
 
         /// <summary>
-        /// Fixes the navbar login view.
+        ///     Fixes the navbar login view.
         /// </summary>
         private void FixNavbarLoginView()
         {
+            //Usermanager
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+
             //find controls from master page
             var adminView = (LoginView)Master.FindControl("lvAdminContent");
             var employeeView = (LoginView)Master.FindControl("lvEmployeeContent");
@@ -65,14 +37,15 @@ namespace aspHotelBook
             //IdentityUser user = userManager.FindByName(listBoxAllUsers.SelectedValue);
             if (User.Identity.IsAuthenticated)
             {
+                IdentityUser user = userManager.FindByName(User.Identity.Name);
 
-                if (User.IsInRole("Admin"))
+                if (userManager.IsInRole(user.Id, "Admin"))
                 {
                     adminView.Visible = true;
                     employeeView.Visible = false;
                     userStatus.Visible = false;
                 }
-                else if (User.IsInRole("Employee"))
+                else if (userManager.IsInRole(user.Id, "Employee"))
                 {
                     adminView.Visible = false;
                     employeeView.Visible = true;
@@ -85,16 +58,6 @@ namespace aspHotelBook
                     userStatus.Visible = true;
                 }
             }
-        }
-
-        protected void BookRoomForUser(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected void BookRoom(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace aspHotelBook
 {
+    //TODO: Add JavaScript to calculate total cost for stay.
     public partial class searchHotel : System.Web.UI.Page
     {
         private string _checkInDate;

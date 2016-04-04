@@ -33,6 +33,7 @@ namespace aspHotelBook.adminPages
             //If the role already exists
             if (roleManager.RoleExists(tbNewRole.Text))
             {
+                lblRoleManager.ForeColor = Color.Red;
                 lblRoleManager.Text = "The role you are trying to add, already exists!";
             }
             else
@@ -40,9 +41,18 @@ namespace aspHotelBook.adminPages
                 //Try creating the role
                 IdentityResult roleResult = roleManager.Create(new IdentityRole(tbNewRole.Text));
 
-                lblRoleManager.Text = roleResult.Succeeded
-                                          ? $"The role {tbNewRole.Text} has been added!"
-                                          : $"Could not add {tbNewRole.Text}! Error message {roleResult.Errors.FirstOrDefault()}";
+                if (roleResult.Succeeded)
+                {
+                    lblRoleManager.ForeColor = Color.Green;
+                    lblRoleManager.Text = $"The role {tbNewRole.Text} has been added!";
+                }
+                else
+                {
+                    lblRoleManager.ForeColor = Color.Red;
+                    lblRoleManager.Text =
+                        $"Could not add {tbNewRole.Text}! Error message {roleResult.Errors.FirstOrDefault()}";
+                }
+
                 //Refresh the listbox
                 listBoxAllRoles.DataBind();
             }
@@ -103,16 +113,19 @@ namespace aspHotelBook.adminPages
             //error check
             if (listBoxAllUsers.SelectedValue == null && listBoxAllRoles2.SelectedValue == null)
             {
+                lblConfirmationText.ForeColor = Color.Red;
                 lblConfirmationText.Text = "Please select an user and a role!";
                 return;
             }
             if (listBoxAllUsers.SelectedValue == null)
             {
+                lblConfirmationText.ForeColor = Color.Red;
                 lblConfirmationText.Text = "Please select an user!";
                 return;
             }
             if (listBoxAllRoles2.SelectedValue == null)
             {
+                lblConfirmationText.ForeColor = Color.Red;
                 lblConfirmationText.Text = "Please select a role!";
                 return;
             }
@@ -144,9 +157,20 @@ namespace aspHotelBook.adminPages
             //Add the user to the spcific role
 
             IdentityResult userResult = userManager.AddToRole(user.Id, listBoxAllRoles2.SelectedValue);
-            lblConfirmationText.Text = !userResult.Succeeded
-                                           ? $"Could not add user to role - {userResult.Errors.FirstOrDefault()}"
-                                           : $"{user.UserName} was added to role {listBoxAllRoles2.SelectedValue}!";
+
+            if (userResult.Succeeded)
+            {
+                lblConfirmationText.ForeColor = Color.Green;
+                lblConfirmationText.Text = $"{user.UserName} was added to role {listBoxAllRoles2.SelectedValue}!";
+
+            }
+            else
+            {
+                lblConfirmationText.ForeColor = Color.Red;
+                lblConfirmationText.Text =
+                    $"Coult not add {user.UserName} to role {listBoxAllRoles2.SelectedValue}. Error message {userResult.Errors.FirstOrDefault()}";
+            }
+
         }
 
         /// <summary>
