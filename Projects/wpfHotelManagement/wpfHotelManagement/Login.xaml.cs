@@ -18,6 +18,7 @@ namespace wpfHotelManagement
         public Login()
         {
             InitializeComponent();
+            //UserUtility.CreateUser("Admin", "admin");
         }
 
         private void LoginClick(object sender, RoutedEventArgs e)
