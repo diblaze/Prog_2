@@ -20,6 +20,7 @@ namespace aspHotelBook
         private string _children;        
         private string _roomType;
 
+
         private Parameter _start;
         private Parameter _end;
         protected void Page_Load(object sender, EventArgs e)
@@ -148,6 +149,7 @@ namespace aspHotelBook
             switch (type)
             {
                 case 0:
+                    
                     return "Standard";
                 case 1:
                     return "High-End";

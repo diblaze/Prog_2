@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Management page" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="manage.aspx.cs" Inherits="aspHotelBook.adminPages.manage" %>
+﻿<%@ Page Title="Management page" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="True" CodeBehind="manage.aspx.cs" Inherits="aspHotelBook.adminPages.manage" %>
 <asp:Content ContentPlaceHolderID="HeadContent"
              ID="Content1"
              runat="server">
