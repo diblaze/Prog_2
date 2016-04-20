@@ -83,7 +83,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FrontDesk.xaml.cs">
+      <DependentUpon>FrontDesk.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserUtility.cs" />
+    <Page Include="FrontDesk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,12 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\HotelData.mdf" />
-    <Content Include="App_Data\HotelData_log.ldf">
-      <DependentUpon>HotelData.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">

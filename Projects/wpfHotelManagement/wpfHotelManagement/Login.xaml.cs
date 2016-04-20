@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows;
-using DevOne.Security.Cryptography.BCrypt;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace wpfHotelManagement
@@ -18,60 +14,66 @@ namespace wpfHotelManagement
         public Login()
         {
             InitializeComponent();
-            //UserUtility.CreateUser("Admin", "admin");
         }
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
+            //try to sign in
             SignIn(UsernameBox.Text.Trim(), passwordBox.Password.Trim());
         }
 
         private async void SignIn(string usernameTrimmed, string passwordTrimmed)
         {
-            bool successfullyLoggedIn = await CheckUserDataSql(UsernameBox.Text.Trim(), passwordBox.Password.Trim());
+            //true if correct username and password
+            //false if correct username but wrong password
+            bool correctLogin = await CheckUserDataSql(usernameTrimmed, passwordTrimmed);
 
-            if (successfullyLoggedIn)
+            if (correctLogin)
             {
                 //navigate to window according to role
                 //isloggedin = true
                 await this.ShowMessageAsync("Sucess", "You have logged in.");
+                FrontDesk frontDesk = new FrontDesk();
+                frontDesk.Show();
+                Close();
+                
             }
-            
-
+            else
+            {
+                await this.ShowMessageAsync("Failure", "Wrong password!");
+            }
         }
 
         /// <summary>
-        /// Checks if user exists, and if password is correct.
+        ///     Checks if user exists, and if password is correct.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        /// <returns></returns>
+        /// <returns><c>True</c> if correct username and correct password.</returns>
         private async Task<bool> CheckUserDataSql(string username, string password)
         {
+            //
             List<string> userData;
 
             //Does the user exist?
             try
             {
                 userData = await UserUtility.RetrieveUser(username);
-
             }
             catch (Exception ex)
             {
-                await this.ShowMessageAsync("Error", ex.Message.ToString());
+                //error occured, show messsage
+                await this.ShowMessageAsync("Error", ex.Message);
                 return false;
             }
+
+            //User exist
+            if (userData != null)
+                return UserUtility.ValidatePassword(userData[1], password);
 
             //User does not exist
-            if (userData == null)
-            {
-                await this.ShowMessageAsync("User not found", "User was not found. Please try again.");
-                return false;
-            }
-
-            //User exists - check password
-            return UserUtility.ValidatePassword(userData[3], password);
-            
+            await this.ShowMessageAsync("User not found", "User was not found. Please try again.");
+            return false;
         }
     }
 }
