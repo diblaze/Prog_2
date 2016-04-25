@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using System.Windows.Input;
+using MahApps.Metro.Controls;
 
 namespace wpfHotelManagement
 {
@@ -10,6 +11,11 @@ namespace wpfHotelManagement
         public FrontDesk()
         {
             InitializeComponent();
+        }
+
+        private void NavigateToPage(object sender, MouseButtonEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
