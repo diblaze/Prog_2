@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using MahApps.Metro.Controls.Dialogs;
+using System.Windows.Forms;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
-namespace wpfHotelManagement
+namespace winHotelManagement
 {
-    /// <summary>
-    ///     Interaction logic for Login.xaml
-    /// </summary>
-    public partial class Login
+    public partial class LoginForm : MetroForm
     {
-        public Login()
+        public LoginForm()
         {
             InitializeComponent();
         }
 
-        private void LoginClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Attempts to log in.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSignIn_Click(object sender, EventArgs e)
         {
             //try to sign in
-            SignIn(UsernameBox.Text.Trim(), passwordBox.Password.Trim());
+            SignIn(inputUsername.Text.Trim(), inputPassword.Text.Trim());
+
         }
 
         private async void SignIn(string usernameTrimmed, string passwordTrimmed)
@@ -32,7 +42,9 @@ namespace wpfHotelManagement
             {
                 //navigate to window according to role
                 //isloggedin = true
-                await this.ShowMessageAsync("Sucess", "You have logged in.");
+                
+                MetroMessageBox.Show(this, "You have logged in");
+              
                 FrontDesk frontDesk = new FrontDesk();
                 frontDesk.Show();
                 Close();
@@ -40,7 +52,7 @@ namespace wpfHotelManagement
             }
             else
             {
-                await this.ShowMessageAsync("Failure", "Wrong password!");
+                MetroMessageBox.Show(this, "Wrong password!");
             }
         }
 
@@ -63,7 +75,7 @@ namespace wpfHotelManagement
             catch (Exception ex)
             {
                 //error occured, show messsage
-                await this.ShowMessageAsync("Error", ex.Message);
+                MetroMessageBox.Show(this, ex.Message);
                 return false;
             }
 
@@ -72,7 +84,7 @@ namespace wpfHotelManagement
                 return UserUtility.ValidatePassword(userData[1], password);
 
             //User does not exist
-            await this.ShowMessageAsync("User not found", "User was not found. Please try again.");
+            MetroMessageBox.Show(this, "User not found. Please try again.");
             return false;
         }
     }

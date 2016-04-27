@@ -20,28 +20,51 @@
 
     <Controls:MetroContentControl>
         <Grid Background="#FF3F3F46">
-        
-        <Controls:Flyout Name="flyoutFrontEnd" Foreground="DarkOrange" Header="Management" Position="Left"
-                         IsOpen="False" Background="#FF3F3F46">
-        <ListView SelectionMode="Single">
-            <ListView.Background>
-                <SolidColorBrush Color="#FF666671"/>
-            </ListView.Background>
-            <ListViewItem Content="Reservation" HorizontalAlignment="Center" FontSize="24"
-                              MouseLeftButtonDown="NavigateToPage" Foreground="DarkOrange" />
-            <Separator Background="#FF3F3F46"></Separator>
-            <ListViewItem Content="Universal Search" HorizontalAlignment="Center" FontSize="24" 
-                              MouseLeftButtonDown="NavigateToPage" Foreground="DarkOrange" />
-            <Separator Background="#FF3F3F46"></Separator>
-                <ListViewItem Content="Room Availability" HorizontalAlignment="Center" FontSize="24"
-                              MouseLeftButtonDown="NavigateToPage" Foreground="DarkOrange" />
-        </ListView>
-    </Controls:Flyout>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-            <Border Background="Gray">
-            <Label Content="Name" Foreground="DarkOrange"></Label>'
-                </Border>
+            
 
+            <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Background="DarkGray" Margin="10"/>
+            <Grid Grid.Row="0" Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Full name" Grid.Row="0" Grid.Column="0" Margin="0 10 0 0" Foreground="Black" />
+            <TextBox Grid.Row="0" Grid.Column="1" Width="160" Height="10"></TextBox>
+                
+            </Grid>
+
+
+            <Controls:Flyout Name="flyoutFrontEnd" Foreground="DarkOrange" Header="Management" Position="Left"
+                         IsOpen="False" Background="#FF3F3F46" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                <ListView SelectionMode="Single">
+                    <ListView.Background>
+                        <SolidColorBrush Color="#FF666671"/>
+                    </ListView.Background>
+                    <ListViewItem Content="Reservation" HorizontalAlignment="Center" FontSize="24"
+                              MouseLeftButtonDown="NavigateToPage" Foreground="DarkOrange" />
+                    <Separator Background="#FF3F3F46"></Separator>
+                    <ListViewItem Content="Universal Search" HorizontalAlignment="Center" FontSize="24" 
+                              MouseLeftButtonDown="NavigateToPage" Foreground="DarkOrange" />
+                    <Separator Background="#FF3F3F46"></Separator>
+                    <ListViewItem Content="Room Availability" HorizontalAlignment="Center" FontSize="24"
+                              MouseLeftButtonDown="NavigateToPage" Foreground="DarkOrange" />
+                </ListView>
+            </Controls:Flyout>
         </Grid>
 
     </Controls:MetroContentControl>
