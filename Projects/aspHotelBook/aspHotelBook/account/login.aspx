@@ -78,7 +78,8 @@
                 <div class="controls">
                     <asp:Label runat="server"
                                CssClass="control-label"
-                               ID="lblConfirmationText"/>
+                               ID="lblConfirmationText"
+                        ForeColor="Black"/>
                     </div>
                 
             </div>

@@ -102,7 +102,7 @@ namespace aspHotelBook
                 query += "(@_start BETWEEN CheckedIn AND CheckingOut) OR ";
                 query += "(@_end BETWEEN CheckedIn AND CheckingOut) OR ";
                 query += "(@_start <= CheckedIn AND @_end >= CheckingOut) OR ";
-                query += "(@_start <= @_end))";
+                query += "(@_start >= @_end))";
 
                 sqlHotels.SelectCommand = query;
                 sqlHotels.SelectParameters["_start"].DefaultValue = _checkInDate;
@@ -120,7 +120,7 @@ namespace aspHotelBook
                 query += "(@_start BETWEEN CheckedIn and CheckingOut) OR ";
                 query += "(@_end BETWEEN CheckedIn and CheckingOut) OR ";
                 query += "(@_start <= CheckedIn and @_end >= CheckingOut) OR ";
-                query += "(@_start <= @_end))";
+                query += "(@_start >= @_end))";
 
                 sqlHotels.SelectCommand = query;
                 sqlHotels.SelectParameters["_start"].DefaultValue = _checkInDate;

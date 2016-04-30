@@ -23,10 +23,7 @@ namespace aspHotelBook.account
 
 
         }
-
         
-
-       
         /// <summary>
         ///     Registers the user.
         /// </summary>
@@ -34,6 +31,12 @@ namespace aspHotelBook.account
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void RegisterUser(object sender, EventArgs e)
         {
+
+            if (tbPassword.Text != tbPasswordConfirm.Text)
+            {
+                return;
+            }
+
             //Default UserStore constructor uses default connection.
             var userStore = new UserStore<IdentityUser>();
             var userManager = new UserManager<IdentityUser>(userStore);

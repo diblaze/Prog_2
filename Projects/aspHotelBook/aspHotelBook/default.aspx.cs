@@ -14,7 +14,7 @@ namespace aspHotelBook
             if (!IsPostBack)
             {
                 checkInDate.SelectedDate = DateTime.Now.Date;
-                checkOutDate.SelectedDate = DateTime.Now.AddDays(2);
+                //checkOutDate.SelectedDate = DateTime.Now.AddDays(2);
             }
 
 
@@ -68,13 +68,20 @@ namespace aspHotelBook
 
         protected void btnSearchForHotels_OnClick(object sender, EventArgs e)
         {
-            if (checkInDate.SelectedDate > checkOutDate.SelectedDate)
+
+
+/*            if (checkInDate.SelectedDate > checkOutDate.SelectedDate)
             {
                 return;
             }
+            */
+
+            int howManyDays = Convert.ToInt32(ddlDaysToStay.SelectedValue);
+
+            DateTime checkOutDate = checkInDate.SelectedDate.AddDays(howManyDays);
 
             Response.Redirect("searchHotel.aspx?checkIn=" + checkInDate.SelectedDate.ToShortDateString() + "&checkOut=" +
-                              checkOutDate.SelectedDate.ToShortDateString() + "&adults=" + ddlGrownUps.SelectedValue +
+                              checkOutDate.ToShortDateString() + "&adults=" + ddlGrownUps.SelectedValue +
                               "&children=" + ddlChildren.SelectedValue);
         }
 

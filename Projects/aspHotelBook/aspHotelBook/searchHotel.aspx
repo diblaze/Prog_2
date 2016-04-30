@@ -72,7 +72,7 @@
         <asp:Repeater DataSourceID="sqlHotels"
                       runat="server">
             <ItemTemplate>
-                <div class="col-md-6 panel panel-default">
+                <div class="col-md-8 panel panel-default">
                     <div class="panel-heading">
                         <h4>
 
@@ -90,7 +90,7 @@
                              src='<%# "images/rooms/" + Eval("image") + ".jpg" %>'/>
                         <div class="col-md-6 media pull-right">
                             <table>
-                                <h1 style="color: black"><%# WhatRoomType(Eval("SuiteType")) + " Room" + " : " + Eval("RoomNr") %></h1>
+                                <h1 style="color: black"><%# WhatRoomType(Eval("SuiteType")) + " Room" + " : Room number " + Eval("RoomNr") %></h1>
                                 <tr>
                                     <td>Max Adults:</td>
                                     <td><%#Eval("Adults") %></td>

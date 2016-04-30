@@ -114,9 +114,18 @@
                 <div class="fadeInUp hi-icon-effect hi-icon-wrap wow">
                     <label for="checkOutDate"
                            style="color: Black">
-                        Check out
+                        How many days?
                     </label>
-                    <asp:UpdatePanel runat="server">
+                    <asp:DropDownList ID="ddlDaysToStay" ForeColor="Black" Width="50px" runat="server">
+                        <asp:ListItem Text="1" Value="1"/>
+                        <asp:ListItem Text="2" Value="2"/>
+                        <asp:ListItem Text="3" Value="3"/>
+                        <asp:ListItem Text="4" Value="4"/>
+                        <asp:ListItem Text="5" Value="5"/>
+                        <asp:ListItem Text="6" Value="6"/>
+                        <asp:ListItem Text="7" Value="7"/>
+                    </asp:DropDownList>
+                  <%--  <asp:UpdatePanel runat="server">
                         <ContentTemplate>
                             <asp:Calendar BackColor="LightGrey"
                                           BorderColor="Black"
@@ -155,20 +164,16 @@
 
                             </asp:Calendar>
                         </ContentTemplate>
-                    </asp:UpdatePanel>
-
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="fadeInUp hi-icon-effect hi-icon-wrap wow">
-                    <label for="ddlGrownUps"
+                    </asp:UpdatePanel>--%>
+                    <br/>
+                     <label for="ddlGrownUps"
                            style="color: black">
                         Adults
                     </label>
                     <asp:DropDownList ForeColor="Black"
                                       ID="ddlGrownUps"
                                       runat="server"
-                                      Width="200px">
+                                      Width="50px">
                         <asp:ListItem Enabled="True"
                                       Text="1"
                                       Value="1">
@@ -178,12 +183,8 @@
                         </asp:ListItem>
 
                     </asp:DropDownList>
+                    <br/>
 
-                </div>
-
-            </div>
-            <div class="col-md-4">
-                <div class="fadeInUp hi-icon-effect hi-icon-wrap wow">
                     <label for="ddlChildren"
                            style="color: black">
                         Children
@@ -191,7 +192,7 @@
                     <asp:DropDownList ForeColor="Black"
                                       ID="ddlChildren"
                                       runat="server"
-                                      Width="200px">
+                                      Width="50px">
                         <asp:ListItem Enabled="True" Text="0" Value="0"></asp:ListItem>
                         <asp:ListItem
                                       Text="1"
@@ -202,6 +203,7 @@
                         </asp:ListItem>
 
                     </asp:DropDownList>
+                    <br/>
 
                     <asp:Button runat="server"
                                 ID="btnSearchForHotels"
@@ -209,8 +211,24 @@
 
                 </div>
             </div>
+            
+            <div class="col-md-4">
+                <div class="fadeInUp hi-icon-effect hi-icon-wrap wow">
+                    
+
+                </div>
+            </div>
         </div>
     </div>
+
+<div class="aboutus"
+     id="about">
+    <div class="container">
+        <div class="col-md-6">
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then</p>
+        </div>
+    </div>
+</div>
 
 </asp:Content>
 

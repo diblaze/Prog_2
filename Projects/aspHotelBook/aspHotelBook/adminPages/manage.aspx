@@ -325,7 +325,7 @@
             <!-- AC -->
             <label class="control-label"
                    for="cbAc">
-                TV
+                AC
             </label>
             <div class="controls">
                 <asp:CheckBox CssClass="input-xlarge"
