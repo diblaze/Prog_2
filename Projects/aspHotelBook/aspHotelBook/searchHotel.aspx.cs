@@ -89,10 +89,15 @@ namespace aspHotelBook
         }
 
 
+        /// <summary>
+        /// Refreshes the databind for the repeater control.
+        /// Shows the correct roomtypes.
+        /// </summary>
         private void ManualDatabind()
         {
             string query = "";
 
+            //if user did not specify any room type, show all rooms that are ready for booking.
             if (_roomType == null)
             {
                 query = "SELECT * FROM Rooms WHERE Adults >= " + _adults + " AND Children >= " + _children + " AND ";
@@ -111,6 +116,7 @@ namespace aspHotelBook
                 sqlHotels.Select(DataSourceSelectArguments.Empty);
                 sqlHotels.DataBind();
             }
+            //if user specified a room type, show all ready rooms for that room type.
             else
             {
                 query = "SELECT * FROM Rooms WHERE SuiteType = " + _roomType + " AND Adults >= " + _adults + " AND Children >= " + _children + " AND ";
@@ -133,6 +139,11 @@ namespace aspHotelBook
         }
 
 
+        /// <summary>
+        /// Redirects to the final step of the booking.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void BookRoom_Click(object sender, EventArgs e)
         {
             var buttonPressed = sender as Button;
@@ -142,6 +153,11 @@ namespace aspHotelBook
             }
         }
 
+        /// <summary>
+        /// Finds out what roomtype a specific room is.
+        /// </summary>
+        /// <param name="eval">The eval.</param>
+        /// <returns>Roomtype.</returns>
         protected string WhatRoomType(object eval)
         {
             var type = (int) eval;
@@ -161,6 +177,11 @@ namespace aspHotelBook
             }
         }
 
+        /// <summary>
+        /// Changes the type of the room.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void ChangeRoomType(object sender, EventArgs e)
         {
             var roomType = sender as Button;

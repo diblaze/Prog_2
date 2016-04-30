@@ -14,11 +14,7 @@ namespace aspHotelBook.account
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            
-
-            
-            
-                //if already logged in, redirect to default.
+            //if already logged in, redirect to default.
                 if (User.Identity.IsAuthenticated)
                 {
                     Response.Redirect("~/default.aspx");

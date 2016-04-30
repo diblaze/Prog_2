@@ -31,7 +31,7 @@ namespace aspHotelBook.account
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void RegisterUser(object sender, EventArgs e)
         {
-
+            //if the passwords do NOT match, do not run register method.
             if (tbPassword.Text != tbPasswordConfirm.Text)
             {
                 return;

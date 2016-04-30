@@ -196,7 +196,6 @@ namespace aspHotelBook
         /// Create a receipt.
         /// </summary>
         /// <param name="roomId">The room number.</param>
-        /// <param name="text">The text.</param>
         /// <param name="checkInDate">The check in date.</param>
         /// <param name="checkOutDate">The check out date.</param>
         /// <param name="name">The name.</param>
