@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Forms;
-using MetroFramework.Controls;
 
 namespace winHotelManagement
 {
@@ -21,7 +14,7 @@ namespace winHotelManagement
         }
 
         /// <summary>
-        /// Attempts to log in.
+        ///     Attempts to log in.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -29,7 +22,6 @@ namespace winHotelManagement
         {
             //try to sign in
             SignIn(inputUsername.Text.Trim(), inputPassword.Text.Trim());
-
         }
 
         private async void SignIn(string usernameTrimmed, string passwordTrimmed)
@@ -42,13 +34,12 @@ namespace winHotelManagement
             {
                 //navigate to window according to role
                 //isloggedin = true
-                
+
                 MetroMessageBox.Show(this, "You have logged in");
-              
+
                 FrontDesk frontDesk = new FrontDesk();
                 frontDesk.Show();
-                Close();
-
+                Hide();
             }
             else
             {

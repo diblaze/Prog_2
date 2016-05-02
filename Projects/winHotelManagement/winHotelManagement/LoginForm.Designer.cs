@@ -66,7 +66,7 @@ namespace winHotelManagement
             this.inputPassword.Location = new System.Drawing.Point(229, 146);
             this.inputPassword.MaxLength = 32767;
             this.inputPassword.Name = "inputPassword";
-            this.inputPassword.PasswordChar = '\0';
+            this.inputPassword.PasswordChar = '*';
             this.inputPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.inputPassword.SelectedText = "";
             this.inputPassword.SelectionLength = 0;
