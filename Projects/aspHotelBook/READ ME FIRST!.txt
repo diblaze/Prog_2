@@ -1,5 +1,0 @@
-Accounts - Username:Password
-Admin:K@tt3nJ@m@r
-Employee:K@tt3nJ@m@r
-Customer:K@tt3nJ@m@r
-
