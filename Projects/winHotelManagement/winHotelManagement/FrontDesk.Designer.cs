@@ -31,6 +31,13 @@
             this.tabControls = new MetroFramework.Controls.MetroTabControl();
             this.tabReservation = new MetroFramework.Controls.MetroTabPage();
             this.panelReservationLeft = new MetroFramework.Controls.MetroPanel();
+            this.tbZipCode = new MetroFramework.Controls.MetroTextBox();
+            this.labelZipCode = new MetroFramework.Controls.MetroLabel();
+            this.cmbStates = new MetroFramework.Controls.MetroComboBox();
+            this.labelState = new MetroFramework.Controls.MetroLabel();
+            this.tbCity = new MetroFramework.Controls.MetroTextBox();
+            this.labelCity = new MetroFramework.Controls.MetroLabel();
+            this.tbStreet = new MetroFramework.Controls.MetroTextBox();
             this.labelAddress = new MetroFramework.Controls.MetroLabel();
             this.tbEmail = new MetroFramework.Controls.MetroTextBox();
             this.labelEmail = new MetroFramework.Controls.MetroLabel();
@@ -49,13 +56,7 @@
             this.labelReservationName = new MetroFramework.Controls.MetroLabel();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.tbStreet = new MetroFramework.Controls.MetroTextBox();
-            this.tbCity = new MetroFramework.Controls.MetroTextBox();
-            this.labelCity = new MetroFramework.Controls.MetroLabel();
-            this.labelState = new MetroFramework.Controls.MetroLabel();
-            this.cmbStates = new MetroFramework.Controls.MetroComboBox();
-            this.labelZipCode = new MetroFramework.Controls.MetroLabel();
-            this.tbZipCode = new MetroFramework.Controls.MetroTextBox();
+            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.tabControls.SuspendLayout();
             this.tabReservation.SuspendLayout();
             this.panelReservationLeft.SuspendLayout();
@@ -75,6 +76,7 @@
             // 
             // tabReservation
             // 
+            this.tabReservation.Controls.Add(this.metroPanel1);
             this.tabReservation.Controls.Add(this.panelReservationLeft);
             this.tabReservation.HorizontalScrollbarBarColor = true;
             this.tabReservation.HorizontalScrollbarHighlightOnWheel = false;
@@ -124,6 +126,130 @@
             this.panelReservationLeft.VerticalScrollbarBarColor = true;
             this.panelReservationLeft.VerticalScrollbarHighlightOnWheel = false;
             this.panelReservationLeft.VerticalScrollbarSize = 10;
+            // 
+            // tbZipCode
+            // 
+            // 
+            // 
+            // 
+            this.tbZipCode.CustomButton.Image = null;
+            this.tbZipCode.CustomButton.Location = new System.Drawing.Point(104, 1);
+            this.tbZipCode.CustomButton.Name = "";
+            this.tbZipCode.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbZipCode.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbZipCode.CustomButton.TabIndex = 1;
+            this.tbZipCode.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbZipCode.CustomButton.UseSelectable = true;
+            this.tbZipCode.CustomButton.Visible = false;
+            this.tbZipCode.Lines = new string[0];
+            this.tbZipCode.Location = new System.Drawing.Point(141, 376);
+            this.tbZipCode.MaxLength = 32767;
+            this.tbZipCode.Name = "tbZipCode";
+            this.tbZipCode.PasswordChar = '\0';
+            this.tbZipCode.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbZipCode.SelectedText = "";
+            this.tbZipCode.SelectionLength = 0;
+            this.tbZipCode.SelectionStart = 0;
+            this.tbZipCode.Size = new System.Drawing.Size(132, 29);
+            this.tbZipCode.TabIndex = 24;
+            this.tbZipCode.UseSelectable = true;
+            this.tbZipCode.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbZipCode.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // labelZipCode
+            // 
+            this.labelZipCode.AutoSize = true;
+            this.labelZipCode.Location = new System.Drawing.Point(143, 352);
+            this.labelZipCode.Name = "labelZipCode";
+            this.labelZipCode.Size = new System.Drawing.Size(64, 19);
+            this.labelZipCode.TabIndex = 23;
+            this.labelZipCode.Text = "Zip Code";
+            // 
+            // cmbStates
+            // 
+            this.cmbStates.FormattingEnabled = true;
+            this.cmbStates.ItemHeight = 23;
+            this.cmbStates.Location = new System.Drawing.Point(17, 376);
+            this.cmbStates.Name = "cmbStates";
+            this.cmbStates.Size = new System.Drawing.Size(118, 29);
+            this.cmbStates.TabIndex = 22;
+            this.cmbStates.UseSelectable = true;
+            // 
+            // labelState
+            // 
+            this.labelState.AutoSize = true;
+            this.labelState.Location = new System.Drawing.Point(15, 352);
+            this.labelState.Name = "labelState";
+            this.labelState.Size = new System.Drawing.Size(38, 19);
+            this.labelState.TabIndex = 21;
+            this.labelState.Text = "State";
+            // 
+            // tbCity
+            // 
+            // 
+            // 
+            // 
+            this.tbCity.CustomButton.Image = null;
+            this.tbCity.CustomButton.Location = new System.Drawing.Point(235, 1);
+            this.tbCity.CustomButton.Name = "";
+            this.tbCity.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.tbCity.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbCity.CustomButton.TabIndex = 1;
+            this.tbCity.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbCity.CustomButton.UseSelectable = true;
+            this.tbCity.CustomButton.Visible = false;
+            this.tbCity.Lines = new string[0];
+            this.tbCity.Location = new System.Drawing.Point(16, 323);
+            this.tbCity.MaxLength = 32767;
+            this.tbCity.Name = "tbCity";
+            this.tbCity.PasswordChar = '\0';
+            this.tbCity.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbCity.SelectedText = "";
+            this.tbCity.SelectionLength = 0;
+            this.tbCity.SelectionStart = 0;
+            this.tbCity.Size = new System.Drawing.Size(257, 23);
+            this.tbCity.TabIndex = 20;
+            this.tbCity.UseSelectable = true;
+            this.tbCity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbCity.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // labelCity
+            // 
+            this.labelCity.AutoSize = true;
+            this.labelCity.Location = new System.Drawing.Point(15, 301);
+            this.labelCity.Name = "labelCity";
+            this.labelCity.Size = new System.Drawing.Size(31, 19);
+            this.labelCity.TabIndex = 19;
+            this.labelCity.Text = "City";
+            // 
+            // tbStreet
+            // 
+            // 
+            // 
+            // 
+            this.tbStreet.CustomButton.Image = null;
+            this.tbStreet.CustomButton.Location = new System.Drawing.Point(235, 1);
+            this.tbStreet.CustomButton.Name = "";
+            this.tbStreet.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.tbStreet.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbStreet.CustomButton.TabIndex = 1;
+            this.tbStreet.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbStreet.CustomButton.UseSelectable = true;
+            this.tbStreet.CustomButton.Visible = false;
+            this.tbStreet.Lines = new string[0];
+            this.tbStreet.Location = new System.Drawing.Point(18, 270);
+            this.tbStreet.MaxLength = 32767;
+            this.tbStreet.Name = "tbStreet";
+            this.tbStreet.PasswordChar = '\0';
+            this.tbStreet.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbStreet.SelectedText = "";
+            this.tbStreet.SelectionLength = 0;
+            this.tbStreet.SelectionStart = 0;
+            this.tbStreet.Size = new System.Drawing.Size(257, 23);
+            this.tbStreet.TabIndex = 18;
+            this.tbStreet.UseSelectable = true;
+            this.tbStreet.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbStreet.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // labelAddress
             // 
@@ -391,129 +517,18 @@
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
             // 
-            // tbStreet
+            // metroPanel1
             // 
-            // 
-            // 
-            // 
-            this.tbStreet.CustomButton.Image = null;
-            this.tbStreet.CustomButton.Location = new System.Drawing.Point(235, 1);
-            this.tbStreet.CustomButton.Name = "";
-            this.tbStreet.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.tbStreet.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbStreet.CustomButton.TabIndex = 1;
-            this.tbStreet.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbStreet.CustomButton.UseSelectable = true;
-            this.tbStreet.CustomButton.Visible = false;
-            this.tbStreet.Lines = new string[0];
-            this.tbStreet.Location = new System.Drawing.Point(18, 270);
-            this.tbStreet.MaxLength = 32767;
-            this.tbStreet.Name = "tbStreet";
-            this.tbStreet.PasswordChar = '\0';
-            this.tbStreet.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbStreet.SelectedText = "";
-            this.tbStreet.SelectionLength = 0;
-            this.tbStreet.SelectionStart = 0;
-            this.tbStreet.Size = new System.Drawing.Size(257, 23);
-            this.tbStreet.TabIndex = 18;
-            this.tbStreet.UseSelectable = true;
-            this.tbStreet.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbStreet.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // tbCity
-            // 
-            // 
-            // 
-            // 
-            this.tbCity.CustomButton.Image = null;
-            this.tbCity.CustomButton.Location = new System.Drawing.Point(235, 1);
-            this.tbCity.CustomButton.Name = "";
-            this.tbCity.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.tbCity.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbCity.CustomButton.TabIndex = 1;
-            this.tbCity.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbCity.CustomButton.UseSelectable = true;
-            this.tbCity.CustomButton.Visible = false;
-            this.tbCity.Lines = new string[0];
-            this.tbCity.Location = new System.Drawing.Point(16, 323);
-            this.tbCity.MaxLength = 32767;
-            this.tbCity.Name = "tbCity";
-            this.tbCity.PasswordChar = '\0';
-            this.tbCity.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbCity.SelectedText = "";
-            this.tbCity.SelectionLength = 0;
-            this.tbCity.SelectionStart = 0;
-            this.tbCity.Size = new System.Drawing.Size(257, 23);
-            this.tbCity.TabIndex = 20;
-            this.tbCity.UseSelectable = true;
-            this.tbCity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbCity.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // labelCity
-            // 
-            this.labelCity.AutoSize = true;
-            this.labelCity.Location = new System.Drawing.Point(15, 301);
-            this.labelCity.Name = "labelCity";
-            this.labelCity.Size = new System.Drawing.Size(31, 19);
-            this.labelCity.TabIndex = 19;
-            this.labelCity.Text = "City";
-            // 
-            // labelState
-            // 
-            this.labelState.AutoSize = true;
-            this.labelState.Location = new System.Drawing.Point(15, 352);
-            this.labelState.Name = "labelState";
-            this.labelState.Size = new System.Drawing.Size(38, 19);
-            this.labelState.TabIndex = 21;
-            this.labelState.Text = "State";
-            // 
-            // cmbStates
-            // 
-            this.cmbStates.FormattingEnabled = true;
-            this.cmbStates.ItemHeight = 23;
-            this.cmbStates.Location = new System.Drawing.Point(17, 376);
-            this.cmbStates.Name = "cmbStates";
-            this.cmbStates.Size = new System.Drawing.Size(118, 29);
-            this.cmbStates.TabIndex = 22;
-            this.cmbStates.UseSelectable = true;
-            // 
-            // labelZipCode
-            // 
-            this.labelZipCode.AutoSize = true;
-            this.labelZipCode.Location = new System.Drawing.Point(143, 352);
-            this.labelZipCode.Name = "labelZipCode";
-            this.labelZipCode.Size = new System.Drawing.Size(64, 19);
-            this.labelZipCode.TabIndex = 23;
-            this.labelZipCode.Text = "Zip Code";
-            // 
-            // tbZipCode
-            // 
-            // 
-            // 
-            // 
-            this.tbZipCode.CustomButton.Image = null;
-            this.tbZipCode.CustomButton.Location = new System.Drawing.Point(104, 1);
-            this.tbZipCode.CustomButton.Name = "";
-            this.tbZipCode.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbZipCode.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbZipCode.CustomButton.TabIndex = 1;
-            this.tbZipCode.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbZipCode.CustomButton.UseSelectable = true;
-            this.tbZipCode.CustomButton.Visible = false;
-            this.tbZipCode.Lines = new string[0];
-            this.tbZipCode.Location = new System.Drawing.Point(141, 376);
-            this.tbZipCode.MaxLength = 32767;
-            this.tbZipCode.Name = "tbZipCode";
-            this.tbZipCode.PasswordChar = '\0';
-            this.tbZipCode.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbZipCode.SelectedText = "";
-            this.tbZipCode.SelectionLength = 0;
-            this.tbZipCode.SelectionStart = 0;
-            this.tbZipCode.Size = new System.Drawing.Size(132, 29);
-            this.tbZipCode.TabIndex = 24;
-            this.tbZipCode.UseSelectable = true;
-            this.tbZipCode.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbZipCode.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.metroPanel1.HorizontalScrollbarBarColor = true;
+            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.HorizontalScrollbarSize = 10;
+            this.metroPanel1.Location = new System.Drawing.Point(394, 19);
+            this.metroPanel1.Name = "metroPanel1";
+            this.metroPanel1.Size = new System.Drawing.Size(293, 541);
+            this.metroPanel1.TabIndex = 3;
+            this.metroPanel1.VerticalScrollbarBarColor = true;
+            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.VerticalScrollbarSize = 10;
             // 
             // FrontDesk
             // 
@@ -560,5 +575,6 @@
         private MetroFramework.Controls.MetroTextBox tbCity;
         private MetroFramework.Controls.MetroLabel labelCity;
         private MetroFramework.Controls.MetroTextBox tbStreet;
+        private MetroFramework.Controls.MetroPanel metroPanel1;
     }
 }
