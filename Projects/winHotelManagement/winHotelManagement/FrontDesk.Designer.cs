@@ -1,4 +1,7 @@
-﻿namespace winHotelManagement
+﻿using System.Drawing;
+using MetroFramework;
+
+namespace winHotelManagement
 {
     partial class FrontDesk
     {
@@ -30,6 +33,20 @@
         {
             this.tabControls = new MetroFramework.Controls.MetroTabControl();
             this.tabReservation = new MetroFramework.Controls.MetroTabPage();
+            this.pnlReservationRight = new MetroFramework.Controls.MetroPanel();
+            this.pnlReservationMiddle = new MetroFramework.Controls.MetroPanel();
+            this.btnSearchButton = new MetroFramework.Controls.MetroButton();
+            this.cbBreakfast = new MetroFramework.Controls.MetroCheckBox();
+            this.cmbAmountOfDays = new MetroFramework.Controls.MetroComboBox();
+            this.lblCheckOut = new MetroFramework.Controls.MetroLabel();
+            this.cmbCheckInDay = new MetroFramework.Controls.MetroComboBox();
+            this.cmbCheckInMonth = new MetroFramework.Controls.MetroComboBox();
+            this.cmbCheckInYear = new MetroFramework.Controls.MetroComboBox();
+            this.lblCheckIn = new MetroFramework.Controls.MetroLabel();
+            this.tbRoomNumber = new MetroFramework.Controls.MetroTextBox();
+            this.lblRoomNr = new MetroFramework.Controls.MetroLabel();
+            this.cmbSuiteType = new MetroFramework.Controls.MetroComboBox();
+            this.lblSuiteType = new MetroFramework.Controls.MetroLabel();
             this.panelReservationLeft = new MetroFramework.Controls.MetroPanel();
             this.tbZipCode = new MetroFramework.Controls.MetroTextBox();
             this.labelZipCode = new MetroFramework.Controls.MetroLabel();
@@ -56,9 +73,12 @@
             this.labelReservationName = new MetroFramework.Controls.MetroLabel();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.lbRooms = new System.Windows.Forms.ListBox();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.tabControls.SuspendLayout();
             this.tabReservation.SuspendLayout();
+            this.pnlReservationRight.SuspendLayout();
+            this.pnlReservationMiddle.SuspendLayout();
             this.panelReservationLeft.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +96,8 @@
             // 
             // tabReservation
             // 
-            this.tabReservation.Controls.Add(this.metroPanel1);
+            this.tabReservation.Controls.Add(this.pnlReservationRight);
+            this.tabReservation.Controls.Add(this.pnlReservationMiddle);
             this.tabReservation.Controls.Add(this.panelReservationLeft);
             this.tabReservation.HorizontalScrollbarBarColor = true;
             this.tabReservation.HorizontalScrollbarHighlightOnWheel = false;
@@ -90,9 +111,208 @@
             this.tabReservation.VerticalScrollbarHighlightOnWheel = false;
             this.tabReservation.VerticalScrollbarSize = 10;
             // 
+            // pnlReservationRight
+            // 
+            this.pnlReservationRight.BackColor = System.Drawing.Color.LightBlue;
+            this.pnlReservationRight.Controls.Add(this.metroButton1);
+            this.pnlReservationRight.Controls.Add(this.lbRooms);
+            this.pnlReservationRight.HorizontalScrollbarBarColor = true;
+            this.pnlReservationRight.HorizontalScrollbarHighlightOnWheel = false;
+            this.pnlReservationRight.HorizontalScrollbarSize = 10;
+            this.pnlReservationRight.Location = new System.Drawing.Point(740, 19);
+            this.pnlReservationRight.Name = "pnlReservationRight";
+            this.pnlReservationRight.Size = new System.Drawing.Size(293, 433);
+            this.pnlReservationRight.TabIndex = 4;
+            this.pnlReservationRight.UseCustomBackColor = true;
+            this.pnlReservationRight.VerticalScrollbarBarColor = true;
+            this.pnlReservationRight.VerticalScrollbarHighlightOnWheel = false;
+            this.pnlReservationRight.VerticalScrollbarSize = 10;
+            // 
+            // pnlReservationMiddle
+            // 
+            this.pnlReservationMiddle.BackColor = System.Drawing.Color.LightBlue;
+            this.pnlReservationMiddle.Controls.Add(this.btnSearchButton);
+            this.pnlReservationMiddle.Controls.Add(this.cbBreakfast);
+            this.pnlReservationMiddle.Controls.Add(this.cmbAmountOfDays);
+            this.pnlReservationMiddle.Controls.Add(this.lblCheckOut);
+            this.pnlReservationMiddle.Controls.Add(this.cmbCheckInDay);
+            this.pnlReservationMiddle.Controls.Add(this.cmbCheckInMonth);
+            this.pnlReservationMiddle.Controls.Add(this.cmbCheckInYear);
+            this.pnlReservationMiddle.Controls.Add(this.lblCheckIn);
+            this.pnlReservationMiddle.Controls.Add(this.tbRoomNumber);
+            this.pnlReservationMiddle.Controls.Add(this.lblRoomNr);
+            this.pnlReservationMiddle.Controls.Add(this.cmbSuiteType);
+            this.pnlReservationMiddle.Controls.Add(this.lblSuiteType);
+            this.pnlReservationMiddle.HorizontalScrollbarBarColor = true;
+            this.pnlReservationMiddle.HorizontalScrollbarHighlightOnWheel = false;
+            this.pnlReservationMiddle.HorizontalScrollbarSize = 10;
+            this.pnlReservationMiddle.Location = new System.Drawing.Point(366, 19);
+            this.pnlReservationMiddle.Name = "pnlReservationMiddle";
+            this.pnlReservationMiddle.Size = new System.Drawing.Size(293, 433);
+            this.pnlReservationMiddle.TabIndex = 3;
+            this.pnlReservationMiddle.UseCustomBackColor = true;
+            this.pnlReservationMiddle.VerticalScrollbarBarColor = true;
+            this.pnlReservationMiddle.VerticalScrollbarHighlightOnWheel = false;
+            this.pnlReservationMiddle.VerticalScrollbarSize = 10;
+            // 
+            // btnSearchButton
+            // 
+            this.btnSearchButton.BackColor = System.Drawing.Color.White;
+            this.btnSearchButton.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnSearchButton.Location = new System.Drawing.Point(73, 220);
+            this.btnSearchButton.Name = "btnSearchButton";
+            this.btnSearchButton.Size = new System.Drawing.Size(144, 23);
+            this.btnSearchButton.Style = MetroFramework.MetroColorStyle.Orange;
+            this.btnSearchButton.TabIndex = 16;
+            this.btnSearchButton.Text = "Search for rooms";
+            this.btnSearchButton.UseCustomBackColor = true;
+            this.btnSearchButton.UseSelectable = true;
+            this.btnSearchButton.UseStyleColors = true;
+            // 
+            // cbBreakfast
+            // 
+            this.cbBreakfast.AutoSize = true;
+            this.cbBreakfast.BackColor = System.Drawing.Color.LightBlue;
+            this.cbBreakfast.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.cbBreakfast.Location = new System.Drawing.Point(132, 150);
+            this.cbBreakfast.Name = "cbBreakfast";
+            this.cbBreakfast.Size = new System.Drawing.Size(100, 25);
+            this.cbBreakfast.TabIndex = 15;
+            this.cbBreakfast.Text = "Breakfast";
+            this.cbBreakfast.UseCustomBackColor = true;
+            this.cbBreakfast.UseSelectable = true;
+            // 
+            // cmbAmountOfDays
+            // 
+            this.cmbAmountOfDays.FormattingEnabled = true;
+            this.cmbAmountOfDays.ItemHeight = 23;
+            this.cmbAmountOfDays.Location = new System.Drawing.Point(20, 148);
+            this.cmbAmountOfDays.Name = "cmbAmountOfDays";
+            this.cmbAmountOfDays.PromptText = "Days";
+            this.cmbAmountOfDays.Size = new System.Drawing.Size(88, 29);
+            this.cmbAmountOfDays.TabIndex = 13;
+            this.cmbAmountOfDays.UseSelectable = true;
+            // 
+            // lblCheckOut
+            // 
+            this.lblCheckOut.AutoSize = true;
+            this.lblCheckOut.BackColor = System.Drawing.Color.LightBlue;
+            this.lblCheckOut.Location = new System.Drawing.Point(20, 126);
+            this.lblCheckOut.Name = "lblCheckOut";
+            this.lblCheckOut.Size = new System.Drawing.Size(81, 19);
+            this.lblCheckOut.TabIndex = 12;
+            this.lblCheckOut.Text = "Days To Stay";
+            this.lblCheckOut.UseCustomBackColor = true;
+            // 
+            // cmbCheckInDay
+            // 
+            this.cmbCheckInDay.FormattingEnabled = true;
+            this.cmbCheckInDay.ItemHeight = 23;
+            this.cmbCheckInDay.Location = new System.Drawing.Point(213, 86);
+            this.cmbCheckInDay.Name = "cmbCheckInDay";
+            this.cmbCheckInDay.PromptText = "Day";
+            this.cmbCheckInDay.Size = new System.Drawing.Size(65, 29);
+            this.cmbCheckInDay.TabIndex = 11;
+            this.cmbCheckInDay.UseSelectable = true;
+            // 
+            // cmbCheckInMonth
+            // 
+            this.cmbCheckInMonth.FormattingEnabled = true;
+            this.cmbCheckInMonth.ItemHeight = 23;
+            this.cmbCheckInMonth.Location = new System.Drawing.Point(114, 86);
+            this.cmbCheckInMonth.Name = "cmbCheckInMonth";
+            this.cmbCheckInMonth.PromptText = "Month";
+            this.cmbCheckInMonth.Size = new System.Drawing.Size(93, 29);
+            this.cmbCheckInMonth.TabIndex = 10;
+            this.cmbCheckInMonth.UseSelectable = true;
+            // 
+            // cmbCheckInYear
+            // 
+            this.cmbCheckInYear.FormattingEnabled = true;
+            this.cmbCheckInYear.ItemHeight = 23;
+            this.cmbCheckInYear.Location = new System.Drawing.Point(20, 86);
+            this.cmbCheckInYear.Name = "cmbCheckInYear";
+            this.cmbCheckInYear.PromptText = "Year";
+            this.cmbCheckInYear.Size = new System.Drawing.Size(88, 29);
+            this.cmbCheckInYear.TabIndex = 9;
+            this.cmbCheckInYear.UseSelectable = true;
+            // 
+            // lblCheckIn
+            // 
+            this.lblCheckIn.AutoSize = true;
+            this.lblCheckIn.BackColor = System.Drawing.Color.LightBlue;
+            this.lblCheckIn.Location = new System.Drawing.Point(20, 64);
+            this.lblCheckIn.Name = "lblCheckIn";
+            this.lblCheckIn.Size = new System.Drawing.Size(58, 19);
+            this.lblCheckIn.TabIndex = 6;
+            this.lblCheckIn.Text = "Check In";
+            this.lblCheckIn.UseCustomBackColor = true;
+            // 
+            // tbRoomNumber
+            // 
+            // 
+            // 
+            // 
+            this.tbRoomNumber.CustomButton.Image = null;
+            this.tbRoomNumber.CustomButton.Location = new System.Drawing.Point(94, 1);
+            this.tbRoomNumber.CustomButton.Name = "";
+            this.tbRoomNumber.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbRoomNumber.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbRoomNumber.CustomButton.TabIndex = 1;
+            this.tbRoomNumber.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbRoomNumber.CustomButton.UseSelectable = true;
+            this.tbRoomNumber.CustomButton.Visible = false;
+            this.tbRoomNumber.Lines = new string[0];
+            this.tbRoomNumber.Location = new System.Drawing.Point(149, 28);
+            this.tbRoomNumber.MaxLength = 32767;
+            this.tbRoomNumber.Name = "tbRoomNumber";
+            this.tbRoomNumber.PasswordChar = '\0';
+            this.tbRoomNumber.ReadOnly = true;
+            this.tbRoomNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbRoomNumber.SelectedText = "";
+            this.tbRoomNumber.SelectionLength = 0;
+            this.tbRoomNumber.SelectionStart = 0;
+            this.tbRoomNumber.Size = new System.Drawing.Size(122, 29);
+            this.tbRoomNumber.TabIndex = 5;
+            this.tbRoomNumber.UseSelectable = true;
+            this.tbRoomNumber.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbRoomNumber.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // lblRoomNr
+            // 
+            this.lblRoomNr.AutoSize = true;
+            this.lblRoomNr.BackColor = System.Drawing.Color.LightBlue;
+            this.lblRoomNr.Location = new System.Drawing.Point(149, 5);
+            this.lblRoomNr.Name = "lblRoomNr";
+            this.lblRoomNr.Size = new System.Drawing.Size(98, 19);
+            this.lblRoomNr.TabIndex = 4;
+            this.lblRoomNr.Text = "Room Number";
+            this.lblRoomNr.UseCustomBackColor = true;
+            // 
+            // cmbSuiteType
+            // 
+            this.cmbSuiteType.FormattingEnabled = true;
+            this.cmbSuiteType.ItemHeight = 23;
+            this.cmbSuiteType.Location = new System.Drawing.Point(20, 28);
+            this.cmbSuiteType.Name = "cmbSuiteType";
+            this.cmbSuiteType.Size = new System.Drawing.Size(122, 29);
+            this.cmbSuiteType.TabIndex = 3;
+            this.cmbSuiteType.UseSelectable = true;
+            // 
+            // lblSuiteType
+            // 
+            this.lblSuiteType.AutoSize = true;
+            this.lblSuiteType.BackColor = System.Drawing.Color.LightBlue;
+            this.lblSuiteType.Location = new System.Drawing.Point(20, 5);
+            this.lblSuiteType.Name = "lblSuiteType";
+            this.lblSuiteType.Size = new System.Drawing.Size(68, 19);
+            this.lblSuiteType.TabIndex = 2;
+            this.lblSuiteType.Text = "Suite Type";
+            this.lblSuiteType.UseCustomBackColor = true;
+            // 
             // panelReservationLeft
             // 
-            this.panelReservationLeft.BackColor = System.Drawing.SystemColors.Control;
+            this.panelReservationLeft.BackColor = System.Drawing.Color.LightBlue;
             this.panelReservationLeft.Controls.Add(this.tbZipCode);
             this.panelReservationLeft.Controls.Add(this.labelZipCode);
             this.panelReservationLeft.Controls.Add(this.cmbStates);
@@ -121,8 +341,9 @@
             this.panelReservationLeft.HorizontalScrollbarSize = 10;
             this.panelReservationLeft.Location = new System.Drawing.Point(3, 19);
             this.panelReservationLeft.Name = "panelReservationLeft";
-            this.panelReservationLeft.Size = new System.Drawing.Size(293, 541);
+            this.panelReservationLeft.Size = new System.Drawing.Size(293, 433);
             this.panelReservationLeft.TabIndex = 2;
+            this.panelReservationLeft.UseCustomBackColor = true;
             this.panelReservationLeft.VerticalScrollbarBarColor = true;
             this.panelReservationLeft.VerticalScrollbarHighlightOnWheel = false;
             this.panelReservationLeft.VerticalScrollbarSize = 10;
@@ -159,11 +380,13 @@
             // labelZipCode
             // 
             this.labelZipCode.AutoSize = true;
+            this.labelZipCode.BackColor = System.Drawing.Color.LightBlue;
             this.labelZipCode.Location = new System.Drawing.Point(143, 352);
             this.labelZipCode.Name = "labelZipCode";
             this.labelZipCode.Size = new System.Drawing.Size(64, 19);
             this.labelZipCode.TabIndex = 23;
             this.labelZipCode.Text = "Zip Code";
+            this.labelZipCode.UseCustomBackColor = true;
             // 
             // cmbStates
             // 
@@ -178,11 +401,13 @@
             // labelState
             // 
             this.labelState.AutoSize = true;
+            this.labelState.BackColor = System.Drawing.Color.LightBlue;
             this.labelState.Location = new System.Drawing.Point(15, 352);
             this.labelState.Name = "labelState";
             this.labelState.Size = new System.Drawing.Size(38, 19);
             this.labelState.TabIndex = 21;
             this.labelState.Text = "State";
+            this.labelState.UseCustomBackColor = true;
             // 
             // tbCity
             // 
@@ -216,11 +441,13 @@
             // labelCity
             // 
             this.labelCity.AutoSize = true;
+            this.labelCity.BackColor = System.Drawing.Color.LightBlue;
             this.labelCity.Location = new System.Drawing.Point(15, 301);
             this.labelCity.Name = "labelCity";
             this.labelCity.Size = new System.Drawing.Size(31, 19);
             this.labelCity.TabIndex = 19;
             this.labelCity.Text = "City";
+            this.labelCity.UseCustomBackColor = true;
             // 
             // tbStreet
             // 
@@ -254,11 +481,13 @@
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
+            this.labelAddress.BackColor = System.Drawing.Color.LightBlue;
             this.labelAddress.Location = new System.Drawing.Point(15, 248);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(56, 19);
             this.labelAddress.TabIndex = 17;
             this.labelAddress.Text = "Address";
+            this.labelAddress.UseCustomBackColor = true;
             // 
             // tbEmail
             // 
@@ -292,11 +521,13 @@
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
+            this.labelEmail.BackColor = System.Drawing.Color.LightBlue;
             this.labelEmail.Location = new System.Drawing.Point(15, 198);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(41, 19);
             this.labelEmail.TabIndex = 15;
             this.labelEmail.Text = "Email";
+            this.labelEmail.UseCustomBackColor = true;
             // 
             // tbTelephone
             // 
@@ -330,50 +561,60 @@
             // labelTelephone
             // 
             this.labelTelephone.AutoSize = true;
+            this.labelTelephone.BackColor = System.Drawing.Color.LightBlue;
             this.labelTelephone.Location = new System.Drawing.Point(15, 148);
             this.labelTelephone.Name = "labelTelephone";
             this.labelTelephone.Size = new System.Drawing.Size(68, 19);
             this.labelTelephone.TabIndex = 13;
             this.labelTelephone.Text = "Telephone";
+            this.labelTelephone.UseCustomBackColor = true;
             // 
             // cbOther
             // 
             this.cbOther.AutoSize = true;
+            this.cbOther.BackColor = System.Drawing.Color.LightBlue;
             this.cbOther.Location = new System.Drawing.Point(210, 130);
             this.cbOther.Name = "cbOther";
             this.cbOther.Size = new System.Drawing.Size(53, 15);
             this.cbOther.TabIndex = 12;
             this.cbOther.Text = "Other";
+            this.cbOther.UseCustomBackColor = true;
             this.cbOther.UseSelectable = true;
             // 
             // cbFemale
             // 
             this.cbFemale.AutoSize = true;
+            this.cbFemale.BackColor = System.Drawing.Color.LightBlue;
             this.cbFemale.Location = new System.Drawing.Point(111, 130);
             this.cbFemale.Name = "cbFemale";
             this.cbFemale.Size = new System.Drawing.Size(61, 15);
             this.cbFemale.TabIndex = 11;
             this.cbFemale.Text = "Female";
+            this.cbFemale.UseCustomBackColor = true;
             this.cbFemale.UseSelectable = true;
             // 
             // cbMale
             // 
             this.cbMale.AutoSize = true;
+            this.cbMale.BackColor = System.Drawing.Color.LightBlue;
             this.cbMale.Location = new System.Drawing.Point(24, 130);
             this.cbMale.Name = "cbMale";
             this.cbMale.Size = new System.Drawing.Size(49, 15);
             this.cbMale.TabIndex = 10;
             this.cbMale.Text = "Male";
+            this.cbMale.UseCustomBackColor = true;
             this.cbMale.UseSelectable = true;
             // 
             // labelGender
             // 
             this.labelGender.AutoSize = true;
+            this.labelGender.BackColor = System.Drawing.Color.LightBlue;
             this.labelGender.Location = new System.Drawing.Point(15, 108);
             this.labelGender.Name = "labelGender";
             this.labelGender.Size = new System.Drawing.Size(52, 19);
             this.labelGender.TabIndex = 9;
             this.labelGender.Text = "Gender";
+            this.labelGender.UseCustomBackColor = true;
             // 
             // cmbDay
             // 
@@ -412,11 +653,13 @@
             // labelBirthday
             // 
             this.labelBirthday.AutoSize = true;
+            this.labelBirthday.BackColor = System.Drawing.Color.LightBlue;
             this.labelBirthday.Location = new System.Drawing.Point(15, 53);
             this.labelBirthday.Name = "labelBirthday";
             this.labelBirthday.Size = new System.Drawing.Size(58, 19);
             this.labelBirthday.TabIndex = 5;
             this.labelBirthday.Text = "Birthday";
+            this.labelBirthday.UseCustomBackColor = true;
             // 
             // textboxSurname
             // 
@@ -483,11 +726,13 @@
             // labelReservationName
             // 
             this.labelReservationName.AutoSize = true;
+            this.labelReservationName.BackColor = System.Drawing.Color.LightBlue;
             this.labelReservationName.Location = new System.Drawing.Point(15, 5);
             this.labelReservationName.Name = "labelReservationName";
             this.labelReservationName.Size = new System.Drawing.Size(45, 19);
             this.labelReservationName.TabIndex = 2;
             this.labelReservationName.Text = "Name";
+            this.labelReservationName.UseCustomBackColor = true;
             // 
             // metroTabPage2
             // 
@@ -517,28 +762,39 @@
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
             // 
-            // metroPanel1
+            // lbRooms
             // 
-            this.metroPanel1.HorizontalScrollbarBarColor = true;
-            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(394, 19);
-            this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(293, 541);
-            this.metroPanel1.TabIndex = 3;
-            this.metroPanel1.VerticalScrollbarBarColor = true;
-            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.VerticalScrollbarSize = 10;
+            this.lbRooms.FormattingEnabled = true;
+            this.lbRooms.ItemHeight = 20;
+            this.lbRooms.Location = new System.Drawing.Point(16, 5);
+            this.lbRooms.Name = "lbRooms";
+            this.lbRooms.Size = new System.Drawing.Size(260, 284);
+            this.lbRooms.TabIndex = 2;
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.metroButton1.Location = new System.Drawing.Point(105, 395);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(75, 23);
+            this.metroButton1.Style = MetroFramework.MetroColorStyle.Orange;
+            this.metroButton1.TabIndex = 3;
+            this.metroButton1.Text = "Book";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.UseStyleColors = true;
             // 
             // FrontDesk
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1088, 702);
+            this.ClientSize = new System.Drawing.Size(1088, 584);
             this.Controls.Add(this.tabControls);
             this.Name = "FrontDesk";
             this.Text = "FrontDesk";
             this.tabControls.ResumeLayout(false);
             this.tabReservation.ResumeLayout(false);
+            this.pnlReservationRight.ResumeLayout(false);
+            this.pnlReservationMiddle.ResumeLayout(false);
+            this.pnlReservationMiddle.PerformLayout();
             this.panelReservationLeft.ResumeLayout(false);
             this.panelReservationLeft.PerformLayout();
             this.ResumeLayout(false);
@@ -575,6 +831,21 @@
         private MetroFramework.Controls.MetroTextBox tbCity;
         private MetroFramework.Controls.MetroLabel labelCity;
         private MetroFramework.Controls.MetroTextBox tbStreet;
-        private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroPanel pnlReservationMiddle;
+        private MetroFramework.Controls.MetroTextBox tbRoomNumber;
+        private MetroFramework.Controls.MetroLabel lblRoomNr;
+        private MetroFramework.Controls.MetroComboBox cmbSuiteType;
+        private MetroFramework.Controls.MetroLabel lblSuiteType;
+        private MetroFramework.Controls.MetroComboBox cmbAmountOfDays;
+        private MetroFramework.Controls.MetroLabel lblCheckOut;
+        private MetroFramework.Controls.MetroComboBox cmbCheckInDay;
+        private MetroFramework.Controls.MetroComboBox cmbCheckInMonth;
+        private MetroFramework.Controls.MetroComboBox cmbCheckInYear;
+        private MetroFramework.Controls.MetroLabel lblCheckIn;
+        private MetroFramework.Controls.MetroCheckBox cbBreakfast;
+        private MetroFramework.Controls.MetroButton btnSearchButton;
+        private MetroFramework.Controls.MetroPanel pnlReservationRight;
+        private System.Windows.Forms.ListBox lbRooms;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }
