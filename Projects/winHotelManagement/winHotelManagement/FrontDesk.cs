@@ -1,4 +1,5 @@
 ﻿using System;
+using MetroFramework.Controls;
 using MetroFramework.Forms;
 
 namespace winHotelManagement
@@ -11,6 +12,8 @@ namespace winHotelManagement
 
             InitializeBirthdayBoxes();
             InitializeGenderBoxes();
+
+            DatabaseManager.GetAllRooms();
         }
 
         /// <summary>
@@ -30,17 +33,19 @@ namespace winHotelManagement
         /// <param name="e"></param>
         private void GenderCheckedChanged(object sender, EventArgs e)
         {
-            if (cbFemale.Checked)
+            var checkBox = sender as MetroCheckBox;
+
+            if (checkBox?.Name == "cbFemale" && checkBox.Checked)
             {
                 cbMale.Checked = false;
                 cbOther.Checked = false;
             }
-            else if (cbMale.Checked)
+            else if (checkBox?.Name == "cbMale" && checkBox.Checked)
             {
                 cbFemale.Checked = false;
                 cbOther.Checked = false;
             }
-            else if(cbOther.Checked)
+            else if(checkBox?.Name == "cbOther" && checkBox.Checked)
             {
                 cbMale.Checked = false;
                 cbFemale.Checked = false;
