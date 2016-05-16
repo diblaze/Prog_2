@@ -38,7 +38,7 @@ namespace winHotelManagement
         [Column(IsPrimaryKey = true, Storage = "_RoomNumber")]
         public int RoomNumber
         {
-            get { return RoomNumber; }
+            get { return _RoomNumber; }
             set { _RoomNumber = value; }
         }
 
@@ -46,7 +46,7 @@ namespace winHotelManagement
         [Column(Storage = "_RoomSize")]
         public int RoomSize
         {
-            get { return RoomSize; }
+            get { return _RoomSize; }
             set { _RoomSize = value; }
         }
 
@@ -54,7 +54,7 @@ namespace winHotelManagement
         [Column(Storage = "_Beds")]
         public int Beds
         {
-            get { return Beds; }
+            get { return _Beds; }
             set { _Beds = value; }
         }
 
@@ -62,7 +62,7 @@ namespace winHotelManagement
         [Column(Storage = "_AC")]
         public bool AC
         {
-            get { return AC; }
+            get { return _AC; }
             set { _AC = value; }
         }
 
@@ -70,7 +70,7 @@ namespace winHotelManagement
         [Column(Storage = "_TV")]
         public bool TV
         {
-            get { return TV; }
+            get { return _TV; }
             set { _TV = value; }
         }
 
@@ -78,7 +78,7 @@ namespace winHotelManagement
         [Column(Storage = "_Balcony")]
         public bool Balcony
         {
-            get { return Balcony; }
+            get { return _Balcony; }
             set { _Balcony = value; }
         }
 
@@ -86,7 +86,7 @@ namespace winHotelManagement
         [Column(Storage = "_Minibar")]
         public bool Minibar
         {
-            get { return Minibar; }
+            get { return _Minibar; }
             set { _Minibar = value; }
         }
 
@@ -94,7 +94,7 @@ namespace winHotelManagement
         [Column(Storage = "_NumberOfAdultsAllowed")]
         public int NumberOfAdultsAllowed
         {
-            get { return NumberOfAdultsAllowed; }
+            get { return _NumberOfAdultsAllowed; }
             set { _NumberOfAdultsAllowed = value; }
         }
 
@@ -102,7 +102,7 @@ namespace winHotelManagement
         [Column(Storage = "_NumberOfChildrenAllowed")]
         public int NumberOfChildrenAllowed
         {
-            get { return NumberOfChildrenAllowed; }
+            get { return _NumberOfChildrenAllowed; }
             set { _NumberOfChildrenAllowed = value; }
         }
 
@@ -110,7 +110,7 @@ namespace winHotelManagement
         [Column(Storage = "_Breakfast")]
         public bool Breakfast
         {
-            get { return Breakfast; }
+            get { return _Breakfast; }
             set { _Breakfast = value; }
         }
     }

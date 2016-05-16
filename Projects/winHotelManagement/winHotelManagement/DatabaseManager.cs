@@ -14,10 +14,14 @@ namespace winHotelManagement
     {
 
         private static string ConnectionString => Properties.Settings.Default.ConnectionString;
+        private static SqlConnection dd = new SqlConnection();
 
         public static void GetAllRooms()
         {
-            DataContext db = new DataContext(new SqlConnection(ConnectionString));
+
+        DataContext db = new DataContext(new SqlConnection(ConnectionString));
+            db.Log = Console.Out;
+            db.Connection.Open();
 
             Table<Suite> suites = db.GetTable<Suite>();
 
@@ -27,6 +31,8 @@ namespace winHotelManagement
             {
                 MessageBox.Show(c.RoomNumber + " : " + c.Minibar);
             }
+
+            db.Connection.Close();
         }
     }
 }
