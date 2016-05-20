@@ -11,7 +11,7 @@ namespace winHotelManagement
         public LoginForm()
         {
             InitializeComponent();
-            SignIn("Admin", "admin");
+            inputUsername.Focus();
         }
 
         /// <summary>
@@ -25,11 +25,26 @@ namespace winHotelManagement
             SignIn(inputUsername.Text.Trim(), inputPassword.Text.Trim());
         }
 
+        /// <summary>
+        /// Handels the sign in procss.
+        /// </summary>
+        /// <param name="usernameTrimmed">The username trimmed.</param>
+        /// <param name="passwordTrimmed">The password trimmed.</param>
         private async void SignIn(string usernameTrimmed, string passwordTrimmed)
         {
             //true if correct username and password
             //false if correct username but wrong password
-            bool correctLogin = await CheckUserDataSql(usernameTrimmed, passwordTrimmed);
+            bool correctLogin = false;
+
+            try
+            {
+                 correctLogin = UserUtility.LogInUser(usernameTrimmed, passwordTrimmed);
+            }
+            catch (Exception ex)
+            {
+                //error occured, show messsage
+                MetroMessageBox.Show(this, ex.Message);
+            }
 
             if (correctLogin)
             {
@@ -38,46 +53,16 @@ namespace winHotelManagement
 
                 MetroMessageBox.Show(this, "You have logged in");
 
+                await Task.Delay(1000);
+
                 FrontDesk frontDesk = new FrontDesk();
                 frontDesk.Show();
-                Hide();
+                this.Hide();
             }
             else
             {
                 MetroMessageBox.Show(this, "Wrong password!");
             }
-        }
-
-        /// <summary>
-        ///     Checks if user exists, and if password is correct.
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns><c>True</c> if correct username and correct password.</returns>
-        private async Task<bool> CheckUserDataSql(string username, string password)
-        {
-            //
-            List<string> userData;
-
-            //Does the user exist?
-            try
-            {
-                userData = await UserUtility.RetrieveUser(username);
-            }
-            catch (Exception ex)
-            {
-                //error occured, show messsage
-                MetroMessageBox.Show(this, ex.Message);
-                return false;
-            }
-
-            //User exist
-            if (userData != null)
-                return UserUtility.ValidatePassword(userData[1], password);
-
-            //User does not exist
-            MetroMessageBox.Show(this, "User not found. Please try again.");
-            return false;
         }
     }
 }

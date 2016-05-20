@@ -45,8 +45,6 @@ namespace winHotelManagement
             this.cmbCheckInMonth = new MetroFramework.Controls.MetroComboBox();
             this.cmbCheckInYear = new MetroFramework.Controls.MetroComboBox();
             this.lblCheckIn = new MetroFramework.Controls.MetroLabel();
-            this.tbRoomNumber = new MetroFramework.Controls.MetroTextBox();
-            this.lblRoomNr = new MetroFramework.Controls.MetroLabel();
             this.cmbSuiteType = new MetroFramework.Controls.MetroComboBox();
             this.lblSuiteType = new MetroFramework.Controls.MetroLabel();
             this.panelReservationLeft = new MetroFramework.Controls.MetroPanel();
@@ -76,12 +74,23 @@ namespace winHotelManagement
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.pnl = new MetroFramework.Controls.MetroPanel();
+            this.btnShowAllLuxury = new System.Windows.Forms.Button();
+            this.btnShowAllRegular = new System.Windows.Forms.Button();
+            this.BtnShowAllHighEnd = new System.Windows.Forms.Button();
+            this.btnShowAllSuites = new System.Windows.Forms.Button();
+            this.dgvSuites = new System.Windows.Forms.DataGridView();
+            this.cmbAdults = new MetroFramework.Controls.MetroComboBox();
+            this.cmbChildren = new MetroFramework.Controls.MetroComboBox();
+            this.lblAdults = new MetroFramework.Controls.MetroLabel();
+            this.lblChildren = new MetroFramework.Controls.MetroLabel();
             this.tabControls.SuspendLayout();
             this.tabReservation.SuspendLayout();
             this.pnlReservationRight.SuspendLayout();
             this.pnlReservationMiddle.SuspendLayout();
             this.panelReservationLeft.SuspendLayout();
             this.metroTabPage3.SuspendLayout();
+            this.pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuites)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControls
@@ -91,7 +100,7 @@ namespace winHotelManagement
             this.tabControls.Controls.Add(this.metroTabPage3);
             this.tabControls.Location = new System.Drawing.Point(24, 74);
             this.tabControls.Name = "tabControls";
-            this.tabControls.SelectedIndex = 2;
+            this.tabControls.SelectedIndex = 0;
             this.tabControls.Size = new System.Drawing.Size(1041, 605);
             this.tabControls.TabIndex = 0;
             this.tabControls.UseSelectable = true;
@@ -145,15 +154,18 @@ namespace winHotelManagement
             // lbRooms
             // 
             this.lbRooms.FormattingEnabled = true;
-            this.lbRooms.ItemHeight = 20;
             this.lbRooms.Location = new System.Drawing.Point(16, 5);
             this.lbRooms.Name = "lbRooms";
-            this.lbRooms.Size = new System.Drawing.Size(260, 284);
+            this.lbRooms.Size = new System.Drawing.Size(260, 277);
             this.lbRooms.TabIndex = 2;
             // 
             // pnlReservationMiddle
             // 
             this.pnlReservationMiddle.BackColor = System.Drawing.Color.LightBlue;
+            this.pnlReservationMiddle.Controls.Add(this.lblChildren);
+            this.pnlReservationMiddle.Controls.Add(this.lblAdults);
+            this.pnlReservationMiddle.Controls.Add(this.cmbChildren);
+            this.pnlReservationMiddle.Controls.Add(this.cmbAdults);
             this.pnlReservationMiddle.Controls.Add(this.btnSearchButton);
             this.pnlReservationMiddle.Controls.Add(this.cbBreakfast);
             this.pnlReservationMiddle.Controls.Add(this.cmbAmountOfDays);
@@ -162,8 +174,6 @@ namespace winHotelManagement
             this.pnlReservationMiddle.Controls.Add(this.cmbCheckInMonth);
             this.pnlReservationMiddle.Controls.Add(this.cmbCheckInYear);
             this.pnlReservationMiddle.Controls.Add(this.lblCheckIn);
-            this.pnlReservationMiddle.Controls.Add(this.tbRoomNumber);
-            this.pnlReservationMiddle.Controls.Add(this.lblRoomNr);
             this.pnlReservationMiddle.Controls.Add(this.cmbSuiteType);
             this.pnlReservationMiddle.Controls.Add(this.lblSuiteType);
             this.pnlReservationMiddle.HorizontalScrollbarBarColor = true;
@@ -191,13 +201,14 @@ namespace winHotelManagement
             this.btnSearchButton.UseCustomBackColor = true;
             this.btnSearchButton.UseSelectable = true;
             this.btnSearchButton.UseStyleColors = true;
+            this.btnSearchButton.Click += new System.EventHandler(this.btnSearchButton_Click);
             // 
             // cbBreakfast
             // 
             this.cbBreakfast.AutoSize = true;
             this.cbBreakfast.BackColor = System.Drawing.Color.LightBlue;
             this.cbBreakfast.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.cbBreakfast.Location = new System.Drawing.Point(132, 150);
+            this.cbBreakfast.Location = new System.Drawing.Point(165, 30);
             this.cbBreakfast.Name = "cbBreakfast";
             this.cbBreakfast.Size = new System.Drawing.Size(100, 25);
             this.cbBreakfast.Style = MetroFramework.MetroColorStyle.Orange;
@@ -273,47 +284,6 @@ namespace winHotelManagement
             this.lblCheckIn.TabIndex = 6;
             this.lblCheckIn.Text = "Check In";
             this.lblCheckIn.UseCustomBackColor = true;
-            // 
-            // tbRoomNumber
-            // 
-            // 
-            // 
-            // 
-            this.tbRoomNumber.CustomButton.Image = null;
-            this.tbRoomNumber.CustomButton.Location = new System.Drawing.Point(94, 1);
-            this.tbRoomNumber.CustomButton.Name = "";
-            this.tbRoomNumber.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbRoomNumber.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbRoomNumber.CustomButton.TabIndex = 1;
-            this.tbRoomNumber.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbRoomNumber.CustomButton.UseSelectable = true;
-            this.tbRoomNumber.CustomButton.Visible = false;
-            this.tbRoomNumber.Lines = new string[0];
-            this.tbRoomNumber.Location = new System.Drawing.Point(149, 28);
-            this.tbRoomNumber.MaxLength = 32767;
-            this.tbRoomNumber.Name = "tbRoomNumber";
-            this.tbRoomNumber.PasswordChar = '\0';
-            this.tbRoomNumber.ReadOnly = true;
-            this.tbRoomNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbRoomNumber.SelectedText = "";
-            this.tbRoomNumber.SelectionLength = 0;
-            this.tbRoomNumber.SelectionStart = 0;
-            this.tbRoomNumber.Size = new System.Drawing.Size(122, 29);
-            this.tbRoomNumber.TabIndex = 5;
-            this.tbRoomNumber.UseSelectable = true;
-            this.tbRoomNumber.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbRoomNumber.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // lblRoomNr
-            // 
-            this.lblRoomNr.AutoSize = true;
-            this.lblRoomNr.BackColor = System.Drawing.Color.LightBlue;
-            this.lblRoomNr.Location = new System.Drawing.Point(149, 5);
-            this.lblRoomNr.Name = "lblRoomNr";
-            this.lblRoomNr.Size = new System.Drawing.Size(98, 19);
-            this.lblRoomNr.TabIndex = 4;
-            this.lblRoomNr.Text = "Room Number";
-            this.lblRoomNr.UseCustomBackColor = true;
             // 
             // cmbSuiteType
             // 
@@ -777,9 +747,9 @@ namespace winHotelManagement
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.HorizontalScrollbarSize = 10;
-            this.metroTabPage2.Location = new System.Drawing.Point(4, 39);
+            this.metroTabPage2.Location = new System.Drawing.Point(4, 35);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(1033, 562);
+            this.metroTabPage2.Size = new System.Drawing.Size(1033, 566);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Universal Search";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
@@ -792,17 +762,22 @@ namespace winHotelManagement
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.HorizontalScrollbarSize = 10;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(1033, 563);
+            this.metroTabPage3.Size = new System.Drawing.Size(1033, 566);
             this.metroTabPage3.TabIndex = 2;
-            this.metroTabPage3.Text = "Room Availability";
+            this.metroTabPage3.Text = "Rooms";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
             // 
             // pnl
             // 
+            this.pnl.Controls.Add(this.btnShowAllLuxury);
+            this.pnl.Controls.Add(this.btnShowAllRegular);
+            this.pnl.Controls.Add(this.BtnShowAllHighEnd);
+            this.pnl.Controls.Add(this.btnShowAllSuites);
+            this.pnl.Controls.Add(this.dgvSuites);
             this.pnl.HorizontalScrollbarBarColor = true;
             this.pnl.HorizontalScrollbarHighlightOnWheel = false;
             this.pnl.HorizontalScrollbarSize = 10;
@@ -813,6 +788,104 @@ namespace winHotelManagement
             this.pnl.VerticalScrollbarBarColor = true;
             this.pnl.VerticalScrollbarHighlightOnWheel = false;
             this.pnl.VerticalScrollbarSize = 10;
+            // 
+            // btnShowAllLuxury
+            // 
+            this.btnShowAllLuxury.Location = new System.Drawing.Point(322, 3);
+            this.btnShowAllLuxury.Name = "btnShowAllLuxury";
+            this.btnShowAllLuxury.Size = new System.Drawing.Size(112, 23);
+            this.btnShowAllLuxury.TabIndex = 6;
+            this.btnShowAllLuxury.Text = "Show All Luxury";
+            this.btnShowAllLuxury.UseVisualStyleBackColor = true;
+            this.btnShowAllLuxury.Click += new System.EventHandler(this.btnShowAllLuxury_Click);
+            // 
+            // btnShowAllRegular
+            // 
+            this.btnShowAllRegular.Location = new System.Drawing.Point(100, 3);
+            this.btnShowAllRegular.Name = "btnShowAllRegular";
+            this.btnShowAllRegular.Size = new System.Drawing.Size(98, 23);
+            this.btnShowAllRegular.TabIndex = 5;
+            this.btnShowAllRegular.Text = "Show All Regular";
+            this.btnShowAllRegular.UseVisualStyleBackColor = true;
+            this.btnShowAllRegular.Click += new System.EventHandler(this.btnShowAllRegular_Click);
+            // 
+            // BtnShowAllHighEnd
+            // 
+            this.BtnShowAllHighEnd.Location = new System.Drawing.Point(204, 3);
+            this.BtnShowAllHighEnd.Name = "BtnShowAllHighEnd";
+            this.BtnShowAllHighEnd.Size = new System.Drawing.Size(112, 23);
+            this.BtnShowAllHighEnd.TabIndex = 4;
+            this.BtnShowAllHighEnd.Text = "Show All High-End";
+            this.BtnShowAllHighEnd.UseVisualStyleBackColor = true;
+            this.BtnShowAllHighEnd.Click += new System.EventHandler(this.BtnShowAllHighEnd_Click);
+            // 
+            // btnShowAllSuites
+            // 
+            this.btnShowAllSuites.Location = new System.Drawing.Point(4, 3);
+            this.btnShowAllSuites.Name = "btnShowAllSuites";
+            this.btnShowAllSuites.Size = new System.Drawing.Size(90, 23);
+            this.btnShowAllSuites.TabIndex = 3;
+            this.btnShowAllSuites.Text = "Show All Suites";
+            this.btnShowAllSuites.UseVisualStyleBackColor = true;
+            this.btnShowAllSuites.Click += new System.EventHandler(this.btnShowAllSuites_Click);
+            // 
+            // dgvSuites
+            // 
+            this.dgvSuites.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSuites.Location = new System.Drawing.Point(3, 32);
+            this.dgvSuites.Name = "dgvSuites";
+            this.dgvSuites.Size = new System.Drawing.Size(1023, 423);
+            this.dgvSuites.TabIndex = 2;
+            // 
+            // cmbAdults
+            // 
+            this.cmbAdults.FormattingEnabled = true;
+            this.cmbAdults.ItemHeight = 23;
+            this.cmbAdults.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cmbAdults.Location = new System.Drawing.Point(114, 148);
+            this.cmbAdults.Name = "cmbAdults";
+            this.cmbAdults.Size = new System.Drawing.Size(64, 29);
+            this.cmbAdults.TabIndex = 17;
+            this.cmbAdults.UseSelectable = true;
+            // 
+            // cmbChildren
+            // 
+            this.cmbChildren.FormattingEnabled = true;
+            this.cmbChildren.ItemHeight = 23;
+            this.cmbChildren.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cmbChildren.Location = new System.Drawing.Point(184, 148);
+            this.cmbChildren.Name = "cmbChildren";
+            this.cmbChildren.Size = new System.Drawing.Size(64, 29);
+            this.cmbChildren.TabIndex = 18;
+            this.cmbChildren.UseSelectable = true;
+            // 
+            // lblAdults
+            // 
+            this.lblAdults.AutoSize = true;
+            this.lblAdults.BackColor = System.Drawing.Color.LightBlue;
+            this.lblAdults.Location = new System.Drawing.Point(114, 126);
+            this.lblAdults.Name = "lblAdults";
+            this.lblAdults.Size = new System.Drawing.Size(45, 19);
+            this.lblAdults.TabIndex = 19;
+            this.lblAdults.Text = "Adults";
+            this.lblAdults.UseCustomBackColor = true;
+            // 
+            // lblChildren
+            // 
+            this.lblChildren.AutoSize = true;
+            this.lblChildren.BackColor = System.Drawing.Color.LightBlue;
+            this.lblChildren.Location = new System.Drawing.Point(184, 126);
+            this.lblChildren.Name = "lblChildren";
+            this.lblChildren.Size = new System.Drawing.Size(58, 19);
+            this.lblChildren.TabIndex = 20;
+            this.lblChildren.Text = "Children";
+            this.lblChildren.UseCustomBackColor = true;
             // 
             // FrontDesk
             // 
@@ -829,6 +902,8 @@ namespace winHotelManagement
             this.panelReservationLeft.ResumeLayout(false);
             this.panelReservationLeft.PerformLayout();
             this.metroTabPage3.ResumeLayout(false);
+            this.pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuites)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -864,8 +939,6 @@ namespace winHotelManagement
         private MetroFramework.Controls.MetroLabel labelCity;
         private MetroFramework.Controls.MetroTextBox tbStreet;
         private MetroFramework.Controls.MetroPanel pnlReservationMiddle;
-        private MetroFramework.Controls.MetroTextBox tbRoomNumber;
-        private MetroFramework.Controls.MetroLabel lblRoomNr;
         private MetroFramework.Controls.MetroComboBox cmbSuiteType;
         private MetroFramework.Controls.MetroLabel lblSuiteType;
         private MetroFramework.Controls.MetroComboBox cmbAmountOfDays;
@@ -880,5 +953,14 @@ namespace winHotelManagement
         private System.Windows.Forms.ListBox lbRooms;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroPanel pnl;
+        private System.Windows.Forms.DataGridView dgvSuites;
+        private System.Windows.Forms.Button btnShowAllSuites;
+        private System.Windows.Forms.Button BtnShowAllHighEnd;
+        private System.Windows.Forms.Button btnShowAllLuxury;
+        private System.Windows.Forms.Button btnShowAllRegular;
+        private MetroFramework.Controls.MetroComboBox cmbChildren;
+        private MetroFramework.Controls.MetroComboBox cmbAdults;
+        private MetroFramework.Controls.MetroLabel lblAdults;
+        private MetroFramework.Controls.MetroLabel lblChildren;
     }
 }

@@ -2,47 +2,41 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using DevOne.Security.Cryptography.BCrypt;
+using System.Linq;
+using MetroFramework;
 
 namespace winHotelManagement
 {
     public static class UserUtility
     {
-        private static string ConnectionString => Properties.Settings.Default.ConnectionString;
 
         /// <summary>
         ///     Retrives an given user.
         /// </summary>
         /// <param name="username">Username of given user.</param>
-        /// <returns><c>SqlDataReader</c> with user data.</returns>
-        public static async Task<List<string>> RetrieveUser(string username)
+        /// <returns><c>True</c> if correct user data. <c>False</c> if incorrect user data.</returns>
+        public static bool LogInUser(string username, string password)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
+            bool correctPassword = false;
 
-            //search for given username
-            const string query = "SELECT * FROM Users WHERE Username=@username";
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
-            SqlParameter usernameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
-            sqlCommand.Parameters.Add(usernameParameter);
-            usernameParameter.Value = username;
-            await connection.OpenAsync();
+            //LINQ to SQL
+            HotelDataDataContext db = new HotelDataDataContext();
 
-            var userData = new List<string>();
+            IEnumerable<User> users = from u in db.Users
+                                      where u.Username == username
+                                      select u;
 
-            using (SqlDataReader sqlReader = await sqlCommand.ExecuteReaderAsync())
+            //we found a user
+            if (users.Count() == 1)
             {
-                while (await sqlReader.ReadAsync())
-                {
-                    userData.Add(sqlReader["Username"].ToString());
-                    userData.Add(sqlReader["Hash"].ToString());
-                    userData.Add(sqlReader["Role"].ToString());
-                }
+                //check password against user.
+                correctPassword = ValidatePassword(users.FirstOrDefault()?.Hash, password);
             }
 
-            connection.Close();
-            //send back userdata list.
-            return userData;
+            return correctPassword;
         }
 
         /// <summary>
@@ -51,36 +45,31 @@ namespace winHotelManagement
         /// <param name="username">Username</param>
         /// <param name="password">Password</param>
         /// <returns><c>True</c> if successful</returns>
-        public static async Task<bool> CreateUser(string username, string password)
+        public static bool CreateUser(string username, string password)
         {
-            const string query = "INSERT INTO Users (Username, Hash, Role) VALUES(@username, @hash, @role)";
 
+            //hash password
             string passwordHash = BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt());
+            //role to set to user
+            string role = "Employee";
+
+            //LINQ to SQL
+            HotelDataDataContext db = new HotelDataDataContext();
 
             try
             {
-                SqlConnection connection = new SqlConnection(ConnectionString);
-                SqlCommand sqlCommand = new SqlCommand(query, connection);
-                SqlParameter usernameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
-                SqlParameter hashParameter = new SqlParameter("@hash", SqlDbType.NVarChar);
-                SqlParameter roleParameter = new SqlParameter("@role", SqlDbType.NVarChar);
-                sqlCommand.Parameters.Add(usernameParameter);
-                sqlCommand.Parameters.Add(hashParameter);
-                sqlCommand.Parameters.Add(roleParameter);
-                usernameParameter.Value = username;
-                hashParameter.Value = passwordHash;
-                //TODO: make sure Admin can change the role depending on what he needs.
-                roleParameter.Value = "Admin";
-                await connection.OpenAsync();
-                sqlCommand.ExecuteNonQuery();
+                User newUser = new User {Hash = passwordHash, Username = username, Role = role};
+                db.Users.InsertOnSubmit(newUser);
+                db.SubmitChanges();
 
-                connection.Close();
-                return true;
             }
             catch (Exception)
             {
                 return false;
             }
+
+            return true;
+
         }
 
         /// <summary>
