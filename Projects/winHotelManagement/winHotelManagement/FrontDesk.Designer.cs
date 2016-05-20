@@ -34,9 +34,13 @@ namespace winHotelManagement
             this.tabControls = new MetroFramework.Controls.MetroTabControl();
             this.tabReservation = new MetroFramework.Controls.MetroTabPage();
             this.pnlReservationRight = new MetroFramework.Controls.MetroPanel();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.lbRooms = new System.Windows.Forms.ListBox();
+            this.dgvSuitesToBook = new System.Windows.Forms.DataGridView();
+            this.btnBook = new MetroFramework.Controls.MetroButton();
             this.pnlReservationMiddle = new MetroFramework.Controls.MetroPanel();
+            this.lblChildren = new MetroFramework.Controls.MetroLabel();
+            this.lblAdults = new MetroFramework.Controls.MetroLabel();
+            this.cmbChildren = new MetroFramework.Controls.MetroComboBox();
+            this.cmbAdults = new MetroFramework.Controls.MetroComboBox();
             this.btnSearchButton = new MetroFramework.Controls.MetroButton();
             this.cbBreakfast = new MetroFramework.Controls.MetroCheckBox();
             this.cmbAmountOfDays = new MetroFramework.Controls.MetroComboBox();
@@ -68,10 +72,12 @@ namespace winHotelManagement
             this.cmbMonth = new MetroFramework.Controls.MetroComboBox();
             this.cmbYear = new MetroFramework.Controls.MetroComboBox();
             this.labelBirthday = new MetroFramework.Controls.MetroLabel();
-            this.textboxSurname = new MetroFramework.Controls.MetroTextBox();
-            this.textboxFirstname = new MetroFramework.Controls.MetroTextBox();
+            this.tbSurname = new MetroFramework.Controls.MetroTextBox();
+            this.tbFirstname = new MetroFramework.Controls.MetroTextBox();
             this.labelReservationName = new MetroFramework.Controls.MetroLabel();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.btnRefresh = new MetroFramework.Controls.MetroButton();
+            this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.pnl = new MetroFramework.Controls.MetroPanel();
             this.btnShowAllLuxury = new System.Windows.Forms.Button();
@@ -79,15 +85,15 @@ namespace winHotelManagement
             this.BtnShowAllHighEnd = new System.Windows.Forms.Button();
             this.btnShowAllSuites = new System.Windows.Forms.Button();
             this.dgvSuites = new System.Windows.Forms.DataGridView();
-            this.cmbAdults = new MetroFramework.Controls.MetroComboBox();
-            this.cmbChildren = new MetroFramework.Controls.MetroComboBox();
-            this.lblAdults = new MetroFramework.Controls.MetroLabel();
-            this.lblChildren = new MetroFramework.Controls.MetroLabel();
+            this.btnUpdate = new MetroFramework.Controls.MetroButton();
             this.tabControls.SuspendLayout();
             this.tabReservation.SuspendLayout();
             this.pnlReservationRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuitesToBook)).BeginInit();
             this.pnlReservationMiddle.SuspendLayout();
             this.panelReservationLeft.SuspendLayout();
+            this.metroTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.metroTabPage3.SuspendLayout();
             this.pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuites)).BeginInit();
@@ -100,7 +106,7 @@ namespace winHotelManagement
             this.tabControls.Controls.Add(this.metroTabPage3);
             this.tabControls.Location = new System.Drawing.Point(24, 74);
             this.tabControls.Name = "tabControls";
-            this.tabControls.SelectedIndex = 0;
+            this.tabControls.SelectedIndex = 1;
             this.tabControls.Size = new System.Drawing.Size(1041, 605);
             this.tabControls.TabIndex = 0;
             this.tabControls.UseSelectable = true;
@@ -113,9 +119,9 @@ namespace winHotelManagement
             this.tabReservation.HorizontalScrollbarBarColor = true;
             this.tabReservation.HorizontalScrollbarHighlightOnWheel = false;
             this.tabReservation.HorizontalScrollbarSize = 10;
-            this.tabReservation.Location = new System.Drawing.Point(4, 38);
+            this.tabReservation.Location = new System.Drawing.Point(4, 35);
             this.tabReservation.Name = "tabReservation";
-            this.tabReservation.Size = new System.Drawing.Size(1033, 563);
+            this.tabReservation.Size = new System.Drawing.Size(1033, 566);
             this.tabReservation.TabIndex = 0;
             this.tabReservation.Text = "Reservation";
             this.tabReservation.VerticalScrollbarBarColor = true;
@@ -125,8 +131,8 @@ namespace winHotelManagement
             // pnlReservationRight
             // 
             this.pnlReservationRight.BackColor = System.Drawing.Color.LightBlue;
-            this.pnlReservationRight.Controls.Add(this.metroButton1);
-            this.pnlReservationRight.Controls.Add(this.lbRooms);
+            this.pnlReservationRight.Controls.Add(this.dgvSuitesToBook);
+            this.pnlReservationRight.Controls.Add(this.btnBook);
             this.pnlReservationRight.HorizontalScrollbarBarColor = true;
             this.pnlReservationRight.HorizontalScrollbarHighlightOnWheel = false;
             this.pnlReservationRight.HorizontalScrollbarSize = 10;
@@ -139,25 +145,29 @@ namespace winHotelManagement
             this.pnlReservationRight.VerticalScrollbarHighlightOnWheel = false;
             this.pnlReservationRight.VerticalScrollbarSize = 10;
             // 
-            // metroButton1
+            // dgvSuitesToBook
             // 
-            this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.metroButton1.Location = new System.Drawing.Point(105, 395);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroButton1.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroButton1.TabIndex = 3;
-            this.metroButton1.Text = "Book";
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.UseStyleColors = true;
+            this.dgvSuitesToBook.AllowUserToAddRows = false;
+            this.dgvSuitesToBook.AllowUserToDeleteRows = false;
+            this.dgvSuitesToBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSuitesToBook.Location = new System.Drawing.Point(3, 3);
+            this.dgvSuitesToBook.Name = "dgvSuitesToBook";
+            this.dgvSuitesToBook.ReadOnly = true;
+            this.dgvSuitesToBook.Size = new System.Drawing.Size(287, 386);
+            this.dgvSuitesToBook.TabIndex = 4;
             // 
-            // lbRooms
+            // btnBook
             // 
-            this.lbRooms.FormattingEnabled = true;
-            this.lbRooms.Location = new System.Drawing.Point(16, 5);
-            this.lbRooms.Name = "lbRooms";
-            this.lbRooms.Size = new System.Drawing.Size(260, 277);
-            this.lbRooms.TabIndex = 2;
+            this.btnBook.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnBook.Location = new System.Drawing.Point(105, 395);
+            this.btnBook.Name = "btnBook";
+            this.btnBook.Size = new System.Drawing.Size(75, 23);
+            this.btnBook.Style = MetroFramework.MetroColorStyle.Orange;
+            this.btnBook.TabIndex = 3;
+            this.btnBook.Text = "Book";
+            this.btnBook.UseSelectable = true;
+            this.btnBook.UseStyleColors = true;
+            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
             // pnlReservationMiddle
             // 
@@ -187,6 +197,57 @@ namespace winHotelManagement
             this.pnlReservationMiddle.VerticalScrollbarBarColor = true;
             this.pnlReservationMiddle.VerticalScrollbarHighlightOnWheel = false;
             this.pnlReservationMiddle.VerticalScrollbarSize = 10;
+            // 
+            // lblChildren
+            // 
+            this.lblChildren.AutoSize = true;
+            this.lblChildren.BackColor = System.Drawing.Color.LightBlue;
+            this.lblChildren.Location = new System.Drawing.Point(184, 126);
+            this.lblChildren.Name = "lblChildren";
+            this.lblChildren.Size = new System.Drawing.Size(58, 19);
+            this.lblChildren.TabIndex = 20;
+            this.lblChildren.Text = "Children";
+            this.lblChildren.UseCustomBackColor = true;
+            // 
+            // lblAdults
+            // 
+            this.lblAdults.AutoSize = true;
+            this.lblAdults.BackColor = System.Drawing.Color.LightBlue;
+            this.lblAdults.Location = new System.Drawing.Point(114, 126);
+            this.lblAdults.Name = "lblAdults";
+            this.lblAdults.Size = new System.Drawing.Size(45, 19);
+            this.lblAdults.TabIndex = 19;
+            this.lblAdults.Text = "Adults";
+            this.lblAdults.UseCustomBackColor = true;
+            // 
+            // cmbChildren
+            // 
+            this.cmbChildren.FormattingEnabled = true;
+            this.cmbChildren.ItemHeight = 23;
+            this.cmbChildren.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2"});
+            this.cmbChildren.Location = new System.Drawing.Point(184, 148);
+            this.cmbChildren.Name = "cmbChildren";
+            this.cmbChildren.Size = new System.Drawing.Size(64, 29);
+            this.cmbChildren.TabIndex = 18;
+            this.cmbChildren.UseSelectable = true;
+            // 
+            // cmbAdults
+            // 
+            this.cmbAdults.FormattingEnabled = true;
+            this.cmbAdults.ItemHeight = 23;
+            this.cmbAdults.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cmbAdults.Location = new System.Drawing.Point(114, 148);
+            this.cmbAdults.Name = "cmbAdults";
+            this.cmbAdults.Size = new System.Drawing.Size(64, 29);
+            this.cmbAdults.TabIndex = 17;
+            this.cmbAdults.UseSelectable = true;
             // 
             // btnSearchButton
             // 
@@ -223,6 +284,14 @@ namespace winHotelManagement
             // 
             this.cmbAmountOfDays.FormattingEnabled = true;
             this.cmbAmountOfDays.ItemHeight = 23;
+            this.cmbAmountOfDays.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
             this.cmbAmountOfDays.Location = new System.Drawing.Point(20, 148);
             this.cmbAmountOfDays.Name = "cmbAmountOfDays";
             this.cmbAmountOfDays.PromptText = "Days";
@@ -289,6 +358,11 @@ namespace winHotelManagement
             // 
             this.cmbSuiteType.FormattingEnabled = true;
             this.cmbSuiteType.ItemHeight = 23;
+            this.cmbSuiteType.Items.AddRange(new object[] {
+            "Suite Type",
+            "Regular",
+            "High-End",
+            "Luxury"});
             this.cmbSuiteType.Location = new System.Drawing.Point(20, 28);
             this.cmbSuiteType.Name = "cmbSuiteType";
             this.cmbSuiteType.Size = new System.Drawing.Size(122, 29);
@@ -329,8 +403,8 @@ namespace winHotelManagement
             this.panelReservationLeft.Controls.Add(this.cmbMonth);
             this.panelReservationLeft.Controls.Add(this.cmbYear);
             this.panelReservationLeft.Controls.Add(this.labelBirthday);
-            this.panelReservationLeft.Controls.Add(this.textboxSurname);
-            this.panelReservationLeft.Controls.Add(this.textboxFirstname);
+            this.panelReservationLeft.Controls.Add(this.tbSurname);
+            this.panelReservationLeft.Controls.Add(this.tbFirstname);
             this.panelReservationLeft.Controls.Add(this.labelReservationName);
             this.panelReservationLeft.HorizontalScrollbarBarColor = true;
             this.panelReservationLeft.HorizontalScrollbarHighlightOnWheel = false;
@@ -669,67 +743,67 @@ namespace winHotelManagement
             this.labelBirthday.Text = "Birthday";
             this.labelBirthday.UseCustomBackColor = true;
             // 
-            // textboxSurname
+            // tbSurname
             // 
             // 
             // 
             // 
-            this.textboxSurname.CustomButton.Image = null;
-            this.textboxSurname.CustomButton.Location = new System.Drawing.Point(104, 1);
-            this.textboxSurname.CustomButton.Name = "";
-            this.textboxSurname.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.textboxSurname.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.textboxSurname.CustomButton.TabIndex = 1;
-            this.textboxSurname.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.textboxSurname.CustomButton.UseSelectable = true;
-            this.textboxSurname.CustomButton.Visible = false;
-            this.textboxSurname.Lines = new string[] {
+            this.tbSurname.CustomButton.Image = null;
+            this.tbSurname.CustomButton.Location = new System.Drawing.Point(104, 1);
+            this.tbSurname.CustomButton.Name = "";
+            this.tbSurname.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.tbSurname.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbSurname.CustomButton.TabIndex = 1;
+            this.tbSurname.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbSurname.CustomButton.UseSelectable = true;
+            this.tbSurname.CustomButton.Visible = false;
+            this.tbSurname.Lines = new string[] {
         "Last name"};
-            this.textboxSurname.Location = new System.Drawing.Point(149, 27);
-            this.textboxSurname.MaxLength = 32767;
-            this.textboxSurname.Name = "textboxSurname";
-            this.textboxSurname.PasswordChar = '\0';
-            this.textboxSurname.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textboxSurname.SelectedText = "";
-            this.textboxSurname.SelectionLength = 0;
-            this.textboxSurname.SelectionStart = 0;
-            this.textboxSurname.Size = new System.Drawing.Size(126, 23);
-            this.textboxSurname.TabIndex = 4;
-            this.textboxSurname.Text = "Last name";
-            this.textboxSurname.UseSelectable = true;
-            this.textboxSurname.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.textboxSurname.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbSurname.Location = new System.Drawing.Point(149, 27);
+            this.tbSurname.MaxLength = 32767;
+            this.tbSurname.Name = "tbSurname";
+            this.tbSurname.PasswordChar = '\0';
+            this.tbSurname.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbSurname.SelectedText = "";
+            this.tbSurname.SelectionLength = 0;
+            this.tbSurname.SelectionStart = 0;
+            this.tbSurname.Size = new System.Drawing.Size(126, 23);
+            this.tbSurname.TabIndex = 4;
+            this.tbSurname.Text = "Last name";
+            this.tbSurname.UseSelectable = true;
+            this.tbSurname.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbSurname.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // textboxFirstname
-            // 
-            // 
+            // tbFirstname
             // 
             // 
-            this.textboxFirstname.CustomButton.Image = null;
-            this.textboxFirstname.CustomButton.Location = new System.Drawing.Point(96, 1);
-            this.textboxFirstname.CustomButton.Name = "";
-            this.textboxFirstname.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.textboxFirstname.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.textboxFirstname.CustomButton.TabIndex = 1;
-            this.textboxFirstname.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.textboxFirstname.CustomButton.UseSelectable = true;
-            this.textboxFirstname.CustomButton.Visible = false;
-            this.textboxFirstname.Lines = new string[] {
+            // 
+            // 
+            this.tbFirstname.CustomButton.Image = null;
+            this.tbFirstname.CustomButton.Location = new System.Drawing.Point(96, 1);
+            this.tbFirstname.CustomButton.Name = "";
+            this.tbFirstname.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.tbFirstname.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbFirstname.CustomButton.TabIndex = 1;
+            this.tbFirstname.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbFirstname.CustomButton.UseSelectable = true;
+            this.tbFirstname.CustomButton.Visible = false;
+            this.tbFirstname.Lines = new string[] {
         "First name"};
-            this.textboxFirstname.Location = new System.Drawing.Point(17, 27);
-            this.textboxFirstname.MaxLength = 32767;
-            this.textboxFirstname.Name = "textboxFirstname";
-            this.textboxFirstname.PasswordChar = '\0';
-            this.textboxFirstname.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textboxFirstname.SelectedText = "";
-            this.textboxFirstname.SelectionLength = 0;
-            this.textboxFirstname.SelectionStart = 0;
-            this.textboxFirstname.Size = new System.Drawing.Size(118, 23);
-            this.textboxFirstname.TabIndex = 3;
-            this.textboxFirstname.Text = "First name";
-            this.textboxFirstname.UseSelectable = true;
-            this.textboxFirstname.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.textboxFirstname.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbFirstname.Location = new System.Drawing.Point(17, 27);
+            this.tbFirstname.MaxLength = 32767;
+            this.tbFirstname.Name = "tbFirstname";
+            this.tbFirstname.PasswordChar = '\0';
+            this.tbFirstname.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbFirstname.SelectedText = "";
+            this.tbFirstname.SelectionLength = 0;
+            this.tbFirstname.SelectionStart = 0;
+            this.tbFirstname.Size = new System.Drawing.Size(118, 23);
+            this.tbFirstname.TabIndex = 3;
+            this.tbFirstname.Text = "First name";
+            this.tbFirstname.UseSelectable = true;
+            this.tbFirstname.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbFirstname.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // labelReservationName
             // 
@@ -744,17 +818,39 @@ namespace winHotelManagement
             // 
             // metroTabPage2
             // 
+            this.metroTabPage2.Controls.Add(this.btnUpdate);
+            this.metroTabPage2.Controls.Add(this.btnRefresh);
+            this.metroTabPage2.Controls.Add(this.dgvBooks);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.HorizontalScrollbarSize = 10;
-            this.metroTabPage2.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(1033, 566);
+            this.metroTabPage2.Size = new System.Drawing.Size(1033, 563);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Universal Search";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(3, 6);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseSelectable = true;
+            // 
+            // dgvBooks
+            // 
+            this.dgvBooks.AllowUserToAddRows = false;
+            this.dgvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBooks.Location = new System.Drawing.Point(0, 35);
+            this.dgvBooks.Name = "dgvBooks";
+            this.dgvBooks.ReadOnly = true;
+            this.dgvBooks.Size = new System.Drawing.Size(1037, 414);
+            this.dgvBooks.TabIndex = 2;
             // 
             // metroTabPage3
             // 
@@ -837,55 +933,15 @@ namespace winHotelManagement
             this.dgvSuites.Size = new System.Drawing.Size(1023, 423);
             this.dgvSuites.TabIndex = 2;
             // 
-            // cmbAdults
+            // btnUpdate
             // 
-            this.cmbAdults.FormattingEnabled = true;
-            this.cmbAdults.ItemHeight = 23;
-            this.cmbAdults.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4"});
-            this.cmbAdults.Location = new System.Drawing.Point(114, 148);
-            this.cmbAdults.Name = "cmbAdults";
-            this.cmbAdults.Size = new System.Drawing.Size(64, 29);
-            this.cmbAdults.TabIndex = 17;
-            this.cmbAdults.UseSelectable = true;
-            // 
-            // cmbChildren
-            // 
-            this.cmbChildren.FormattingEnabled = true;
-            this.cmbChildren.ItemHeight = 23;
-            this.cmbChildren.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cmbChildren.Location = new System.Drawing.Point(184, 148);
-            this.cmbChildren.Name = "cmbChildren";
-            this.cmbChildren.Size = new System.Drawing.Size(64, 29);
-            this.cmbChildren.TabIndex = 18;
-            this.cmbChildren.UseSelectable = true;
-            // 
-            // lblAdults
-            // 
-            this.lblAdults.AutoSize = true;
-            this.lblAdults.BackColor = System.Drawing.Color.LightBlue;
-            this.lblAdults.Location = new System.Drawing.Point(114, 126);
-            this.lblAdults.Name = "lblAdults";
-            this.lblAdults.Size = new System.Drawing.Size(45, 19);
-            this.lblAdults.TabIndex = 19;
-            this.lblAdults.Text = "Adults";
-            this.lblAdults.UseCustomBackColor = true;
-            // 
-            // lblChildren
-            // 
-            this.lblChildren.AutoSize = true;
-            this.lblChildren.BackColor = System.Drawing.Color.LightBlue;
-            this.lblChildren.Location = new System.Drawing.Point(184, 126);
-            this.lblChildren.Name = "lblChildren";
-            this.lblChildren.Size = new System.Drawing.Size(58, 19);
-            this.lblChildren.TabIndex = 20;
-            this.lblChildren.Text = "Children";
-            this.lblChildren.UseCustomBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(927, 6);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(94, 23);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update changes";
+            this.btnUpdate.UseSelectable = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // FrontDesk
             // 
@@ -897,10 +953,13 @@ namespace winHotelManagement
             this.tabControls.ResumeLayout(false);
             this.tabReservation.ResumeLayout(false);
             this.pnlReservationRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuitesToBook)).EndInit();
             this.pnlReservationMiddle.ResumeLayout(false);
             this.pnlReservationMiddle.PerformLayout();
             this.panelReservationLeft.ResumeLayout(false);
             this.panelReservationLeft.PerformLayout();
+            this.metroTabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.metroTabPage3.ResumeLayout(false);
             this.pnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuites)).EndInit();
@@ -915,8 +974,8 @@ namespace winHotelManagement
         private MetroFramework.Controls.MetroTabPage metroTabPage2;
         private MetroFramework.Controls.MetroTabPage metroTabPage3;
         private MetroFramework.Controls.MetroPanel panelReservationLeft;
-        private MetroFramework.Controls.MetroTextBox textboxSurname;
-        private MetroFramework.Controls.MetroTextBox textboxFirstname;
+        private MetroFramework.Controls.MetroTextBox tbSurname;
+        private MetroFramework.Controls.MetroTextBox tbFirstname;
         private MetroFramework.Controls.MetroLabel labelReservationName;
         private MetroFramework.Controls.MetroComboBox cmbDay;
         private MetroFramework.Controls.MetroComboBox cmbMonth;
@@ -950,8 +1009,7 @@ namespace winHotelManagement
         private MetroFramework.Controls.MetroCheckBox cbBreakfast;
         private MetroFramework.Controls.MetroButton btnSearchButton;
         private MetroFramework.Controls.MetroPanel pnlReservationRight;
-        private System.Windows.Forms.ListBox lbRooms;
-        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton btnBook;
         private MetroFramework.Controls.MetroPanel pnl;
         private System.Windows.Forms.DataGridView dgvSuites;
         private System.Windows.Forms.Button btnShowAllSuites;
@@ -962,5 +1020,9 @@ namespace winHotelManagement
         private MetroFramework.Controls.MetroComboBox cmbAdults;
         private MetroFramework.Controls.MetroLabel lblAdults;
         private MetroFramework.Controls.MetroLabel lblChildren;
+        private System.Windows.Forms.DataGridView dgvSuitesToBook;
+        private System.Windows.Forms.DataGridView dgvBooks;
+        private MetroFramework.Controls.MetroButton btnRefresh;
+        private MetroFramework.Controls.MetroButton btnUpdate;
     }
 }

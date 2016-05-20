@@ -11,6 +11,7 @@ namespace winHotelManagement
         public LoginForm()
         {
             InitializeComponent();
+            Focus();
             inputUsername.Focus();
         }
 

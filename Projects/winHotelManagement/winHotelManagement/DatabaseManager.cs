@@ -1,44 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Linq;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace winHotelManagement
 {
-    static class DatabaseManager
+    internal static class DatabaseManager
     {
-
         /// <summary>
-        /// Gets all suites.
+        ///     Gets all suites.
         /// </summary>
         /// <returns><c>IEnumerable</c> list of all suites.</returns>
         public static IEnumerable<Suite> GetAllSuites()
         {
             //LINQ to SQL
-            HotelDataDataContext db = new HotelDataDataContext();
+            var db = new HotelDataDataContext();
 
             //Get ALL suites.
             IEnumerable<Suite> allSuites = from all in db.Suites
-                                               orderby all.SuiteNumber
-                                               select all;
+                                           orderby all.SuiteNumber
+                                           select all;
 
             return allSuites;
         }
 
-
         /// <summary>
-        /// Gets all regular suites.
+        ///     Gets all regular suites.
         /// </summary>
         /// <returns><c>IEnumerable</c> list of high-end suites</returns>
         public static IEnumerable<Suite> GetAllRegularSuites()
         {
             //LINQ to SQL
-            HotelDataDataContext db = new HotelDataDataContext();
+            var db = new HotelDataDataContext();
 
             //Get High-End suites
             IEnumerable<Suite> regularSuites = from hs in db.Suites
@@ -49,33 +41,32 @@ namespace winHotelManagement
             return regularSuites.Any() ? regularSuites : null;
         }
 
-
         /// <summary>
-        /// Gets all high-end suites.
+        ///     Gets all high-end suites.
         /// </summary>
         /// <returns><c>IEnumerable</c> list of high-end suites</returns>
         public static IEnumerable<Suite> GetAllHighEndSuites()
         {
             //LINQ to SQL
-            HotelDataDataContext db = new HotelDataDataContext();
+            var db = new HotelDataDataContext();
 
             //Get High-End suites
             IEnumerable<Suite> highendSuites = from hs in db.Suites
                                                where hs.SuiteType == "High-End"
                                                orderby hs.SuiteNumber
                                                select hs;
-            
+
             return highendSuites.Any() ? highendSuites : null;
         }
 
         /// <summary>
-        /// Gets all luxury suites.
+        ///     Gets all luxury suites.
         /// </summary>
         /// <returns><c>IEnumerable</c> list of luxuary suites</returns>
         public static IEnumerable<Suite> GetAllLuxurySuites()
         {
             //LINQ to SQL
-            HotelDataDataContext db = new HotelDataDataContext();
+            var db = new HotelDataDataContext();
 
             //Get LUXURY suites
             IEnumerable<Suite> luxurySuites = from ls in db.Suites
@@ -86,34 +77,72 @@ namespace winHotelManagement
             return luxurySuites.Any() ? luxurySuites : null;
         }
 
-        public static void GetAllAvailableSuites(string suitetype, string year, string month, string day, string adults, string children)
+        public static IEnumerable<Suite> GetAllAvailableSuites(string suitetype, string checkInDate, string adults,
+                                                 string children, string days)
         {
-            string query = "";
+            var db = new HotelDataDataContext();
 
-            query = "SELECT * FROM Suites WHERE SuiteType = " + suitetype + " AND NumberOfAdultsAllowed >= " + adults + " AND NumberOfChildrenAllowed >= " + children + " AND ";
-            query += "Suites.SuiteNumber NOT IN (SELECT SuiteNumber FROM Bookings WHERE ";
-            query += "(StartDate BETWEEN @_start AND @_end) OR ";
-            query += "(EndDate BETWEEN @_start AND @_end) OR ";
-            query += "(@_start BETWEEN StartDate and EndDate) OR ";
-            query += "(@_end BETWEEN StartDate and EndDate) OR ";
-            query += "(@_start <= StartDate and @_end >= EndDate) OR ";
-            query += "(@_start >= @_end))";
+            int daysToStay = Convert.ToInt32(days);
+            int adultsStaying = Convert.ToInt32(adults);
+            int childrenStaying = Convert.ToInt32(children);
 
+            DateTime bookDate;
+            DateTime.TryParse(checkInDate, out bookDate);
+
+            DateTime checkOutDate = bookDate.AddDays(daysToStay);
+
+            IQueryable<int> bookings = (from b in db.Bookings
+                           where (b.StartDate >= bookDate && b.StartDate <= checkOutDate)
+                                 || (b.EndDate >= bookDate && b.EndDate <= checkOutDate)
+                           select b.SuiteNumber);
+
+            IEnumerable<Suite> querySearch = from q in db.Suites
+                              where q.SuiteType == suitetype
+                                    && q.NumberOfAdultsAllowed >= adultsStaying
+                                    && q.NumberOfChildrenAllowed >= childrenStaying
+                                    && !bookings.Contains(q.SuiteNumber)
+                              select q;
+
+            return querySearch;
+        }
+
+        public static void BookSuite(Suite temp, string checkInDate, string daysToStay, string fullname)
+        {
             HotelDataDataContext db = new HotelDataDataContext();
 
-            var querySearch = from q in db.Suites
-                              where q.SuiteType == suitetype
-                              select q;
-            var notBooked = from b in querySearch
-                            from n in db.Bookings
-                            where b.SuiteNumber == n.SuiteNumber
-                            where 
+            DateTime checkIn;
+            DateTime.TryParse(checkInDate, out checkIn);
 
+            DateTime checkOut = checkIn.AddDays(Convert.ToInt32(daysToStay));
 
-            
-                            
+            Booking booking = new Booking
+                              {
+                                  SuiteNumber = temp.SuiteNumber,
+                                  CreditCard = "xxx",
+                                  StartDate = checkIn,
+                                  EndDate = checkOut,
+                                  Name = fullname
+                              };
 
+            db.Bookings.InsertOnSubmit(booking);
+            db.SubmitChanges();
+        }
 
+        /// <summary>
+        /// Gets all booked suites.
+        /// </summary>
+        /// <returns><c>IEnumerable</c> list of all booked suites.</returns>
+        public static IEnumerable<Booking> GetAllBooked()
+        {
+            //LINQ to SQL
+            var db = new HotelDataDataContext();
+
+            //get all booked
+            IEnumerable<Booking> bookings = from b in db.Bookings
+                                            orderby b.StartDate
+                                            select b;
+
+            return bookings.Any() ? bookings : null;
         }
     }
 }
