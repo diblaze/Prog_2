@@ -24,11 +24,22 @@ namespace winHotelManagement
             dgvSuites.AllowUserToAddRows = false;
             dgvSuites.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvSuites.AutoSize = true;
+            dgvSuites.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dgvSuitesToBook.AutoGenerateColumns = true;
             dgvSuitesToBook.AllowUserToAddRows = false;
             dgvSuitesToBook.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvSuitesToBook.AutoSize = true;
+            dgvSuitesToBook.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgvBooks.AutoGenerateColumns = true;
+            dgvBooks.AllowUserToAddRows = false;
+            dgvBooks.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvBooks.AutoSize = true;
+            dgvBooks.AllowUserToDeleteRows = true;
+            dgvBooks.MultiSelect = false;
+            dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvBooks.ScrollBars = ScrollBars.Both;
 
             #endregion
 
@@ -46,6 +57,9 @@ namespace winHotelManagement
             dgvBooks.DataSource = DatabaseManager.GetAllBooked();
         }
 
+        /// <summary>
+        ///     Initializes the state box.
+        /// </summary>
         private void InitializeStateBox()
         {
             object[] states =
@@ -77,6 +91,9 @@ namespace winHotelManagement
             cmbStates.Items.AddRange(states);
         }
 
+        /// <summary>
+        ///     Initializes the date boxes.
+        /// </summary>
         private void InitializeDateBoxes()
         {
             int currentMonth = DateTime.Today.Month;
@@ -98,6 +115,11 @@ namespace winHotelManagement
             cmbCheckInMonth.SelectedIndex = 0;
         }
 
+        /// <summary>
+        ///     Adds the check in days to ComboBox.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddCheckInDaysToComboBox(object sender, EventArgs e)
         {
             //do not do anything before both comboboxes are selected
@@ -112,10 +134,24 @@ namespace winHotelManagement
             //how many days in month?
             int daysInMonth = DateTime.DaysInMonth(Convert.ToInt32(cmbCheckInYear.Text), cmbMonth.SelectedIndex + 1);
 
-            //add all day items
-            for (int i = 1; i <= daysInMonth; i++)
+            if (DateTime.Today.Month == Convert.ToInt32(cmbCheckInMonth.SelectedItem.ToString()))
             {
-                cmbCheckInDay.Items.Add(i);
+                //current day
+                int day = DateTime.Today.Day;
+
+                //add all day items
+                for (int i = day; i <= daysInMonth; i++)
+                {
+                    cmbCheckInDay.Items.Add(i);
+                }
+            }
+            else
+            {
+                //add all day items
+                for (int i = 1; i <= daysInMonth; i++)
+                {
+                    cmbCheckInDay.Items.Add(i);
+                }
             }
 
             cmbCheckInDay.SelectedIndex = 0;
@@ -258,15 +294,16 @@ namespace winHotelManagement
         }
 
         /// <summary>
-        /// Shows all suites available.
+        ///     Shows all suites available.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnSearchButton_Click(object sender, EventArgs e)
         {
-            
             if (MakeSureAllInputted())
+            {
                 return;
+            }
 
             //extract values needed
             string suiteType = cmbSuiteType.SelectedItem.ToString();
@@ -305,12 +342,11 @@ namespace winHotelManagement
         }
 
         /// <summary>
-        /// Makes sure all input fields are inputted.
+        ///     Makes sure all input fields are inputted.
         /// </summary>
         /// <returns><c>True</c> if user missed an field - otherwise <c>false</c> </returns>
         private bool MakeSureAllInputted()
         {
-
             if (tbCity.Text == null || tbEmail.Text == null || tbStreet.Text == null || tbTelephone.Text == null ||
                 tbZipCode.Text == null || tbFirstname.Text == null || tbSurname.Text == null)
             {
@@ -345,10 +381,10 @@ namespace winHotelManagement
         }
 
         /// <summary>
-        /// Books a suite.
+        ///     Books a suite.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnBook_Click(object sender, EventArgs e)
         {
             if (dgvSuitesToBook.SelectedRows.Count != 1)
@@ -358,25 +394,97 @@ namespace winHotelManagement
                 return;
             }
 
+            var tempSuite = dgvSuitesToBook.SelectedRows[0].DataBoundItem as Suite;
 
-            Suite temp = dgvSuitesToBook.SelectedRows[0].DataBoundItem as Suite;
+            #region Customer info
+
             string checkInDate = $"{cmbCheckInYear.SelectedItem}-{cmbCheckInMonth.SelectedItem}-{cmbCheckInDay.SelectedItem}";
             string daysToStay = cmbAmountOfDays.SelectedItem.ToString();
             string fullName = tbFirstname.Text + " " + tbSurname.Text;
+            string gender = "";
 
-            DatabaseManager.BookSuite(temp, checkInDate, daysToStay, fullName);
+            if (cbMale.Checked)
+            {
+                gender = "Male";
+            }
+            else if (cbFemale.Checked)
+
+            {
+                gender = "Female";
+            }
+            else if (cbOther.Checked)
+            {
+                gender = "Other";
+            }
+
+            string telephone = tbTelephone.Text;
+            string email = tbEmail.Text;
+            string adress = tbStreet.Text;
+            string city = tbCity.Text;
+            string state = cmbStates.SelectedText;
+            string zipcode = tbZipCode.Text;
+            bool breakfast = cbBreakfast.Checked;
+
+            #endregion
+
+            if (tempSuite != null)
+            {
+
+                if (DatabaseManager.BookSuite(tempSuite,
+                    checkInDate,
+                    daysToStay,
+                    fullName,
+                    gender,
+                    telephone,
+                    email,
+                    adress,
+                    city,
+                    state,
+                    zipcode,
+                    breakfast))
+                {
+                    MetroMessageBox.Show(this,
+                        $"You have sucessfully booked suite {tempSuite.SuiteNumber} for customer {fullName}. Press OK to open the receipt!");
+
+                    Receipt.CreateReceipt(tempSuite.SuiteNumber, checkInDate, fullName);
+
+
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, $"Something went horrificly bad trying to book suite {tempSuite.SuiteNumber} for customer {fullName}. Try again!");
+                    
+                }
+
+                
+
+
+            }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        /// <summary>
+        ///     Handles the UserDeletingRow event of the dgvBooks control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewRowCancelEventArgs" /> instance containing the event data.</param>
+        private void dgvBooks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            
+            DataGridViewRow row = dgvBooks.SelectedRows[0];
+
+            int idToDelete = Convert.ToInt32(row.Cells[0].Value.ToString());
+
+            DatabaseManager.DeleteSuite(idToDelete);
         }
 
-        private void dgvBooks_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        /// <summary>
+        ///     Refreshes the data grid view of bookings.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
-            var row = sender as DataGridViewRow;
-
-            //DatabaseManager.DeleteSuites(row);
+            dgvBooks.DataSource = DatabaseManager.GetAllBooked();
+            dgvBooks.Refresh();
         }
     }
 }

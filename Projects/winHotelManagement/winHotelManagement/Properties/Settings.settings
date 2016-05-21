@@ -5,20 +5,22 @@
     <Setting Name="ConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Server=(localdb)\v11.0;AttachDbFilename=|DataDirectory|\HotelData.mdf;Integrated Security=True;
-&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Server=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HotelData.mdf;Integrated Security=True;
+(LocalDB)\MSSQLLocalDB&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Server=(localdb)\v11.0;AttachDbFilename=|DataDirectory|\HotelData.mdf;Integrated Security=True;
-</Value>
+      <Value Profile="(Default)">Server=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HotelData.mdf;Integrated Security=True;
+(LocalDB)\MSSQLLocalDB</Value>
     </Setting>
     <Setting Name="HotelDataConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Server=(localdb)\v11.0;AttachDbFilename=|DataDirectory|\HotelData.mdf;&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Server=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HotelData.mdf;Integrated Security=True;
+&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Server=(localdb)\v11.0;AttachDbFilename=|DataDirectory|\HotelData.mdf;</Value>
+      <Value Profile="(Default)">Server=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HotelData.mdf;Integrated Security=True;
+</Value>
     </Setting>
   </Settings>
 </SettingsFile>

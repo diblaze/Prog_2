@@ -49,13 +49,11 @@ namespace winHotelManagement
 
             if (correctLogin)
             {
-                //navigate to window according to role
-                //isloggedin = true
-
                 MetroMessageBox.Show(this, "You have logged in");
 
                 await Task.Delay(1000);
 
+                //open up the employee management window.
                 FrontDesk frontDesk = new FrontDesk();
                 frontDesk.Show();
                 this.Hide();

@@ -76,7 +76,7 @@ namespace winHotelManagement
             this.tbFirstname = new MetroFramework.Controls.MetroTextBox();
             this.labelReservationName = new MetroFramework.Controls.MetroLabel();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.btnUpdate = new MetroFramework.Controls.MetroButton();
+            this.lblDelete = new MetroFramework.Controls.MetroLabel();
             this.btnRefresh = new MetroFramework.Controls.MetroButton();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
@@ -119,9 +119,9 @@ namespace winHotelManagement
             this.tabReservation.HorizontalScrollbarBarColor = true;
             this.tabReservation.HorizontalScrollbarHighlightOnWheel = false;
             this.tabReservation.HorizontalScrollbarSize = 10;
-            this.tabReservation.Location = new System.Drawing.Point(4, 39);
+            this.tabReservation.Location = new System.Drawing.Point(4, 38);
             this.tabReservation.Name = "tabReservation";
-            this.tabReservation.Size = new System.Drawing.Size(1033, 562);
+            this.tabReservation.Size = new System.Drawing.Size(1033, 563);
             this.tabReservation.TabIndex = 0;
             this.tabReservation.Text = "Reservation";
             this.tabReservation.VerticalScrollbarBarColor = true;
@@ -818,7 +818,7 @@ namespace winHotelManagement
             // 
             // metroTabPage2
             // 
-            this.metroTabPage2.Controls.Add(this.btnUpdate);
+            this.metroTabPage2.Controls.Add(this.lblDelete);
             this.metroTabPage2.Controls.Add(this.btnRefresh);
             this.metroTabPage2.Controls.Add(this.dgvBooks);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
@@ -828,20 +828,19 @@ namespace winHotelManagement
             this.metroTabPage2.Name = "metroTabPage2";
             this.metroTabPage2.Size = new System.Drawing.Size(1033, 563);
             this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "Universal Search";
+            this.metroTabPage2.Text = "Booked";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
-            // btnUpdate
+            // lblDelete
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(927, 6);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(94, 23);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update changes";
-            this.btnUpdate.UseSelectable = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.lblDelete.AutoSize = true;
+            this.lblDelete.Location = new System.Drawing.Point(84, 6);
+            this.lblDelete.Name = "lblDelete";
+            this.lblDelete.Size = new System.Drawing.Size(378, 19);
+            this.lblDelete.TabIndex = 4;
+            this.lblDelete.Text = "To delete a booking, select row and press DELETE on keyboard.";
             // 
             // btnRefresh
             // 
@@ -851,6 +850,7 @@ namespace winHotelManagement
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseSelectable = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dgvBooks
             // 
@@ -859,9 +859,9 @@ namespace winHotelManagement
             this.dgvBooks.Location = new System.Drawing.Point(0, 35);
             this.dgvBooks.Name = "dgvBooks";
             this.dgvBooks.ReadOnly = true;
-            this.dgvBooks.Size = new System.Drawing.Size(1037, 414);
+            this.dgvBooks.Size = new System.Drawing.Size(990, 414);
             this.dgvBooks.TabIndex = 2;
-            this.dgvBooks.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvBooks_UserDeletedRow);
+            this.dgvBooks.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvBooks_UserDeletingRow);
             // 
             // metroTabPage3
             // 
@@ -869,11 +869,11 @@ namespace winHotelManagement
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.HorizontalScrollbarSize = 10;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 39);
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(1033, 562);
+            this.metroTabPage3.Size = new System.Drawing.Size(1033, 563);
             this.metroTabPage3.TabIndex = 2;
-            this.metroTabPage3.Text = "Rooms";
+            this.metroTabPage3.Text = "All Rooms";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
@@ -960,6 +960,7 @@ namespace winHotelManagement
             this.panelReservationLeft.ResumeLayout(false);
             this.panelReservationLeft.PerformLayout();
             this.metroTabPage2.ResumeLayout(false);
+            this.metroTabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.metroTabPage3.ResumeLayout(false);
             this.pnl.ResumeLayout(false);
@@ -1024,6 +1025,6 @@ namespace winHotelManagement
         private System.Windows.Forms.DataGridView dgvSuitesToBook;
         private System.Windows.Forms.DataGridView dgvBooks;
         private MetroFramework.Controls.MetroButton btnRefresh;
-        private MetroFramework.Controls.MetroButton btnUpdate;
+        private MetroFramework.Controls.MetroLabel lblDelete;
     }
 }

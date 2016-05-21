@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receipt.cs" />
     <Compile Include="UserUtility.cs" />
     <EmbeddedResource Include="FrontDesk.resx">
       <DependentUpon>FrontDesk.cs</DependentUpon>
@@ -149,6 +150,9 @@
     <Content Include="HotelData_log.ldf">
       <DependentUpon>HotelData.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="receipttemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -26,8 +26,8 @@ namespace winHotelManagement.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=(localdb)\\v11.0;AttachDbFilename=|DataDirectory|\\HotelData.mdf;Integrated " +
-            "Security=True;\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\HotelData.mdf;Inte" +
+            "grated Security=True;\n(LocalDB)\\MSSQLLocalDB")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
@@ -37,7 +37,8 @@ namespace winHotelManagement.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=(localdb)\\v11.0;AttachDbFilename=|DataDirectory|\\HotelData.mdf;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\HotelData.mdf;Inte" +
+            "grated Security=True;\n")]
         public string HotelDataConnectionString {
             get {
                 return ((string)(this["HotelDataConnectionString"]));
