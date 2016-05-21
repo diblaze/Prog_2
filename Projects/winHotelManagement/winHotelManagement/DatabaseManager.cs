@@ -144,5 +144,10 @@ namespace winHotelManagement
 
             return bookings.Any() ? bookings : null;
         }
+
+        public static void DeleteSuites(string suitenumber, DateTime startdate, DateTime enddate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

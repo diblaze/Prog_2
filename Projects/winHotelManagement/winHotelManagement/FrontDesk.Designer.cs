@@ -76,6 +76,7 @@ namespace winHotelManagement
             this.tbFirstname = new MetroFramework.Controls.MetroTextBox();
             this.labelReservationName = new MetroFramework.Controls.MetroLabel();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.btnUpdate = new MetroFramework.Controls.MetroButton();
             this.btnRefresh = new MetroFramework.Controls.MetroButton();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
@@ -85,7 +86,6 @@ namespace winHotelManagement
             this.BtnShowAllHighEnd = new System.Windows.Forms.Button();
             this.btnShowAllSuites = new System.Windows.Forms.Button();
             this.dgvSuites = new System.Windows.Forms.DataGridView();
-            this.btnUpdate = new MetroFramework.Controls.MetroButton();
             this.tabControls.SuspendLayout();
             this.tabReservation.SuspendLayout();
             this.pnlReservationRight.SuspendLayout();
@@ -119,9 +119,9 @@ namespace winHotelManagement
             this.tabReservation.HorizontalScrollbarBarColor = true;
             this.tabReservation.HorizontalScrollbarHighlightOnWheel = false;
             this.tabReservation.HorizontalScrollbarSize = 10;
-            this.tabReservation.Location = new System.Drawing.Point(4, 35);
+            this.tabReservation.Location = new System.Drawing.Point(4, 39);
             this.tabReservation.Name = "tabReservation";
-            this.tabReservation.Size = new System.Drawing.Size(1033, 566);
+            this.tabReservation.Size = new System.Drawing.Size(1033, 562);
             this.tabReservation.TabIndex = 0;
             this.tabReservation.Text = "Reservation";
             this.tabReservation.VerticalScrollbarBarColor = true;
@@ -833,6 +833,16 @@ namespace winHotelManagement
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(927, 6);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(94, 23);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update changes";
+            this.btnUpdate.UseSelectable = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(3, 6);
@@ -851,6 +861,7 @@ namespace winHotelManagement
             this.dgvBooks.ReadOnly = true;
             this.dgvBooks.Size = new System.Drawing.Size(1037, 414);
             this.dgvBooks.TabIndex = 2;
+            this.dgvBooks.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvBooks_UserDeletedRow);
             // 
             // metroTabPage3
             // 
@@ -858,9 +869,9 @@ namespace winHotelManagement
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.HorizontalScrollbarSize = 10;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 39);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(1033, 566);
+            this.metroTabPage3.Size = new System.Drawing.Size(1033, 562);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Rooms";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
@@ -932,16 +943,6 @@ namespace winHotelManagement
             this.dgvSuites.Name = "dgvSuites";
             this.dgvSuites.Size = new System.Drawing.Size(1023, 423);
             this.dgvSuites.TabIndex = 2;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(927, 6);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(94, 23);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update changes";
-            this.btnUpdate.UseSelectable = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // FrontDesk
             // 

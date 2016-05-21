@@ -369,7 +369,14 @@ namespace winHotelManagement
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            DatabaseManager.DeleteSuites();
+            
+        }
+
+        private void dgvBooks_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            var row = sender as DataGridViewRow;
+
+            //DatabaseManager.DeleteSuites(row);
         }
     }
 }
